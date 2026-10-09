@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Services — iSpace Technology</title>
+<meta name="description" content="Explore iSpace Technology services: graphic and motion design, UI/UX, web and app development, e-commerce, AI and blockchain, and performance marketing.">
+<meta name="theme-color" content="#070D19">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+/* =========================================================
+   iSpace Technology — 3D storytelling redesign
+   Tokens → base → chrome → sections → utilities
+   ========================================================= */
+:root{
+  color-scheme: dark;
+  --n950:#070D19; --n900:#0A1128; --n800:#0E1836; --n700:#16264F;
+  --cyan:#3AD7FF; --blue:#2B7BFF; --silver:#C9D3E6; --ice:#EAF1FF; --gold:#E6B65C;
+  --muted:#8FA0C4; --line:rgba(140,190,255,.16); --glass:rgba(13,23,50,.55);
+  --f-display:'Unbounded','Arial Black',system-ui,sans-serif;
+  --f-body:'Geist','Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --f-mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --vh:1vh;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);background:var(--n950);scroll-behavior:smooth}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+.lenis.lenis-smooth iframe{pointer-events:none}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--n950);color:var(--ice);font-family:var(--f-body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul{list-style:none;margin:0;padding:0}
+h1,h2,h3,p{margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:6px}
+
+/* ---------- fixed atmosphere ---------- */
+.bg{position:fixed;inset:0;z-index:0;background:
+  radial-gradient(1200px 720px at 78% -8%,rgba(43,123,255,.20),transparent 60%),
+  radial-gradient(900px 640px at -6% 104%,rgba(58,215,255,.10),transparent 60%),
+  linear-gradient(180deg,#0A1128 0%,#070D19 70%)}
+.trails{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.trails i{position:absolute;height:1px;width:42vw;left:-50vw;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:0;rotate:-24deg;animation:trail 9s linear infinite}
+.trails i:nth-child(1){top:22%;animation-delay:0s}
+.trails i:nth-child(2){top:48%;animation-delay:3s;width:30vw;background:linear-gradient(90deg,transparent,var(--silver),transparent)}
+.trails i:nth-child(3){top:70%;animation-delay:5.5s}
+.trails i:nth-child(4){top:86%;animation-delay:1.8s;width:26vw}
+@keyframes trail{0%{transform:translateX(0);opacity:0}10%{opacity:.55}60%{opacity:.35}100%{transform:translateX(170vw);opacity:0}}
+#gl{position:fixed;left:0;top:0;width:100%;height:calc(var(--vh)*100);z-index:1;pointer-events:none;transition:filter .3s linear}
+.vignette{position:fixed;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,transparent 50%,rgba(3,6,14,.65) 100%)}
+.cursor{position:fixed;left:0;top:0;width:320px;height:320px;margin:-160px 0 0 -160px;border-radius:50%;z-index:3;pointer-events:none;background:radial-gradient(circle,rgba(58,215,255,.13),transparent 62%);mix-blend-mode:screen;opacity:0;transition:opacity .4s}
+.cursor.on{opacity:1}
+main{position:relative;z-index:4;overflow-x:clip}
+
+/* ---------- type ---------- */
+.display,.h2{font-family:var(--f-display);font-weight:500;letter-spacing:-.025em}
+.h2{font-size:clamp(1.85rem,3.5vw,3.05rem);line-height:1.14}
+.lede{font-size:clamp(1.02rem,1.25vw,1.2rem);color:#B7C4E2;max-width:56ch}
+[data-split]{display:block}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .04em .16em;margin:0 -.04em -.16em}
+.wi{display:inline-block;transform:translateY(112%);transition:transform 1s var(--ease);transition-delay:calc(var(--i)*55ms);
+  background:linear-gradient(180deg,#fff 25%,#A9B8D8 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+[data-split].in .wi{transform:none}
+html:not(.js) .wi{transform:none}
+.reveal{opacity:0;filter:blur(8px);transform:translateY(18px);transition:opacity .9s var(--ease),filter .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+.reveal.in{opacity:1;filter:none;transform:none}
+html:not(.js) .reveal{opacity:1;filter:none;transform:none}
+
+/* ---------- buttons ---------- */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.6em;padding:16px 28px;border-radius:999px;font-weight:600;font-size:.98rem;border:1px solid transparent;cursor:pointer;transition:box-shadow .3s,background .3s,color .3s,border-color .3s;will-change:transform}
+.btn-primary{background:linear-gradient(120deg,var(--cyan),var(--blue));color:#04101F;box-shadow:0 0 0 1px rgba(255,255,255,.25) inset,0 12px 40px -8px rgba(58,215,255,.55)}
+.btn-primary:hover{box-shadow:0 0 0 1px rgba(255,255,255,.4) inset,0 16px 60px -6px rgba(58,215,255,.85)}
+.btn-gold{border-color:rgba(230,182,92,.6);color:var(--gold);background:rgba(230,182,92,.06)}
+.btn-gold:hover{background:var(--gold);color:#1a1204;box-shadow:0 10px 40px -10px rgba(230,182,92,.7)}
+.btn-sm{padding:11px 20px;font-size:.88rem}
+.mag-i{display:inline-flex;align-items:center;gap:.6em;transition:transform .25s var(--ease)}
+
+/* ---------- glass + sweep border ---------- */
+@property --a{syntax:'<angle>';initial-value:0deg;inherits:false}
+.gcard{position:relative;border-radius:24px;background:linear-gradient(160deg,rgba(22,38,79,.62),rgba(10,17,40,.72));-webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);
+  border:1px solid var(--line);box-shadow:0 30px 80px -40px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.07);transform-style:preserve-3d;will-change:transform}
+.gcard::before{content:'';position:absolute;inset:-1px;border-radius:inherit;padding:1.5px;pointer-events:none;opacity:0;
+  background:conic-gradient(from var(--a),transparent 0 62%,var(--cyan) 84%,#fff 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.gcard::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(58,215,255,.13),transparent 60%)}
+.gcard.in::before{animation:sweep 1.9s var(--ease) 1 forwards}
+.gcard:hover::before,.gcard.hot::before{animation:spin 3.2s linear infinite;opacity:1}
+.gcard:hover::after{opacity:1}
+@keyframes sweep{0%{--a:0deg;opacity:1}75%{opacity:1}100%{--a:360deg;opacity:0}}
+@keyframes spin{from{--a:0deg}to{--a:360deg}}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 14px);transform:translateX(-50%);z-index:60;width:min(1120px,calc(100% - 24px));
+  display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 12px 10px 14px;border-radius:999px;
+  background:rgba(10,17,40,.5);-webkit-backdrop-filter:blur(22px) saturate(150%);backdrop-filter:blur(22px) saturate(150%);border:1px solid var(--line);
+  box-shadow:0 20px 60px -30px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.08);transition:background .3s}
+.nav.scrolled{background:rgba(7,13,25,.72)}
+.brand{display:flex;align-items:center;gap:11px}
+.brand .chip{width:38px;height:38px;border-radius:12px;background:#fff;display:grid;place-items:center;box-shadow:0 0 24px rgba(58,215,255,.3)}
+.brand .chip img{width:24px;height:auto}
+.wm{font-family:var(--f-display);font-weight:600;font-size:1.02rem;letter-spacing:.04em;line-height:1;display:flex;flex-direction:column;gap:4px}
+.wm small{font-family:var(--f-body);font-weight:400;font-size:.62rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase}
+.links{display:flex;gap:4px;align-items:center}
+.links > a,.links .nav-services > a{padding:9px 15px;border-radius:999px;font-size:.9rem;color:#B7C4E2;transition:color .2s,background .2s}
+.links > a:hover,.links .nav-services > a:hover,.links .nav-services:focus-within > a{color:#fff;background:rgba(255,255,255,.07)}
+.nav-services{position:relative;display:flex;align-items:center}
+.nav-services > a{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.nav-services > a .nav-chevron{width:29px;height:29px;display:grid;place-items:center;flex:0 0 29px;border:1px solid rgba(58,215,255,.28);border-radius:50%;background:linear-gradient(145deg,rgba(58,215,255,.12),rgba(58,215,255,.025));color:var(--cyan);box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 0 16px rgba(58,215,255,.045);opacity:.9;transition:transform .38s var(--ease),background .25s,border-color .25s,box-shadow .25s,color .25s}
+.nav-services > a .nav-chevron svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .38s var(--ease)}
+.nav-services:hover > a .nav-chevron,.nav-services:focus-within > a .nav-chevron{transform:translateY(1px);opacity:1;border-color:rgba(58,215,255,.62);background:rgba(58,215,255,.15);box-shadow:0 0 22px rgba(58,215,255,.14),inset 0 1px 0 rgba(255,255,255,.1)}
+.nav-services:hover > a .nav-chevron svg,.nav-services:focus-within > a .nav-chevron svg{transform:rotate(180deg)}
+.nav-services > a[aria-expanded="true"] .nav-chevron{border-color:rgba(58,215,255,.62);background:rgba(58,215,255,.15);box-shadow:0 0 22px rgba(58,215,255,.14),inset 0 1px 0 rgba(255,255,255,.1)}
+.nav-services > a[aria-expanded="true"] .nav-chevron svg{transform:rotate(180deg)}
+.nav-services > a .nav-chevron::after{content:'';position:absolute;width:5px;height:5px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px rgba(58,215,255,.75);opacity:.55;transform:translate(9px,-9px);pointer-events:none}
+.nav-services > a .nav-chevron{position:relative}
+.nav-dropdown{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(-6px);width:235px;padding:8px;border:1px solid var(--line);border-radius:18px;background:rgba(7,13,25,.94);-webkit-backdrop-filter:blur(22px) saturate(150%);backdrop-filter:blur(22px) saturate(150%);box-shadow:0 24px 60px -24px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.07);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .22s var(--ease),transform .22s var(--ease),visibility .22s}
+.nav-dropdown::before{content:'';position:absolute;left:0;right:0;top:-10px;height:12px}
+.nav-services:hover .nav-dropdown,.nav-services:focus-within .nav-dropdown{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.nav-dropdown a{display:flex!important;align-items:center;justify-content:space-between;width:100%;padding:10px 12px!important;border-radius:11px!important;font-size:.82rem!important;color:#B7C4E2!important;white-space:nowrap}
+.nav-dropdown a::after{content:'→';color:var(--cyan);opacity:0;transform:translateX(-5px);transition:opacity .2s,transform .2s}
+.nav-dropdown a:hover,.nav-dropdown a:focus-visible{color:#fff!important;background:rgba(58,215,255,.09)!important}
+.nav-dropdown a:hover::after,.nav-dropdown a:focus-visible::after{opacity:1;transform:translateX(0)}
+.nav-dropdown a[aria-current="page"]{color:#fff!important;background:rgba(58,215,255,.12)!important;border:1px solid rgba(58,215,255,.18)}
+.nav-dropdown a[aria-current="page"]::after{opacity:1;transform:translateX(0)}
+.nav-dropdown a[data-service-filter="all"]{border-bottom:1px solid rgba(140,190,255,.1);margin-bottom:4px;padding-bottom:12px!important}
+
+/* ---------- mobile navigation ---------- */
+.mobile-menu-toggle{display:none;position:relative;width:46px;height:46px;flex:0 0 46px;border:1px solid rgba(140,190,255,.22);border-radius:14px;background:rgba(15,28,58,.72);color:#fff;align-items:center;justify-content:center;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .25s,border-color .25s,transform .25s,box-shadow .25s}
+.mobile-menu-toggle:hover{background:rgba(58,215,255,.1);border-color:rgba(58,215,255,.4);box-shadow:0 0 24px rgba(58,215,255,.12)}
+.mobile-menu-toggle:active{transform:scale(.94)}
+.mobile-menu-toggle .hamb{position:relative;width:21px;height:16px;display:block}
+.mobile-menu-toggle .hamb i{position:absolute;left:0;width:21px;height:2px;border-radius:2px;background:#EAF1FF;transform-origin:center;transition:transform .32s var(--ease),opacity .2s,width .25s,top .32s var(--ease)}
+.mobile-menu-toggle .hamb i:nth-child(1){top:0}
+.mobile-menu-toggle .hamb i:nth-child(2){top:7px;width:15px;right:0;left:auto}
+.mobile-menu-toggle .hamb i:nth-child(3){top:14px}
+.mobile-menu-toggle[aria-expanded="true"] .hamb i:nth-child(1){top:7px;transform:rotate(45deg)}
+.mobile-menu-toggle[aria-expanded="true"] .hamb i:nth-child(2){opacity:0;transform:scaleX(0)}
+.mobile-menu-toggle[aria-expanded="true"] .hamb i:nth-child(3){top:7px;transform:rotate(-45deg)}
+.mobile-menu{position:fixed;left:10px;right:10px;top:calc(env(safe-area-inset-top,0px) + 78px);bottom:12px;z-index:59;padding:12px;overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;touch-action:pan-y;border:1px solid rgba(140,190,255,.2);border-radius:24px;background:linear-gradient(155deg,rgba(9,19,43,.97),rgba(5,11,25,.98));-webkit-backdrop-filter:blur(28px) saturate(155%);backdrop-filter:blur(28px) saturate(155%);box-shadow:0 28px 90px -35px rgba(0,0,0,.95),0 0 0 100vmax rgba(2,7,17,.58),inset 0 1px 0 rgba(255,255,255,.08);opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-14px) scale(.975);transform-origin:top right;transition:opacity .3s var(--ease),transform .35s var(--ease),visibility .3s}
+.mobile-menu::before{content:'';position:absolute;left:12%;right:12%;top:-1px;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:.75}
+.mobile-menu.open{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0) scale(1)}
+.mobile-menu-inner{min-height:100%;display:flex;flex-direction:column;padding:8px 4px 6px}
+.mobile-menu-kicker{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);padding:8px 12px 12px;opacity:.85}
+.mobile-link,.mobile-service-toggle{position:relative;display:flex;align-items:center;justify-content:space-between;width:100%;min-height:56px;padding:14px 14px;border:0;border-radius:15px;background:transparent;color:#DDE7FF;font:500 1rem var(--f-body);text-decoration:none;text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent;opacity:0;transform:translateY(10px);transition:background .2s,color .2s,transform .2s}
+.mobile-menu.open .mobile-link,.mobile-menu.open .mobile-service-toggle{animation:mobileNavIn .45s var(--ease) forwards;animation-delay:calc(var(--i) * .045s)}
+.mobile-link:hover,.mobile-link:focus-visible,.mobile-service-toggle:hover,.mobile-service-toggle:focus-visible{background:rgba(255,255,255,.055);color:#fff;outline:none}
+.mobile-link::after{content:'↗';font-size:.95rem;color:var(--cyan);opacity:.75;transition:transform .2s}
+.mobile-link:hover::after,.mobile-link:focus-visible::after{transform:translate(3px,-3px)}
+.mobile-service-label{display:flex;align-items:center;gap:11px}.mobile-service-dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px rgba(58,215,255,.8);opacity:.9}.mobile-service-toggle .mobile-plus{width:34px;height:34px;display:grid;place-items:center;border:1px solid rgba(58,215,255,.24);border-radius:50%;background:linear-gradient(145deg,rgba(58,215,255,.12),rgba(58,215,255,.035));color:var(--cyan);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 0 18px rgba(58,215,255,.05);transition:transform .4s var(--ease),background .25s,border-color .25s,box-shadow .25s}.mobile-service-toggle .mobile-plus svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .4s var(--ease)}
+.mobile-service-toggle[aria-expanded="true"]{background:rgba(58,215,255,.075);color:#fff}
+.mobile-service-toggle[aria-expanded="true"] .mobile-plus{background:rgba(58,215,255,.15);border-color:rgba(58,215,255,.55);box-shadow:0 0 22px rgba(58,215,255,.12)}.mobile-service-toggle[aria-expanded="true"] .mobile-plus svg{transform:rotate(180deg)}
+.mobile-service-submenu{display:grid;grid-template-rows:0fr;overflow:hidden;opacity:.5;transition:grid-template-rows .35s var(--ease),opacity .25s}
+.mobile-service-submenu>div{min-height:0;overflow:hidden;padding:0 8px}
+.mobile-service-submenu.open{grid-template-rows:1fr;opacity:1}
+.mobile-service-submenu a{display:flex;align-items:center;justify-content:space-between;padding:12px 13px;margin:2px 0;border-radius:12px;color:#9FB1D5;text-decoration:none;font-size:.86rem;transition:background .2s,color .2s,transform .2s}
+.mobile-service-submenu a::after{content:'→';color:var(--cyan);opacity:.6}
+.mobile-service-submenu a:hover,.mobile-service-submenu a:focus-visible{background:rgba(58,215,255,.08);color:#fff;outline:none;transform:translateX(3px)}
+.mobile-service-submenu a[data-service-filter="all"]{border-bottom:1px solid rgba(140,190,255,.1);border-radius:12px 12px 8px 8px;margin-bottom:5px}
+.mobile-menu-divider{height:1px;margin:8px 12px;background:linear-gradient(90deg,transparent,rgba(140,190,255,.2),transparent)}
+.mobile-menu-cta{display:flex;align-items:center;justify-content:center;min-height:52px;margin:12px 6px 4px;border:1px solid rgba(207,165,71,.65);border-radius:14px;background:linear-gradient(135deg,rgba(207,165,71,.14),rgba(207,165,71,.04));color:#E8BC5C;text-decoration:none;font-weight:600;box-shadow:inset 0 1px 0 rgba(255,255,255,.05);transition:background .25s,transform .2s,box-shadow .25s}
+.mobile-menu-cta:hover,.mobile-menu-cta:focus-visible{background:rgba(207,165,71,.18);box-shadow:0 0 30px rgba(207,165,71,.12);transform:translateY(-1px);outline:none}
+body.mobile-menu-open{overflow:hidden;touch-action:none}
+@keyframes mobileNavIn{to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion:reduce){.mobile-menu,.mobile-menu-toggle .hamb i,.mobile-link,.mobile-service-toggle,.mobile-service-submenu,.mobile-service-submenu a{transition:none!important;animation:none!important}}
+@media (max-width:860px){
+  .links{display:none}.wm small{display:none}
+  .nav{width:calc(100% - 18px);padding:8px 8px 8px 10px;gap:8px}
+  .brand{gap:9px;min-width:0}
+  .brand .chip{width:38px;height:38px;flex:0 0 38px}
+  .wm{font-size:.94rem}
+  .nav>.btn{display:none}
+  .mobile-menu-toggle{display:flex}
+}
+
+
+/* ---------- mobile native scrolling safeguards ---------- */
+@media (max-width:860px){
+  html,body{min-height:100%;overflow-x:clip;overflow-y:auto;-webkit-overflow-scrolling:touch;touch-action:pan-y}
+  #app,.view{overflow:visible}
+  .dhero{min-height:auto;padding:112px 0 52px}
+  .dhero .dh-grid{grid-template-columns:1fr;gap:26px;align-items:start}
+  .dsec{padding:58px 0}
+  .dhero .wrap,.dsec .wrap{width:100%}
+  .mobile-menu{max-height:calc(100dvh - env(safe-area-inset-top,0px) - 90px)}
+}
+
+/* ---------- HUD ---------- */
+.hud{position:fixed;left:clamp(16px,2.4vw,36px);bottom:calc(env(safe-area-inset-bottom,0px) + 22px);z-index:40;display:flex;align-items:center;gap:14px;pointer-events:none;font-family:var(--f-mono);font-size:.72rem;color:var(--muted)}
+.hud .segs{display:flex;gap:4px}
+.hud .segs i{width:22px;height:3px;border-radius:2px;background:rgba(140,190,255,.18);transition:background .4s,box-shadow .4s}
+.hud .segs i.on{background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+.hud b{font-weight:500;color:var(--ice);letter-spacing:.02em}
+.dots{position:fixed;right:clamp(12px,2vw,28px);top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;gap:14px}
+.dots a{position:relative;width:9px;height:9px;border-radius:50%;background:rgba(140,190,255,.25);transition:background .3s,transform .3s,box-shadow .3s}
+.dots a.on{background:var(--cyan);transform:scale(1.35);box-shadow:0 0 14px var(--cyan)}
+.dots a span{position:absolute;right:20px;top:50%;transform:translateY(-50%);white-space:nowrap;font-size:.72rem;color:var(--muted);opacity:0;transition:opacity .2s;pointer-events:none}
+.dots a:hover span{opacity:1}
+@media (max-width:760px){.dots{display:none}.hud{font-size:.66rem}.hud .segs i{width:14px}}
+
+/* ---------- layout ---------- */
+.sec{position:relative}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,56px)}
+.bgword{position:absolute;pointer-events:none;font-family:var(--f-display);font-weight:600;color:transparent;-webkit-text-stroke:1px rgba(120,170,255,.11);white-space:nowrap;line-height:1;user-select:none}
+
+/* ---------- code blocks ---------- */
+.code{position:absolute;padding:14px 16px;border-radius:14px;background:rgba(10,17,40,.55);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid var(--line);font-family:var(--f-mono);font-size:.74rem;line-height:1.7;color:#8FA7D6;pointer-events:none;box-shadow:0 20px 60px -30px #000}
+.code::before{content:'';display:block;width:44px;height:6px;margin-bottom:10px;background:radial-gradient(circle,#3AD7FF 2.4px,transparent 3px) 0 0/14px 6px,transparent;opacity:.6}
+.code pre{margin:0;font:inherit;white-space:pre}
+.code .k{color:#7FB4FF}.code .f{color:var(--cyan)}.code .s{color:var(--gold)}.code .n{color:#C9A7FF}.code .c{color:#5E7099}
+@media (max-width:980px){.code{display:none}}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.foot-main{position:relative;z-index:4;border-top:1px solid var(--line);background:linear-gradient(180deg,rgba(7,13,25,.4),rgba(4,8,18,.92));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);padding:56px 0 28px}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:36px}
+.foot-brand .plate{display:inline-block;background:#fff;border-radius:14px;padding:10px 16px}
+.foot-brand img{height:38px;width:auto}
+.foot-brand p{margin-top:16px;color:var(--muted);font-size:.92rem;max-width:34ch}
+.foot-main h4{margin:0 0 14px;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--silver);font-weight:500}
+.foot-main li{margin:8px 0;font-size:.93rem;color:#9FB0D3}
+.foot-main li a:hover{color:#fff}
+.foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:40px;padding-top:22px;border-top:1px solid var(--line);font-size:.82rem;color:#6F80A8}
+.foot-bottom div{display:flex;gap:20px}
+@media (max-width:860px){.foot-grid{grid-template-columns:1fr 1fr}.foot-brand{grid-column:1/-1}}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important}
+  .wi,.reveal,.gcard,.step .gcard{transition:none!important}
+  .trails{display:none}
+}
+
+/* =========================================================
+   SERVICES (grid + detail template)
+   ========================================================= */
+.nav .links a.on{color:#fff;background:rgba(255,255,255,.08)}
+.nav{view-transition-name:nav}#gl{view-transition-name:gl}.hud{view-transition-name:hud}.bg{view-transition-name:bg}
+::view-transition-old(root){animation:vtOut .32s ease both}
+::view-transition-new(root){animation:vtIn .6s var(--ease) both}
+@keyframes vtOut{to{opacity:0;filter:blur(10px);transform:scale(.985)}}
+@keyframes vtIn{from{opacity:0;filter:blur(12px);transform:translateY(18px) scale(1.01)}}
+.view[hidden]{display:none}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-mono);font-size:.76rem;color:var(--cyan);letter-spacing:.16em;text-transform:uppercase;margin-bottom:20px}
+.eyebrow::before{content:'';width:26px;height:1px;background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+.btn-ghost{border-color:var(--line);color:#DCE7FF;background:rgba(255,255,255,.03)}
+.btn-ghost:hover{border-color:rgba(58,215,255,.6);box-shadow:0 0 30px -8px rgba(58,215,255,.6)}
+.cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags li{padding:5px 12px;border-radius:8px;background:rgba(58,215,255,.07);border:1px solid rgba(58,215,255,.18);font-size:.78rem;color:#9FDFF3}
+.svc-ico svg,.s-ico svg,.g-ico svg,.cap svg{stroke:var(--cyan);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+
+/* --- services grid page --- */
+.phero{padding:clamp(130px,19vh,190px) 0 6vh;min-height:calc(var(--vh)*64);display:flex;align-items:flex-end}
+.phero h1{font-size:clamp(2.1rem,4.6vw,4.2rem);line-height:1.08;font-weight:500;max-width:14em}
+.phero .lede{margin-top:24px}
+.pstats{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.pstats div{padding:14px 22px;border-radius:16px;border:1px solid var(--line);background:rgba(14,24,54,.5);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.pstats b{font-family:var(--f-display);font-weight:500;font-size:1.5rem;display:block;line-height:1.1;background:linear-gradient(180deg,#fff,#8FC8FF);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pstats span{font-size:.8rem;color:var(--muted)}
+.gridsec{padding:2vh 0 12vh}
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:34px}
+.fbtn{padding:10px 20px;border-radius:999px;border:1px solid var(--line);background:rgba(14,24,54,.5);color:#B7C4E2;cursor:pointer;font-size:.9rem;transition:border-color .3s,background .3s,color .3s,box-shadow .3s}
+.fbtn:hover{border-color:rgba(58,215,255,.5);color:#fff}
+.fbtn[aria-pressed="true"]{background:linear-gradient(120deg,rgba(58,215,255,.2),rgba(43,123,255,.2));border-color:rgba(58,215,255,.7);color:#fff;box-shadow:0 0 30px -8px rgba(58,215,255,.7)}
+.fbtn small{opacity:.6;margin-left:6px}
+.sgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.scard{display:flex;flex-direction:column;padding:30px 28px 26px;min-height:360px;cursor:pointer;transition:transform .5s var(--ease),box-shadow .5s,border-color .4s}
+.scard.off{display:none}
+.scard.pop{animation:pop .6s var(--ease) both}
+@keyframes pop{from{opacity:0;transform:translateY(22px) scale(.97)}}
+.scard:hover,.scard:focus-visible{transform:translateY(-8px);border-color:rgba(58,215,255,.45);box-shadow:0 34px 80px -34px rgba(58,215,255,.55),0 0 0 1px rgba(58,215,255,.18),inset 0 1px 0 rgba(255,255,255,.1)}
+.s-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.s-ico{width:64px;height:64px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(145deg,rgba(58,215,255,.16),rgba(43,123,255,.08));border:1px solid rgba(58,215,255,.28);box-shadow:0 0 36px -8px rgba(58,215,255,.55);transition:transform .5s var(--ease),box-shadow .5s}
+.s-ico svg{width:32px;height:32px;filter:drop-shadow(0 0 6px rgba(58,215,255,.6))}
+.scard:hover .s-ico{transform:translateY(-4px) rotate(-5deg);box-shadow:0 0 52px -4px rgba(58,215,255,.85)}
+.s-cat{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);text-align:right}
+.scard h3{font-family:var(--f-display);font-weight:500;font-size:clamp(1.15rem,1.6vw,1.4rem);line-height:1.2;letter-spacing:-.02em;margin-top:26px}
+.s-sum{margin-top:12px;color:#B7C4E2;font-size:.97rem;line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.scard .tags{margin-top:18px}
+.s-link{margin-top:auto;padding-top:26px;display:inline-flex;align-items:center;gap:10px;color:var(--gold);font-weight:600;font-size:.93rem}
+.s-link i{font-style:normal;transition:transform .4s var(--ease)}
+.scard:hover .s-link i{transform:translateX(8px)}
+.ctasec{padding:6vh 0 14vh}
+.ctabox{position:relative;padding:clamp(34px,5vw,72px);text-align:center;overflow:hidden}
+.ctabox::before{opacity:1!important;animation:spin 5s linear infinite!important}
+.ctabox .glowb{position:absolute;left:50%;top:-40%;width:70%;aspect-ratio:1;translate:-50% 0;border-radius:50%;background:radial-gradient(circle,rgba(58,215,255,.28),transparent 65%);pointer-events:none}
+.ctabox h2{position:relative;max-width:16em;margin:0 auto}
+.ctabox p{position:relative;margin:20px auto 0;color:#B7C4E2;max-width:50ch}
+.ctabox .cta{position:relative;justify-content:center}
+
+/* --- detail page --- */
+.dhero{padding:clamp(120px,17vh,170px) 0 8vh;min-height:calc(var(--vh)*92);display:flex;align-items:center}
+.dh-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(28px,5vw,80px);align-items:center;width:100%}
+.crumbs{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-size:.84rem;color:var(--muted);margin-bottom:26px}
+.crumbs a{color:var(--cyan)}.crumbs a:hover{text-decoration:underline}.crumbs b{color:#fff;font-weight:500}
+.dhero h1{font-size:clamp(2rem,4vw,3.7rem);line-height:1.1;font-weight:500}
+.dhero .lede{margin-top:24px}
+.glance{padding:clamp(26px,3vw,40px)}
+.g-ico{width:88px;height:88px;border-radius:24px;display:grid;place-items:center;background:linear-gradient(145deg,rgba(58,215,255,.2),rgba(43,123,255,.08));border:1px solid rgba(58,215,255,.35);box-shadow:0 0 60px -8px rgba(58,215,255,.6);animation:labbob 6s ease-in-out infinite}
+.g-ico svg{width:46px;height:46px;filter:drop-shadow(0 0 8px rgba(58,215,255,.7))}
+@keyframes labbob{0%,100%{translate:0 0}50%{translate:0 -8px}}
+.glance h3{font-family:var(--f-display);font-weight:500;font-size:1.1rem;margin:26px 0 16px;letter-spacing:-.02em}
+.outs{display:grid;gap:14px}
+.outs li{position:relative;padding-left:30px;color:#D3DEF6;font-size:.98rem;line-height:1.5}
+.outs li::before{content:'';position:absolute;left:2px;top:.5em;width:14px;height:8px;border-left:2px solid var(--cyan);border-bottom:2px solid var(--cyan);rotate:-45deg;translate:0 -50%;filter:drop-shadow(0 0 6px var(--cyan))}
+.g-foot{display:flex;gap:26px;margin-top:26px;padding-top:22px;border-top:1px solid var(--line);font-size:.84rem;color:var(--muted)}
+.g-foot b{display:block;font-family:var(--f-display);font-weight:500;color:#fff;font-size:1.5rem;line-height:1.1}
+.dsec{padding:12vh 0}
+.sec-head{max-width:760px;margin-bottom:6vh}
+.sec-head .lede{margin-top:18px}
+.inc{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(24px,4vw,64px);align-items:start}
+.delivs{display:grid;gap:12px;margin-top:6px}
+.delivs li{display:flex;align-items:center;gap:16px;padding:15px 18px;border-radius:16px;border:1px solid var(--line);background:rgba(14,24,54,.5);font-size:.98rem;color:#DCE7FF;transition:border-color .3s,transform .3s var(--ease)}
+.delivs li:hover{border-color:rgba(58,215,255,.5);transform:translateX(6px)}
+.delivs li span{font-family:var(--f-mono);font-size:.74rem;color:var(--cyan);flex:none}
+.caps{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.cap{padding:28px 26px}
+.cap .n{font-family:var(--f-display);font-weight:600;font-size:2.4rem;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(58,215,255,.5)}
+.cap h3{font-family:var(--f-display);font-weight:500;font-size:1.08rem;letter-spacing:-.02em;margin:16px 0 8px}
+.cap p{color:#A9B8D8;font-size:.94rem}
+.proc{padding:10vh 0 12vh;overflow:hidden}
+.steps{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;--p:0}
+.steps::before{content:'';position:absolute;left:0;right:0;top:15px;height:2px;background:rgba(120,160,255,.15)}
+.steps::after{content:'';position:absolute;left:0;top:15px;height:2px;width:calc(var(--p)*100%);background:linear-gradient(90deg,var(--blue),var(--cyan));box-shadow:0 0 18px var(--cyan)}
+.pstep{position:relative;padding-top:50px}
+.pstep .dot{position:absolute;left:0;top:6px;width:20px;height:20px;border-radius:50%;background:var(--n900);border:2px solid rgba(120,160,255,.35);transition:background .4s,border-color .4s,box-shadow .4s;z-index:1}
+.pstep.on .dot{background:var(--cyan);border-color:#fff;box-shadow:0 0 0 7px rgba(58,215,255,.18),0 0 26px var(--cyan)}
+.pstep .gcard{padding:24px 22px;height:100%;opacity:.4;transform:translateY(12px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.pstep.on .gcard{opacity:1;transform:none}
+.pstep .k{font-family:var(--f-mono);font-size:.72rem;color:var(--gold);letter-spacing:.14em}
+.pstep h3{font-family:var(--f-display);font-weight:500;font-size:1.05rem;margin:10px 0 8px;letter-spacing:-.02em}
+.pstep p{font-size:.92rem;color:#A9B8D8}
+.cases{padding:12vh 0}
+.cgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.case{display:flex;flex-direction:column;overflow:hidden;transition:transform .5s var(--ease),box-shadow .5s,border-color .4s}
+.case:hover{transform:translateY(-8px);border-color:rgba(58,215,255,.45);box-shadow:0 34px 80px -34px rgba(58,215,255,.5)}
+.c-thumb{position:relative;aspect-ratio:16/10;overflow:hidden;background:#0A1128;border-bottom:1px solid var(--line)}
+.c-thumb img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform 1.4s var(--ease)}
+.case:hover .c-thumb img{transform:scale(1.07)}
+.c-thumb::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(10,17,40,.9))}
+.c-ind{position:absolute;left:16px;top:16px;z-index:2;padding:5px 12px;border-radius:999px;background:rgba(7,13,25,.72);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(230,182,92,.45);color:var(--gold);font-size:.74rem;font-weight:500}
+.c-body{display:flex;flex-direction:column;flex:1;padding:24px 24px 26px}
+.c-body h3{font-family:var(--f-display);font-weight:500;font-size:1.3rem;letter-spacing:-.02em}
+.c-role{margin-top:6px;font-size:.84rem;color:var(--gold)}
+.c-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:20px}
+.c-metrics div{padding:12px 10px;border-radius:12px;background:rgba(58,215,255,.06);border:1px solid rgba(58,215,255,.16);text-align:center}
+.c-metrics b{display:block;font-family:var(--f-display);font-weight:500;font-size:1.02rem;line-height:1.15;color:#fff}
+.c-metrics span{display:block;margin-top:5px;font-size:.66rem;line-height:1.3;color:var(--muted)}
+.c-body p{margin-top:18px;color:#B7C4E2;font-size:.94rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.c-body .btn{margin-top:auto;align-self:flex-start}
+.c-body p+.btn{margin-top:22px}
+.case.next{justify-content:center;align-items:center;text-align:center;padding:34px 26px;border-style:dashed;background:linear-gradient(160deg,rgba(58,215,255,.07),rgba(10,17,40,.6))}
+.case.next h3{font-family:var(--f-display);font-weight:500;font-size:1.3rem;margin:18px 0 10px;letter-spacing:-.02em}
+.case.next p{color:#B7C4E2;font-size:.94rem;max-width:30ch;margin:0 auto 22px}
+.case.next .plus{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;border:1px dashed rgba(58,215,255,.5);color:var(--cyan);font-size:2rem;line-height:1}
+.related{padding:8vh 0 4vh}
+.rgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.rcard{display:flex;align-items:center;gap:18px;padding:20px 22px;transition:transform .4s var(--ease),border-color .3s}
+.rcard:hover{transform:translateY(-5px);border-color:rgba(58,215,255,.45)}
+.rcard .s-ico{width:52px;height:52px;border-radius:15px;flex:none}
+.rcard .s-ico svg{width:26px;height:26px}
+.rcard b{font-weight:500;display:block;line-height:1.3}
+.rcard small{color:var(--gold);font-size:.8rem}
+
+/* --- case study modal --- */
+.modal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px;opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s}
+.modal.open{opacity:1;visibility:visible}
+.modal .bd{position:absolute;inset:0;background:rgba(3,6,14,.78);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.mpanel{position:relative;width:min(960px,100%);max-height:calc(var(--vh)*92);overflow:auto;border-radius:28px;background:linear-gradient(160deg,#16264F,#0A1128 60%);border:1px solid var(--line);box-shadow:0 60px 140px -40px #000,0 0 0 1px rgba(58,215,255,.12);transform:translateY(30px) scale(.97);transition:transform .5s var(--ease)}
+.modal.open .mpanel{transform:none}
+.mclose{position:absolute;right:16px;top:16px;z-index:3;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:rgba(7,13,25,.8);cursor:pointer;display:grid;place-items:center}
+.mclose:hover{border-color:var(--cyan)}
+.mclose svg{width:16px;height:16px;stroke:#fff;stroke-width:2;stroke-linecap:round}
+.mimg{aspect-ratio:21/9;overflow:hidden;background:#0A1128}
+.mimg img{width:100%;height:100%;object-fit:cover;object-position:top}
+.mbody{padding:clamp(24px,4vw,44px)}
+.mbody h2{font-family:var(--f-display);font-weight:500;font-size:clamp(1.6rem,3vw,2.4rem);letter-spacing:-.025em;margin-top:14px}
+.mgrid{display:grid;grid-template-columns:1.3fr .7fr;gap:clamp(22px,4vw,48px);margin-top:26px}
+.mbody h4{margin:0 0 10px;font-family:var(--f-mono);font-weight:500;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan)}
+.mbody p{color:#C7D3EE;font-size:1rem;margin:0 0 22px}
+.mbody .c-metrics{grid-template-columns:1fr;margin-top:0}
+.mbody .c-metrics div{text-align:left;padding:14px 16px}
+.mbody .cta{margin-top:10px}
+@media (max-width:760px){.mgrid{grid-template-columns:1fr}.mimg{aspect-ratio:16/9}}
+
+@media (max-width:1000px){.sgrid,.cgrid,.rgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.dh-grid,.inc{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}.steps::before,.steps::after{display:none}.pstep{padding-top:0}.pstep .dot{display:none}.pstep .gcard{opacity:1;transform:none}}
+@media (max-width:640px){.sgrid,.cgrid,.rgrid,.caps,.steps{grid-template-columns:1fr}.scard{min-height:0}.dhero{min-height:0;padding-top:110px}.glance{order:-1}.phero{min-height:0}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="trails" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<canvas id="gl" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a class="brand" href="index.html" aria-label="iSpace Technology — home">
+    <span class="chip"><img src="ispace-scaled.webp" alt=""></span>
+    <span class="wm">iSPACE<small>Enlivening Innovations</small></span>
+  </a>
+  <nav class="links" aria-label="Primary">
+    <a href="index.html">Home</a><a href="about.html">About</a>
+    <div class="nav-services" id="navServicesWrap">
+      <a href="services.html" id="navServices" aria-haspopup="true" aria-expanded="false">Services <span class="nav-chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 9.5 12 14.5 17 9.5"/></svg></span></a>
+      <div class="nav-dropdown" role="menu" aria-label="Services categories">
+        <a href="#/services" data-service-filter="all" role="menuitem">All services</a>
+        <a href="#/services" data-service-filter="creative" role="menuitem">Creative &amp; Design</a>
+        <a href="#/services" data-service-filter="digital" role="menuitem">Digital &amp; Technology</a>
+        <a href="#/services" data-service-filter="growth" role="menuitem">Marketing &amp; Growth</a>
+      </div>
+    </div>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <a class="btn btn-gold btn-sm mag" href="blog.html"><span class="mag-i">Read Blog</span></a>
+
+  <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-label="Open navigation menu" aria-controls="mobileMenu" aria-expanded="false">
+    <span class="hamb" aria-hidden="true"><i></i><i></i><i></i></span>
+  </button>
+
+
+</header>
+
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <div class="mobile-menu-inner">
+      <div class="mobile-menu-kicker">Navigation</div>
+      <a class="mobile-link" style="--i:0" href="index.html" data-mobile-nav>Home</a>
+      <a class="mobile-link" style="--i:1" href="about.html" data-mobile-nav>About</a>
+
+      <div class="mobile-services" style="--i:2">
+        <button class="mobile-service-toggle" id="mobileServicesToggle" type="button" aria-expanded="false" aria-controls="mobileServiceSubmenu">
+          <span class="mobile-service-label"><span class="mobile-service-dot" aria-hidden="true"></span><span>Services</span></span><span class="mobile-plus" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 9.5 12 14.5 17 9.5"/></svg></span>
+        </button>
+        <div class="mobile-service-submenu" id="mobileServiceSubmenu">
+          <div>
+            <a href="#/services" data-service-filter="all">All services <small>12</small></a>
+            <a href="#/services" data-service-filter="creative">Creative &amp; Design <small>4</small></a>
+            <a href="#/services" data-service-filter="digital">Digital &amp; Technology <small>4</small></a>
+            <a href="#/services" data-service-filter="growth">Marketing &amp; Growth <small>4</small></a>
+          </div>
+        </div>
+      </div>
+
+      <a class="mobile-link" style="--i:3" href="contact.html" data-mobile-nav>Contact</a>
+      <div class="mobile-menu-divider"></div>
+      <a class="mobile-menu-cta" href="blog.html" data-mobile-nav>Read Blog<span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+
+<div class="hud" aria-hidden="true"><div class="segs"><i></i><i></i><i></i><i></i><i></i></div><div><b id="hudName">Abstract Idea Mesh</b></div></div>
+
+<main id="app">
+
+<!-- ============ VIEW 1 · SERVICES GRID ============ -->
+<div class="view" id="v-list">
+  <section class="phero sec" data-sec data-kf="hero">
+    <div class="wrap">
+      <span class="eyebrow">Our services</span>
+      <h1 class="display" data-split>Services built to move your business forward.</h1>
+      <p class="lede reveal" style="--d:.4s">Design, technology and growth under one roof. Pick a service to see what's included, how we work and the projects behind it.</p>
+      <div class="pstats reveal" style="--d:.55s"><div><b>12</b><span>Services</span></div><div><b>3</b><span>Disciplines</span></div><div><b>1</b><span>Integrated team</span></div></div>
+    </div>
+  </section>
+
+  <section class="gridsec sec" data-sec data-kf="grid" id="services-grid">
+    <div class="wrap">
+      <div class="filters reveal" id="filters" role="group" aria-label="Filter services"></div>
+      <div class="sgrid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="ctasec sec" data-sec data-kf="cta">
+    <div class="wrap">
+      <div class="gcard ctabox tilt reveal">
+        <span class="glowb"></span>
+        <h2 class="h2" data-split>Not sure which service you need?</h2>
+        <p>Tell us what you're building and we'll recommend the right mix of design, technology and growth.</p>
+        <div class="cta"><a class="btn btn-primary mag" href="https://ispacetech.co/contact-us/"><span class="mag-i">Book a consultation</span></a></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ VIEW 2 · SERVICE DETAIL TEMPLATE (rendered from data) ============ -->
+<div class="view" id="v-detail" hidden></div>
+
+</main>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle" aria-hidden="true">
+  <div class="bd" data-close></div>
+  <div class="mpanel" id="mpanel"></div>
+</div>
+
+<footer class="foot-main">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="plate"><img src="ispace-scaled.webp" alt="iSpace — Enlivening Innovations"></span>
+        <p>Expanding Possibilities Through Creativity and Technology</p>
+      </div>
+      <div><h4>Creative &amp; Digital</h4><ul id="fl1"></ul></div>
+      <div><h4>Growth &amp; Marketing</h4><ul id="fl2"></ul></div>
+      <div><h4>Company</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
+    </div>
+    <div class="foot-bottom"><span>Copyright © 2026 iSpace Technology All Rights Reserved</span></div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js"></script>
+<script>
+(() => {
+'use strict';
+/* ---------------- helpers ---------------- */
+const $  = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
+const lerp = (a,b,t) => a + (b-a)*t;
+const smooth = t => { t = clamp(t,0,1); return t*t*(3-2*t); };
+const easeOut = t => 1 - Math.pow(1 - clamp(t,0,1), 3);
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+const docTop = el => { let y = 0; while (el) { y += el.offsetTop; el = el.offsetParent; } return y; };
+
+let vw = innerWidth, vh = innerHeight;
+let sy = scrollY, mouse = {x:0, y:0, tx:0, ty:0, px:innerWidth/2, py:innerHeight/2};
+
+/* ---------------- split text ---------------- */
+function split(el){
+  const label = el.textContent.replace(/\s+/g,' ').trim();
+  const nodes = [...el.childNodes]; el.textContent = ''; let i = 0;
+  nodes.forEach(n => {
+    if (n.nodeType === 3) {
+      n.textContent.split(/(\s+)/).forEach(tok => {
+        if (!tok) return;
+        if (/^\s+$/.test(tok)) { el.appendChild(document.createTextNode(' ')); return; }
+        const w = document.createElement('span'); w.className = 'w'; w.setAttribute('aria-hidden','true');
+        const s = document.createElement('span'); s.className = 'wi'; s.style.setProperty('--i', i++); s.textContent = tok;
+        w.appendChild(s); el.appendChild(w);
+      });
+    } else el.appendChild(n);
+  });
+  el.setAttribute('aria-label', label);
+}
+$$('[data-split]').forEach(split);
+
+/* ---------------- reveal on enter ---------------- */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+}), { threshold: .18, rootMargin: '0px 0px -6% 0px' });
+$$('[data-split],.reveal,.gcard').forEach(el => io.observe(el));
+
+
+/* ---------------- 3D scene ---------------- */
+let renderer, scene, camera, obj, pts, lineMesh, coreGroup, coreMat, glow, dustBg, dustFg, U;
+let stageCur = 0, pulse = 0, kf = null;
+const mobileGL = Math.min(innerWidth, innerHeight) < 700;
+const FOV = 45, CAMZ = 9;
+const halfH = Math.tan(FOV*Math.PI/360)*CAMZ;
+
+function mulberry(a){ return function(){ a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a>>>15, 1|a); t = t + Math.imul(t ^ t>>>7, 61|t) ^ t; return ((t ^ t>>>14) >>> 0) / 4294967296; }; }
+const R = mulberry(20260929);
+const rr = (a,b) => a + R()*(b-a);
+function unit(){ let x,y,z,l; do { x=rr(-1,1); y=rr(-1,1); z=rr(-1,1); l=x*x+y*y+z*z; } while (l>1 || l<.01); l=Math.sqrt(l); return [x/l,y/l,z/l]; }
+function fib(i,n){ const y = 1-2*(i+.5)/n, r = Math.sqrt(1-y*y), th = i*2.399963229728653; return [Math.cos(th)*r, y, Math.sin(th)*r]; }
+const noise3 = (x,y,z) => Math.sin(x*3.1+1.3)*.5 + Math.sin(y*4.7+.4)*.35 + Math.sin(z*3.9+2.0)*.3 + Math.sin((x+y+z)*6.3)*.15;
+
+const GLSL_MORPH = `
+attribute vec3 a1; attribute vec3 a2; attribute vec3 a3; attribute vec3 a4;
+uniform float uStage; uniform float uTime; uniform vec3 uMouse; uniform float uMouseStr;
+vec3 pickP(int i){ if(i<=0) return position; if(i==1) return a1; if(i==2) return a2; if(i==3) return a3; return a4; }
+vec3 morphWorld(float r, out float infl, out float tr){
+  float s = clamp(uStage, 0.0, 3.9995);
+  float fl = floor(s); int i0 = int(fl); float f = s - fl;
+  float loc = clamp(f*1.7 - r*0.7, 0.0, 1.0);
+  loc = loc*loc*(3.0-2.0*loc);
+  vec3 p = mix(pickP(i0), pickP(i0+1), loc);
+  tr = sin(loc*3.14159265);
+  p += tr*0.5*vec3(sin(uTime*1.3+r*40.0), cos(uTime*1.1+r*33.0), sin(uTime*0.9+r*27.0));
+  p += 0.025*vec3(sin(uTime*0.8+r*60.0), cos(uTime*0.7+r*50.0), sin(uTime*0.6+r*70.0));
+  vec4 wp = modelMatrix*vec4(p,1.0);
+  vec2 d = wp.xy - uMouse.xy; float dist = length(d);
+  infl = smoothstep(1.7, 0.0, dist);
+  wp.xy += normalize(d + vec2(0.0001)) * infl * uMouseStr * (0.4 + r*0.6);
+  wp.z += infl*0.35;
+  return wp.xyz;
+}`;
+const PT_VS = GLSL_MORPH + `
+attribute vec3 aColor; attribute vec2 aRS; uniform float uPx; uniform float uAlpha;
+varying vec3 vC; varying float vA;
+void main(){
+  float infl; float tr;
+  vec3 w = morphWorld(aRS.x, infl, tr);
+  vec4 mv = viewMatrix*vec4(w,1.0);
+  gl_Position = projectionMatrix*mv;
+  gl_PointSize = aRS.y*uPx*(9.0/-mv.z)*(1.0 + infl*0.7 + tr*0.3);
+  float pulse = 0.6 + 0.4*sin(uTime*1.6 + w.y*2.2 + aRS.x*6.28);
+  float gold = smoothstep(0.86,0.95,aRS.x)*smoothstep(2.4,3.0,uStage)*(1.0-smoothstep(3.4,3.9,uStage));
+  vC = mix(aColor, vec3(1.0,0.78,0.36), gold);
+  vA = (0.55+0.45*pulse)*uAlpha*(1.0+infl*0.8);
+}`;
+const PT_FS = `precision mediump float; varying vec3 vC; varying float vA;
+void main(){ vec2 c = gl_PointCoord-0.5; float d = length(c); if(d>0.5) discard; float a = pow(1.0-d*2.0,1.6); gl_FragColor = vec4(vC*(0.8+a*0.6), a*vA); }`;
+const LN_VS = GLSL_MORPH + `
+attribute float aR; attribute float aT; uniform float uAlpha; varying vec4 vCol;
+void main(){
+  float infl; float tr;
+  vec3 w = morphWorld(aR, infl, tr);
+  gl_Position = projectionMatrix*viewMatrix*vec4(w,1.0);
+  float wg = clamp(1.0-abs(uStage-1.0)*1.7,0.0,1.0);
+  float ws = clamp(1.0-abs(uStage-2.0)*1.7,0.0,1.0);
+  float wt = clamp(1.0-abs(uStage-3.0)*1.7,0.0,1.0);
+  float a = aT<0.5 ? wg : (aT<1.5 ? ws : wt);
+  vec3 c = aT<0.5 ? vec3(0.23,0.84,1.0) : (aT<1.5 ? vec3(0.62,0.76,1.0) : vec3(0.95,0.75,0.38));
+  vCol = vec4(c, a*0.3*uAlpha*(1.0+infl));
+}`;
+const LN_FS = `precision mediump float; varying vec4 vCol; void main(){ gl_FragColor = vCol; }`;
+
+function buildFormations(N, M){
+  const F = [0,1,2,3,4].map(() => new Float32Array(N*3));
+  const set = (k,i,x,y,z) => { F[k][i*3]=x; F[k][i*3+1]=y; F[k][i*3+2]=z; };
+
+  // 0 · Abstract Idea Mesh — a noisy, unresolved shell with loose fragments
+  for (let i=0;i<N;i++){
+    let v, rad, t = R();
+    if (i<M) { v = fib(i,M); rad = 1.75*(1+.16*noise3(...v)); }
+    else if (t<.55) { v = unit(); rad = 1.75*(1+.16*noise3(...v)) + rr(-.05,.05); }
+    else if (t<.85) { v = unit(); rad = rr(.3,1.6); }
+    else { v = unit(); rad = rr(2.0,3.3); }
+    set(0,i,v[0]*rad,v[1]*rad,v[2]*rad);
+  }
+  // 1 · Structured Code Engine — 7³ node lattice, edges and solid "code cubes"
+  const G=7, sp=.5, cells=[]; for (let c=0;c<16;c++) cells.push([Math.floor(R()*6),Math.floor(R()*6),Math.floor(R()*6)]);
+  const nodeAt = (x,y,z) => [(x-3)*sp,(y-3)*sp,(z-3)*sp];
+  for (let i=0;i<N;i++){
+    if (i<M){ const x=i%G, y=Math.floor(i/G)%G, z=Math.floor(i/(G*G)); set(1,i,...nodeAt(x,y,z)); continue; }
+    if (R()<.5){
+      const x=Math.floor(R()*G), y=Math.floor(R()*G), z=Math.floor(R()*G), ax=Math.floor(R()*3), a=[x,y,z];
+      const b=[x,y,z]; b[ax]=Math.min(G-1,b[ax]+1); const pa=nodeAt(...a), pb=nodeAt(...b), t=R();
+      set(1,i,lerp(pa[0],pb[0],t),lerp(pa[1],pb[1],t),lerp(pa[2],pb[2],t));
+    } else {
+      const c=cells[Math.floor(R()*cells.length)], o=nodeAt(c[0],c[1],c[2]), s=.42;
+      set(1,i,o[0]+.04+R()*s,o[1]+.04+R()*s,o[2]+.04+R()*s);
+    }
+  }
+  // 2 · Global Network Sphere — nodes, shell, orbit rings and arcs
+  const rings=[[.3,0],[1.1,.7],[-.6,-1.0]];
+  for (let i=0;i<N;i++){
+    if (i<M){ const v=fib(i,M); set(2,i,v[0]*1.9,v[1]*1.9,v[2]*1.9); continue; }
+    const t=R();
+    if (t<.45){ const v=unit(); set(2,i,v[0]*1.9,v[1]*1.9,v[2]*1.9); }
+    else if (t<.75){
+      const rg=rings[Math.floor(R()*3)], a=R()*6.2832; let x=Math.cos(a)*2.45, y=0, z=Math.sin(a)*2.45;
+      const cx=Math.cos(rg[0]), sx=Math.sin(rg[0]); let y2=y*cx - z*sx, z2=y*sx + z*cx; y=y2; z=z2;
+      const cz=Math.cos(rg[1]), sz=Math.sin(rg[1]); const x2=x*cz - y*sz; y2=x*sz + y*cz; set(2,i,x2,y2,z);
+    } else {
+      const a=fib(Math.floor(R()*M),M), b=fib(Math.floor(R()*M),M), tt=R();
+      let x=lerp(a[0],b[0],tt), y=lerp(a[1],b[1],tt), z=lerp(a[2],b[2],tt); const l=Math.hypot(x,y,z)||1, rad=1.9+.6*Math.sin(Math.PI*tt);
+      set(2,i,x/l*rad,y/l*rad,z/l*rad);
+    }
+  }
+  // 3 · High-Converting Scale Dashboard — rising bars, floor grid, trend line
+  const K=14, bw=.3, bd=.55, base=-1.5, bars=[];
+  for (let k=0;k<K;k++) bars.push({x:-2.6+k*(5.2/(K-1)), h:.35+(k/(K-1))*2.1+rr(-.12,.18)});
+  for (let i=0;i<N;i++){
+    if (i<M){ const t=i/(M-1); set(3,i,-2.8+5.6*t, base+.45+2.4*Math.pow(t,1.4)+.08*Math.sin(t*22), .5); continue; }
+    const t=R();
+    if (t<.8){
+      const b=bars[Math.floor(R()*K)], f=R(); let x,y,z;
+      if (f<.4){ x=b.x+(R()<.5?-bw/2:bw/2); y=base+R()*b.h; z=rr(-bd/2,bd/2); }
+      else if (f<.8){ x=b.x+rr(-bw/2,bw/2); y=base+R()*b.h; z=R()<.5?-bd/2:bd/2; }
+      else { x=b.x+rr(-bw/2,bw/2); y=base+b.h; z=rr(-bd/2,bd/2); }
+      set(3,i,x,y,z);
+    } else {
+      let x=rr(-3,3), z=rr(-1.6,1.6); if (R()<.5) x=Math.round(x*2)/2; else z=Math.round(z*2)/2; set(3,i,x,base,z);
+    }
+  }
+  // 4 · Launch Orb — dense, luminous ball
+  for (let i=0;i<N;i++){
+    const v = i<M ? fib(i,M) : unit(), rad = i<M ? .55 : 1.15*Math.pow(R(),.55);
+    set(4,i,v[0]*rad,v[1]*rad,v[2]*rad);
+  }
+  return F;
+}
+
+function glowTexture(){
+  const c = document.createElement('canvas'); c.width = c.height = 256; const g = c.getContext('2d');
+  const gr = g.createRadialGradient(128,128,0,128,128,128);
+  gr.addColorStop(0,'rgba(120,225,255,.85)'); gr.addColorStop(.25,'rgba(58,150,255,.35)'); gr.addColorStop(1,'rgba(10,17,40,0)');
+  g.fillStyle = gr; g.fillRect(0,0,256,256); return new THREE.CanvasTexture(c);
+}
+
+function makeDust(count, zMin, zMax, size, U2){
+  const pos = new Float32Array(count*3), seed = new Float32Array(count);
+  for (let i=0;i<count;i++){ pos[i*3]=rr(-11,11); pos[i*3+1]=rr(-8,8); pos[i*3+2]=rr(zMin,zMax); seed[i]=R(); }
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.BufferAttribute(pos,3)); g.setAttribute('aS', new THREE.BufferAttribute(seed,1));
+  const m = new THREE.ShaderMaterial({
+    uniforms: { uOff:{value:0}, uTime:U2.uTime, uPx:U2.uPx, uSize:{value:size} },
+    vertexShader: `attribute float aS; uniform float uOff,uTime,uPx,uSize; varying float vA;
+      void main(){ vec3 p=position; p.y = mod(p.y - uOff + 8.0, 16.0) - 8.0; p.x += sin(uTime*0.2 + aS*20.0)*0.15;
+        vec4 mv = modelViewMatrix*vec4(p,1.0); gl_Position = projectionMatrix*mv; gl_PointSize = (1.0+aS*1.6)*uSize*uPx*(9.0/-mv.z); vA = 0.25+0.5*aS; }`,
+    fragmentShader: `precision mediump float; varying float vA; void main(){ float d=length(gl_PointCoord-0.5); if(d>0.5) discard; float a=pow(1.0-d*2.0,2.0); gl_FragColor=vec4(0.55,0.85,1.0,a*vA); }`,
+    transparent:true, depthWrite:false, blending:THREE.AdditiveBlending });
+  const p = new THREE.Points(g,m); p.frustumCulled = false; return p;
+}
+
+function init3D(){
+  const canvas = $('#gl');
+  renderer = new THREE.WebGLRenderer({ canvas, antialias:!mobileGL, alpha:true, powerPreference:'high-performance' });
+  renderer.setClearColor(0x000000, 0);
+  scene = new THREE.Scene();
+  camera = new THREE.PerspectiveCamera(FOV, vw/vh, .1, 100); camera.position.set(0,0,CAMZ);
+  obj = new THREE.Group(); obj.rotation.order = 'YXZ'; scene.add(obj);
+
+  const N = mobileGL ? 3600 : 7200, M = 343;
+  const F = buildFormations(N, M);
+  const palette = [[.23,.84,1],[.24,.48,1],[.86,.9,.98],[.94,.75,.37]];
+  const color = new Float32Array(N*3), rs = new Float32Array(N*2), rnd = new Float32Array(N);
+  for (let i=0;i<N;i++){
+    const t = R(); let c = t<.5 ? palette[0] : t<.75 ? palette[1] : t<.92 ? palette[2] : palette[3];
+    if (i<M) c = R()<.6 ? palette[2] : palette[0];
+    color.set(c, i*3); rnd[i] = R(); rs[i*2] = rnd[i]; rs[i*2+1] = i<M ? rr(5,8) : rr(1.8,3.6);
+  }
+  U = { uStage:{value:0}, uTime:{value:0}, uMouse:{value:new THREE.Vector3(99,99,0)}, uMouseStr:{value:.55}, uPx:{value:1}, uAlpha:{value:1} };
+
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.BufferAttribute(F[0],3));
+  for (let k=1;k<5;k++) g.setAttribute('a'+k, new THREE.BufferAttribute(F[k],3));
+  g.setAttribute('aColor', new THREE.BufferAttribute(color,3)); g.setAttribute('aRS', new THREE.BufferAttribute(rs,2));
+  pts = new THREE.Points(g, new THREE.ShaderMaterial({ uniforms:U, vertexShader:PT_VS, fragmentShader:PT_FS, transparent:true, depthWrite:false, blending:THREE.AdditiveBlending }));
+  pts.frustumCulled = false; obj.add(pts);
+
+  // connection lines between the first M "node" particles
+  const pairs = [], G = 7, id = (x,y,z) => x+y*G+z*G*G;
+  for (let z=0;z<G;z++) for (let y=0;y<G;y++) for (let x=0;x<G;x++){
+    if (x<G-1) pairs.push([id(x,y,z),id(x+1,y,z),0]); if (y<G-1) pairs.push([id(x,y,z),id(x,y+1,z),0]); if (z<G-1) pairs.push([id(x,y,z),id(x,y,z+1),0]);
+  }
+  const V = []; for (let i=0;i<M;i++) V.push(fib(i,M)); const seen = new Set();
+  for (let i=0;i<M;i++){
+    const d = []; for (let j=0;j<M;j++) if (j!==i) d.push([(V[i][0]-V[j][0])**2+(V[i][1]-V[j][1])**2+(V[i][2]-V[j][2])**2, j]);
+    d.sort((a,b)=>a[0]-b[0]); for (let k=0;k<3;k++){ const j=d[k][1], key = i<j ? i+'-'+j : j+'-'+i; if (!seen.has(key)){ seen.add(key); pairs.push([i,j,1]); } }
+  }
+  for (let i=0;i<M-1;i++) pairs.push([i,i+1,2]);
+  const L = pairs.length*2, la = [0,1,2,3,4].map(() => new Float32Array(L*3)), lr = new Float32Array(L), lt = new Float32Array(L);
+  pairs.forEach((p,pi) => [p[0],p[1]].forEach((n,e) => {
+    const v = pi*2+e; for (let k=0;k<5;k++){ la[k][v*3]=F[k][n*3]; la[k][v*3+1]=F[k][n*3+1]; la[k][v*3+2]=F[k][n*3+2]; } lr[v]=rnd[n]; lt[v]=p[2];
+  }));
+  const lg = new THREE.BufferGeometry();
+  lg.setAttribute('position', new THREE.BufferAttribute(la[0],3)); for (let k=1;k<5;k++) lg.setAttribute('a'+k, new THREE.BufferAttribute(la[k],3));
+  lg.setAttribute('aR', new THREE.BufferAttribute(lr,1)); lg.setAttribute('aT', new THREE.BufferAttribute(lt,1));
+  lineMesh = new THREE.LineSegments(lg, new THREE.ShaderMaterial({ uniforms:U, vertexShader:LN_VS, fragmentShader:LN_FS, transparent:true, depthWrite:false, blending:THREE.AdditiveBlending }));
+  lineMesh.frustumCulled = false; obj.add(lineMesh);
+
+  // glass core (hero sphere / final orb heart)
+  coreGroup = new THREE.Group(); obj.add(coreGroup);
+  coreMat = new THREE.ShaderMaterial({
+    uniforms:{ uI:{value:1} }, transparent:true, depthWrite:false,
+    vertexShader:`varying vec3 vN; varying vec3 vV; void main(){ vN = normalize(normalMatrix*normal); vec4 mv = modelViewMatrix*vec4(position,1.0); vV = -mv.xyz; gl_Position = projectionMatrix*mv; }`,
+    fragmentShader:`precision mediump float; varying vec3 vN; varying vec3 vV; uniform float uI;
+      void main(){ vec3 n = normalize(vN), v = normalize(vV); float f = pow(1.0-abs(dot(n,v)), 2.6);
+        vec3 col = mix(vec3(0.02,0.06,0.16), vec3(0.23,0.84,1.0), f);
+        float spec = pow(max(dot(n, normalize(vec3(-0.5,0.7,0.6))),0.0), 22.0)*0.55;
+        col += vec3(0.8,0.88,1.0)*spec;
+        gl_FragColor = vec4(col, (0.5*(0.22+f*0.95) + spec*0.5)*uI); }` });
+  coreGroup.add(new THREE.Mesh(new THREE.SphereGeometry(1.15,64,48), coreMat));
+  const wire = new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.IcosahedronGeometry(1.2,2)), new THREE.LineBasicMaterial({ color:0x3AD7FF, transparent:true, opacity:.2, blending:THREE.AdditiveBlending, depthWrite:false }));
+  coreGroup.add(wire); coreGroup.userData.wire = wire;
+  const ringMat = new THREE.MeshBasicMaterial({ color:0x7FD8FF, transparent:true, opacity:.4, blending:THREE.AdditiveBlending, depthWrite:false });
+  const r1 = new THREE.Mesh(new THREE.TorusGeometry(2.05,.006,8,180), ringMat), r2 = new THREE.Mesh(new THREE.TorusGeometry(2.45,.005,8,200), ringMat);
+  r1.rotation.set(1.25,0,.3); r2.rotation.set(1.9,0,-.6); coreGroup.add(r1,r2); coreGroup.userData.rings = [r1,r2];
+
+  glow = new THREE.Sprite(new THREE.SpriteMaterial({ map:glowTexture(), transparent:true, blending:THREE.AdditiveBlending, depthWrite:false, opacity:.6 }));
+  glow.position.z = -1; scene.add(glow);
+
+  dustBg = makeDust(mobileGL?350:700, -8, -4, 3.2, U); dustFg = makeDust(mobileGL?60:120, 1, 4, 6.5, U);
+  scene.add(dustBg, dustFg);
+  resize3D();
+}
+
+function resize3D(){
+  const dpr = Math.min(devicePixelRatio||1, mobileGL ? 1.5 : 2);
+  renderer.setPixelRatio(dpr); renderer.setSize(vw, vh, false);
+  camera.aspect = vw/vh; camera.updateProjectionMatrix();
+  U.uPx.value = dpr * clamp(vh/900, .65, 1.35);
+}
+
+
+/* =====================================================================
+   CONTENT — edit here. Every service page is rendered from this data.
+   slug = last part of the live URL: ispacetech.co/services/<slug>/
+   (slugs kept exactly as they exist on the live site, typos included)
+   ===================================================================== */
+const CONTACT = 'contact.html';
+const CATS = {
+  creative: { name:'Creative & Design',     stage:0, steps:[['Discover & brief','We learn your brand, audience and goals, and agree what success looks like.'],['Concept & explore','Directions are explored and tested against your objectives before we commit.'],['Craft & refine','The chosen direction is designed in detail and polished with your feedback.'],['Deliver & evolve','Final files, guidelines and support so the work keeps performing.']] },
+  digital:  { name:'Digital & Technology',  stage:1, steps:[['Discovery','Workshops and research turn goals and constraints into a scoped brief.'],['Architecture & design','Flows, UI and technical architecture are designed and prototyped first.'],['Agile build','Short sprints, weekly demos and continuous QA — you see progress early.'],['Launch & scale','We deploy with monitoring in place, then keep improving.']] },
+  growth:   { name:'Marketing & Growth',    stage:3, steps:[['Audit & strategy','We study your market, audience and numbers, then set clear goals.'],['Plan & create','Channels, calendar and creative are planned and produced.'],['Launch & optimise','Campaigns go live and are tested and tuned continuously.'],['Report & scale','Clear reporting shows what’s working, and budget moves to it.']] },
+};
+const ICONS = {
+  motion:'<path d="M32 8l22 12-22 12L10 20z"/><path d="M10 32l22 12 22-12"/><path d="M10 44l22 12 22-12"/>',
+  uiux:'<rect x="8" y="12" width="48" height="36" rx="5"/><path d="M8 22h48"/><path d="M30 34l16 6-7 2-3 7z"/>',
+  story:'<path d="M10 24v16h10l22 12V12L20 24z"/><path d="M50 26a8 8 0 010 12"/><path d="M14 40l4 14h8l-3-14"/>',
+  web:'<rect x="8" y="12" width="48" height="40" rx="5"/><path d="M26 28l-8 6 8 6M38 28l8 6-8 6M34 25l-4 18"/>',
+  app:'<rect x="18" y="6" width="28" height="52" rx="6"/><path d="M28 12h8"/><circle cx="32" cy="50" r="2"/><path d="M26 28h12M26 36h8"/>',
+  shop:'<path d="M8 12h8l6 28h28l6-20H20"/><circle cx="26" cy="50" r="4"/><circle cx="46" cy="50" r="4"/>',
+  product:'<path d="M32 6l22 12v24L32 54 10 42V18z"/><path d="M10 18l22 12 22-12M32 30v24"/>',
+  ai:'<rect x="20" y="20" width="24" height="24" rx="4"/><path d="M26 10v10M38 10v10M26 44v10M38 44v10M10 26h10M10 38h10M44 26h10M44 38h10"/><circle cx="32" cy="32" r="4"/>',
+  campaign:'<circle cx="30" cy="34" r="20"/><circle cx="30" cy="34" r="11"/><circle cx="30" cy="34" r="3"/><path d="M32 32l22-22M44 10h10v10"/>',
+  social:'<path d="M8 12h48v32H30l-14 10V44H8z"/><path d="M32 36s-9-5.5-9-12a5 5 0 019-2 5 5 0 019 2c0 6.5-9 12-9 12z"/>',
+  people:'<circle cx="24" cy="22" r="8"/><circle cx="44" cy="26" r="6"/><path d="M8 52c0-9 7-15 16-15s16 6 16 15M38 40c8-2 18 2 18 12"/>',
+  perf:'<path d="M10 54V30M24 54V20M38 54V36M52 54V12"/><path d="M6 58h54"/>',
+};
+/* Projects used as case studies. metrics are factual scope facts — replace/add real KPIs
+   (e.g. ['+150%','Conversion']) whenever you have approved numbers. */
+const PROJECTS = {
+  roqqu:{ name:'Roqqu', industry:'Cryptocurrency', img:'roqqu home.jpg', url:'https://roqqu.com/',
+    summary:"We power Roqqu's marketing engine end to end creative, campaigns, influencer and partnership activations, and paid media — helping the brand reach a broader audience while keeping a strong voice.",
+    brief:"The crypto space moves fast, and only brands with sharp strategies and bold storytelling thrive. Roqqu needed credibility, a growing community and consistent adoption.",
+    did:"Our team leads creative design and asset development, campaign ideation and execution, market strategies, influencer marketing, partnership activations and paid media strategies, keeping the brand voice strong in a competitive industry.",
+    metrics:[['6','Service lines'],['End-to-end','Marketing engine'],['Ongoing','Partnership']] },
+  raven:{ name:'Raven', industry:'Fintech', img:'raven.png', url:'https://getravenbank.com/',
+    summary:"A full spectrum of marketing for Raven social and post management, graphic design, brand assets, paid advertising, influencer campaigns and activations — for consistent visibility and stronger engagement.",
+    brief:"In today's financial landscape, standing out means building trust, simplifying user experiences and driving engagement at scale.",
+    did:"We managed social media and post management, graphic design, brand asset creation, market strategies, paid advertising, influencer campaigns and activation strategies, ensuring consistent visibility, improved engagement and a strong digital presence across platforms.",
+    metrics:[['8','Service lines'],['Fintech','Sector'],['Ongoing','Partnership']] },
+  african:{ name:'African Hearts Connect', industry:'Social Platform', img:'african heart.png', url:null,
+    summary:"For a platform connecting Africans and people of African descent we delivered social media management, graphic design and branding, and we are developing their mobile application.",
+    brief:"For platforms that connect people, meaningful branding and smooth digital experiences are key. The goal was a vibrant identity and a growing user base.",
+    did:"We delivered social media and post management, graphic design and branding to build an authentic online presence, and are currently developing the mobile application so the product experience matches their vision of community and connection.",
+    metrics:[['4','Service lines'],['In build','Mobile app'],['Community','Product focus']] },
+  yemert:{ name:'Yemert', industry:'Agri-tech', img:'yemert.png', url:'https://yemert.co/',
+    summary:"We built Yemert's corporate website from the ground up — clean, functional and conversion-driven — to communicate their vision across the agricultural ecosystem.",
+    brief:"Innovation in agriculture requires clear storytelling and digital efficiency. Yemert needed a modern, reliable platform that attracts stakeholders and fosters growth.",
+    did:"We developed their corporate website from the ground up, ensuring a clean, functional and conversion-driven platform that communicates their vision and drives adoption within the agricultural ecosystem.",
+    metrics:[['1','Full site build'],['Ground-up','Approach'],['Conversion','Design goal']] },
+  onyx:{ name:'Onyx Beauty Hub', industry:'Beauty & Retail', img:'onyxb.png', url:'https://onyxbeautyhub.com/',
+    summary:"For Onyx Hair by Nelly we created a go-to-market strategy, designed and built the website, supported branding and ran targeted campaigns to position them in beauty retail.",
+    brief:"In the beauty space, aesthetics and experience are everything. Onyx needed to launch, scale and stand out through strategy and a strong digital foundation.",
+    did:"We created a go-to-market strategy, designed and built their website, supported branding initiatives and executed targeted marketing campaigns to position them as a trusted name in beauty retail.",
+    metrics:[['4','Service lines'],['Live','Online store'],['Retail','Sector']] },
+};
+const S = (slug,title,cat,icon,headline,summary,tags,overview,outcomes,deliverables,caps,cases) => ({slug,title,cat,icon,headline,summary,tags,overview,outcomes,deliverables,caps,cases});
+const SERVICES = [
+ S('grahic-motion-design','Graphic & Motion Design','creative','motion','Visuals and motion that make your brand impossible to scroll past.',
+  'Scroll-stopping graphics, animation and motion systems that give your brand a distinct, consistent look.',['Graphic Design','Motion','Brand Assets'],
+  'We design the visual layer of your brand — from social graphics and campaign assets to animated explainers and motion identities — so everything you publish looks intentional, premium and unmistakably yours.',
+  ['A consistent visual language across every channel','Higher engagement from scroll-stopping creative','Faster production through reusable asset systems'],
+  ['Brand asset libraries','Social and campaign graphics','Motion graphics and animated logos','Explainer and promo videos','Pitch decks and presentations','Print and out-of-home artwork'],
+  [['Visual identity systems','Colour, type, layout and iconography rules that keep every touchpoint consistent.'],['Motion and animation','Logo animations, kinetic type and short-form video built for social and web.'],['Campaign creative','Concept-led key visuals and ad sets adapted to every format and platform.'],['Template systems','Editable templates your team can reuse without losing brand quality.']],
+  [['roqqu','Creative design and asset development'],['raven','Graphic design and brand assets'],['african','Graphic design and branding']]),
+ S('ui-ux-design','UI/UX Design','creative','uiux','Interfaces people understand instantly and enjoy using.',
+  'Research-led UX and polished UI that turn complex products into clear, conversion-ready experiences.',['UI/UX','Prototyping','Design Systems'],
+  'Research-led UX and polished UI for websites, dashboards and apps. We map how people think, design flows that remove friction, and deliver interfaces that look premium and convert.',
+  ['Clearer journeys that reduce drop-off','A scalable design system for your team','Flows validated before development starts'],
+  ['User research and personas','Wireframes and user flows','High-fidelity UI design','Interactive prototypes','Design system and components','Developer-ready handoff'],
+  [['UX research and strategy','Interviews, audits and competitor reviews ground every decision in evidence.'],['Interface design','Pixel-precise screens with accessible type, colour and spacing.'],['Prototyping and testing','Clickable prototypes tested with real users before a line of code.'],['Design systems','Reusable components and tokens that keep design and code in sync.']],
+  [['yemert','Website UX and interface design'],['african','Product experience design'],['onyx','Storefront design']]),
+ S('storytellling-creative-campaigns','Storytelling & Creative Campaigns','creative','story','Stories that make audiences feel something — and act.',
+  'Big ideas and narratives, shaped into campaigns that connect emotionally and drive action.',['Storytelling','Campaigns','Creative Direction'],
+  'A great campaign starts with a story people want to share. We shape your message into a narrative and a creative platform, then execute it across every channel with a consistent voice and craft.',
+  ['A distinctive brand narrative audiences remember','Campaigns that connect emotionally and drive action','One idea, executed consistently everywhere'],
+  ['Brand narrative and messaging','Campaign concepts and key visuals','Scripts and storyboards','Launch and activation plans','Cross-channel creative assets','Campaign playbooks'],
+  [['Narrative strategy','Positioning, tone of voice and story architecture for your brand.'],['Concept development','Big ideas tested against audience insight before production.'],['Production','Design, video, copy and photography produced in-house.'],['Activation','Launch plans that turn a campaign idea into reach and results.']],
+  [['roqqu','Campaign ideation and execution'],['raven','Activation strategies'],['onyx','Go-to-market campaigns']]),
+ S('product-design','Product Design','creative','product','Digital products designed around real people and real business goals.',
+  'From concept to validated prototype, we design products that are usable, desirable and viable.',['Product Strategy','Prototyping','Validation'],
+  'We take products from raw idea to validated prototype — defining the problem, shaping the solution and designing something people want to use and the business can sustain.',
+  ['A clear product vision backed by evidence','Prototypes validated before build','A roadmap your team and investors can follow'],
+  ['Product strategy and positioning','User journeys and service maps','Feature prioritisation','Interactive prototypes','Usability testing reports','Product roadmap'],
+  [['Product strategy','Problem framing, positioning and success metrics before any design begins.'],['Journey and experience design','End-to-end flows that connect every touchpoint of the product.'],['Prototype and validate','High-fidelity prototypes tested with real users to de-risk the build.'],['Roadmapping','Prioritised releases so you ship value early and iterate with data.']],
+  [['african','Community platform and mobile product'],['yemert','Agri-tech platform experience']]),
+ S('website-development','Website Development','digital','web','Websites engineered to rank, convert and scale.',
+  'Fast, secure, SEO-ready websites on WordPress, Elementor or custom stacks, built to grow with you.',['WordPress','Custom Dev','SEO-ready'],
+  'We build fast, secure and search-ready websites on WordPress, Elementor and custom stacks — designed around your goals and structured so your team can update them with confidence.',
+  ['A site that loads fast and ranks well','A conversion-focused structure from day one','A CMS your team can run without a developer'],
+  ['Custom design and build','CMS setup and training','Performance optimisation','On-page SEO foundations','Security hardening and backups','Analytics and tracking'],
+  [['WordPress and Elementor','Flexible builds with clean code, custom components and easy editing.'],['Custom development','Bespoke features, integrations and web apps when templates fall short.'],['Performance and SEO','Core Web Vitals, structure and metadata that help you get found.'],['Care and support','Maintenance, backups and updates after launch.']],
+  [['yemert','Corporate website built from the ground up'],['onyx','Brand website design and build']]),
+ S('app-development','App Development','digital','app','Mobile apps your users keep coming back to.',
+  'Cross-platform mobile and web apps — from MVP to scale — designed around real user journeys.',['Mobile','iOS & Android','MVP'],
+  'From MVP to scale, we design and build mobile and web apps around real user journeys — with clean architecture, smooth interactions and a roadmap for growth.',
+  ['A usable MVP in users’ hands sooner','Architecture ready to scale with demand','An experience users keep coming back to'],
+  ['Product discovery and scope','App UI/UX design','iOS and Android development','Backend and API development','QA and release management','Post-launch support'],
+  [['Cross-platform apps','One codebase delivering a native-quality experience on iOS and Android.'],['Backend and APIs','Secure, scalable services, databases and integrations.'],['MVP to scale','Phased roadmaps that prove the idea before heavy investment.'],['Quality and release','Testing, monitoring and store submission handled end to end.']],
+  [['african','Mobile application currently in development']]),
+ S('e-commerce-solutions','E-commerce Solutions','digital','shop','Online stores built to sell, not just to show.',
+  'Shopify and WooCommerce stores with the catalogue, payments and workflows to keep orders moving.',['Shopify','WooCommerce','Payments'],
+  'Shopify and WooCommerce stores designed to sell. We handle catalogues, payments, shipping logic and the integrations that keep orders moving without manual work.',
+  ['A storefront that makes buying effortless','Payments, delivery and inventory that run smoothly','Campaign-ready flows for promotions and launches'],
+  ['Store design and build','Catalogue and product setup','Payment and shipping integration','Checkout optimisation','Inventory and order workflows','Analytics and reporting'],
+  [['Shopify and WooCommerce','Platform choice and builds matched to your catalogue and budget.'],['Checkout and payments','Local and international gateways, instalment plans and optimised checkout.'],['Catalogue management','Structures and bulk workflows that make managing products simple.'],['Promotions and growth','Landing pages, bundles and sale flows ready for campaigns.']],
+  [['onyx','Online beauty retail store']]),
+ S('ai-blockchain-integrations','Emerging Tech (AI/Blockchain Integrations)','digital','ai','Emerging technology, applied where it actually moves the needle.',
+  'AI and blockchain integrations that automate work, add intelligence and connect secure infrastructure.',['AI','Blockchain','Automation'],
+  'We apply AI and blockchain where they create real value — automating workflows, adding intelligence to products and integrating secure, transparent infrastructure into your systems.',
+  ['Manual work replaced with intelligent automation','Smarter products powered by your own data','Secure, transparent infrastructure where it matters'],
+  ['Opportunity and feasibility assessment','AI assistants and workflow automation','API and model integrations','Wallet and payments integrations','Dashboards and analytics','Security and compliance review'],
+  [['AI and automation','Assistants, classification and workflow automation wired into your tools.'],['Blockchain integration','Wallets, payments and on-chain features integrated into your product.'],['Data and APIs','Clean data pipelines and integrations that give AI the context it needs.'],['Responsible delivery','Security, privacy and compliance reviewed at every stage.']],
+  [['roqqu','Work within the crypto ecosystem'],['yemert','Agri-tech platform (carbon credit and microinsurance)']]),
+ S('digital-marketing-campaigns','Digital Marketing Campaigns','growth','campaign','Campaigns that put the right message in front of the right people.',
+  'Full-funnel campaigns where strategy, creative, channels and reporting work together.',['Campaigns','Strategy','Analytics'],
+  'Full-funnel campaigns planned around your audience and goals — strategy, creative, channels and reporting working together so every effort adds up.',
+  ['A clear plan from awareness to conversion','Consistent messaging across every channel','Reporting that shows what’s working'],
+  ['Market and audience research','Campaign strategy and calendar','Creative and copy production','Channel setup and management','Landing pages and funnels','Performance reporting'],
+  [['Strategy and planning','Audience research, goals and channel mix mapped before spend begins.'],['Creative production','Ads, content and landing pages built to work together.'],['Multi-channel execution','Search, social, email and partnerships coordinated as one campaign.'],['Measurement','Dashboards and reviews that show what’s working and what to change.']],
+  [['roqqu','Campaign ideation and execution'],['raven','Market strategy and campaigns'],['onyx','Targeted campaigns']]),
+ S('content-social-mdeia-strategy','Content & Social Media Strategy','growth','social','Content and community that build an audience you own.',
+  'Strategy, calendars, creative and community management that keep your brand visible and engaging.',['Social','Content','Community'],
+  'We build content engines and social presences that earn attention — strategy, calendars, creative and community management that keep your brand visible and engaging.',
+  ['A recognisable voice and look on every platform','Consistent publishing without the scramble','A growing, engaged community'],
+  ['Content strategy and pillars','Monthly content calendars','Post design and short-form video','Copywriting and captions','Community management','Monthly insights reports'],
+  [['Content strategy','Pillars, formats and a voice that fits your audience and platforms.'],['Creative production','Designed posts, short-form video and copy produced consistently.'],['Community management','Conversations, replies and moderation that build loyalty.'],['Insights and iteration','Monthly reviews that feed what works back into the plan.']],
+  [['raven','Social media and post management'],['african','Social media and community presence'],['roqqu','Creative and content assets']]),
+ S('influencer-community-marketing','Influencer & Community Marketing','growth','people','Trusted voices and engaged communities that amplify your brand.',
+  'Influencer campaigns and partnership activations that build credibility, reach and adoption.',['Influencers','Community','Activations'],
+  'We connect your brand with creators and communities your audience already trusts — from influencer campaigns to partnership activations that build credibility and adoption.',
+  ['Reach through voices audiences trust','Partnerships that build credibility','Communities that advocate for your brand'],
+  ['Influencer research and selection','Campaign briefs and contracts','Content and activation management','Partnership outreach','Community programmes','Campaign performance reports'],
+  [['Influencer strategy','Creator selection matched to your audience, tone and goals.'],['Campaign management','Briefs, content approvals and delivery handled end to end.'],['Partnership activations','Co-branded activations that borrow trust from respected partners.'],['Community building','Programmes that turn customers into advocates.']],
+  [['roqqu','Influencer marketing and partnership activations'],['raven','Influencer campaigns'],['african','Community platform']]),
+ S('performance-marketing','Performance Marketing (SEO, PPC, Analytics)','growth','perf','Measurable growth: every channel tracked, every spend accountable.',
+  'SEO, paid media and analytics that turn spend into measurable acquisition and revenue.',['SEO','PPC','Analytics'],
+  'Measurable growth across search, paid media and analytics. We set up tracking, test relentlessly and optimise spend toward the outcomes that matter to your business.',
+  ['Every channel tracked and accountable','Lower cost per acquisition over time','Decisions driven by data, not guesses'],
+  ['Tracking and analytics setup','SEO audit and roadmap','Search and social ad campaigns','Conversion rate optimisation','A/B testing programmes','Dashboards and reporting'],
+  [['SEO','Technical, on-page and content SEO that compounds over time.'],['Paid media','Search and social campaigns structured, tested and optimised weekly.'],['Analytics and tracking','Clean tracking so every conversion is attributed correctly.'],['Conversion optimisation','Testing programmes that improve results from the traffic you already have.']],
+  [['roqqu','Paid media strategies'],['raven','Paid advertising'],['onyx','Targeted marketing campaigns']]),
+];
+
+/* ===================== SERVICES APP ===================== */
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+let lenis = null;
+const nativeTouchScroll = window.matchMedia?.('(pointer: coarse)').matches || 'ontouchstart' in window;
+if (window.Lenis && !reduce && !nativeTouchScroll) lenis = new Lenis({ lerp: .085, smoothWheel: true, wheelMultiplier: .95 });
+function goTo(y, imm){ if (lenis) lenis.scrollTo(y, imm ? { immediate:true, force:true } : { duration:1.4, easing: t => 1 - Math.pow(1 - t, 4) }); else scrollTo({ top:y, behavior: (reduce || imm) ? 'auto' : 'smooth' }); }
+
+const vList = $('#v-list'), vDetail = $('#v-detail'), nav = $('#nav'), cursorEl = $('#cursor');
+const ico = k => `<svg viewBox="0 0 64 64" aria-hidden="true">${ICONS[k]}</svg>`;
+const catOf = s => CATS[s.cat];
+let cur = null, sections = [], secTop = [], par = [], K = [], procEl = null, procTop = 0, procH = 0, measuredOnce = false, listY = 0, fromDetail = false;
+
+/* ---------- grid page ---------- */
+function cardHTML(s,i){ return `<a class="gcard scard tilt reveal" href="#/services/${s.slug}" data-cat="${s.cat}" style="--d:${(i%3)*.08}s" aria-label="${esc(s.title)} — view service and case studies">
+  <div class="s-top"><span class="s-ico">${ico(s.icon)}</span><span class="s-cat">${esc(catOf(s).name)}</span></div>
+  <h3>${esc(s.title)}</h3><p class="s-sum">${esc(s.summary)}</p>
+  <ul class="tags">${s.tags.map(t=>`<li>${esc(t)}</li>`).join('')}</ul>
+  <span class="s-link">View Service &amp; Case Studies <i aria-hidden="true">→</i></span></a>`; }
+$('#grid').innerHTML = SERVICES.map(cardHTML).join('');
+let serviceFilter = 'all';
+let pendingServiceFilter = null;
+function setServiceFilter(k='all', shouldScroll=false){
+  if (!CATS[k] && k !== 'all') k = 'all';
+  serviceFilter = k;
+  const f = $('#filters'); if (!f) return;
+  $$('.fbtn', f).forEach(x => x.setAttribute('aria-pressed', x.dataset.f === k ? 'true' : 'false'));
+  $$('.scard').forEach(c => {
+    const show = k === 'all' || c.dataset.cat === k;
+    c.classList.toggle('off', !show);
+    c.classList.remove('pop');
+    if (show){ void c.offsetWidth; c.classList.add('in','pop'); }
+  });
+  const navLink = $('#navServices');
+  if (navLink) navLink.setAttribute('aria-expanded','false');
+  $$('.nav-dropdown [data-service-filter]').forEach(x => x.setAttribute('aria-current', x.dataset.serviceFilter === k ? 'page' : 'false'));
+  requestAnimationFrame(measure);
+  if (shouldScroll){
+    const target = $('#services-grid');
+    if (target) setTimeout(() => goTo(Math.max(0, docTop(target) - 95)), 20);
+  }
+}
+{ const f = $('#filters'), opts = [['all','All services']].concat(Object.entries(CATS).map(([k,v]) => [k, v.name]));
+  f.innerHTML = opts.map(([k,n],i) => `<button class="fbtn" data-f="${k}" aria-pressed="${i===0}">${esc(n)}<small>${k==='all'?SERVICES.length:SERVICES.filter(s=>s.cat===k).length}</small></button>`).join('');
+  f.addEventListener('click', e => { const b = e.target.closest('.fbtn'); if (!b) return; setServiceFilter(b.dataset.f, false); });
+}
+
+/* ---------- navbar services dropdown ---------- */
+$('#navServicesWrap')?.addEventListener('mouseenter', () => $('#navServices')?.setAttribute('aria-expanded','true'));
+$('#navServicesWrap')?.addEventListener('mouseleave', () => $('#navServices')?.setAttribute('aria-expanded','false'));
+$('#navServicesWrap')?.addEventListener('focusin', () => $('#navServices')?.setAttribute('aria-expanded','true'));
+$('#navServicesWrap')?.addEventListener('focusout', e => { if (!e.currentTarget.contains(e.relatedTarget)) $('#navServices')?.setAttribute('aria-expanded','false'); });
+$('#navServicesWrap')?.addEventListener('click', e => {
+  const item = e.target.closest('[data-service-filter]');
+  const servicesLink = e.target.closest('#navServices');
+  if (!item && !servicesLink) return;
+  e.preventDefault();
+  const k = item ? item.dataset.serviceFilter : 'all';
+  pendingServiceFilter = k;
+  if (cur || location.hash !== '#/services'){ location.hash = '#/services'; }
+  else { setServiceFilter(k, true); }
+});
+
+/* ---------- mobile navigation ---------- */
+const mobileMenu = $('#mobileMenu'), mobileToggle = $('#mobileMenuToggle'), mobileServicesToggle = $('#mobileServicesToggle'), mobileServiceSubmenu = $('#mobileServiceSubmenu');
+function closeMobileMenu(){
+  if (!mobileMenu || !mobileToggle) return;
+  mobileMenu.classList.remove('open');
+  mobileMenu.setAttribute('aria-hidden','true');
+  mobileToggle.setAttribute('aria-expanded','false');
+  mobileToggle.setAttribute('aria-label','Open navigation menu');
+  document.body.classList.remove('mobile-menu-open');
+  if (mobileServicesToggle) mobileServicesToggle.setAttribute('aria-expanded','false');
+  mobileServiceSubmenu?.classList.remove('open');
+  if (lenis) lenis.start();
+}
+function openMobileMenu(){
+  if (!mobileMenu || !mobileToggle) return;
+  mobileMenu.classList.add('open');
+  mobileMenu.setAttribute('aria-hidden','false');
+  mobileToggle.setAttribute('aria-expanded','true');
+  mobileToggle.setAttribute('aria-label','Close navigation menu');
+  document.body.classList.add('mobile-menu-open');
+  if (lenis) lenis.stop();
+}
+mobileToggle?.addEventListener('click', () => mobileMenu?.classList.contains('open') ? closeMobileMenu() : openMobileMenu());
+mobileServicesToggle?.addEventListener('click', () => {
+  const open = mobileServicesToggle.getAttribute('aria-expanded') === 'true';
+  mobileServicesToggle.setAttribute('aria-expanded', String(!open));
+  mobileServiceSubmenu?.classList.toggle('open', !open);
+});
+mobileMenu?.addEventListener('click', e => {
+  const item = e.target.closest('[data-service-filter]');
+  if (item){
+    e.preventDefault();
+    const k = item.dataset.serviceFilter || 'all';
+    pendingServiceFilter = k;
+    closeMobileMenu();
+    if (cur || location.hash !== '#/services') location.hash = '#/services';
+    else setServiceFilter(k, true);
+    return;
+  }
+  const navLink = e.target.closest('[data-mobile-nav]');
+  if (navLink) closeMobileMenu();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && mobileMenu?.classList.contains('open')) closeMobileMenu(); });
+addEventListener('resize', () => { if (innerWidth > 860 && mobileMenu?.classList.contains('open')) closeMobileMenu(); });
+{ const mk = list => list.map(s => `<li><a href="#/services/${s.slug}">${esc(s.title)}</a></li>`).join('');
+  $('#fl1').innerHTML = mk(SERVICES.filter(s => s.cat !== 'growth')); $('#fl2').innerHTML = mk(SERVICES.filter(s => s.cat === 'growth')); }
+
+/* ---------- detail template ---------- */
+function caseCard(c, s){
+  if (c === 'next') return `<article class="gcard case next tilt reveal"><span class="plus" aria-hidden="true">+</span><h3>Your project is next</h3><p>Have a ${esc(s.title.replace(/\s*\(.*\)/,''))} project in mind? Let's build the next story together.</p><a class="btn btn-primary btn-sm mag" href="${CONTACT}"><span class="mag-i">Start a project</span></a></article>`;
+  const p = PROJECTS[c[0]];
+  return `<article class="gcard case tilt reveal">
+    <div class="c-thumb"><span class="c-ind">${esc(p.industry)}</span><img src="${p.img}" alt="${esc(p.name)} website"></div>
+    <div class="c-body"><h3>${esc(p.name)}</h3><div class="c-role">${esc(c[1])}</div>
+      <div class="c-metrics">${p.metrics.map(m=>`<div><b>${esc(m[0])}</b><span>${esc(m[1])}</span></div>`).join('')}</div>
+      <p>${esc(p.summary)}</p>
+      <button class="btn btn-gold btn-sm mag" data-case="${c[0]}" data-role="${esc(c[1])}"><span class="mag-i">Read Full Story →</span></button></div></article>`; }
+function renderDetail(s){
+  const cat = catOf(s), cases = s.cases.map(c => c), padded = cases.length < 3 ? cases.concat(['next']) : cases;
+  const related = SERVICES.filter(x => x !== s).sort((a,b) => (b.cat===s.cat) - (a.cat===s.cat)).slice(0,3);
+  vDetail.innerHTML = `
+  <section class="dhero sec" data-sec data-kf="hero"><div class="wrap dh-grid">
+    <div>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="#/services">Services</a><span>/</span><span>${esc(cat.name)}</span><span>/</span><b>${esc(s.title)}</b></nav>
+      <h1 class="display" data-split>${esc(s.headline)}</h1>
+      <p class="lede reveal" style="--d:.4s">${esc(s.overview)}</p>
+      <div class="cta reveal" style="--d:.55s"><a class="btn btn-primary mag" href="${CONTACT}"><span class="mag-i">Book a consultation</span></a><button class="btn btn-ghost mag" data-scroll="cases"><span class="mag-i">See case studies ↓</span></button></div>
+    </div>
+    <aside class="gcard glance hot tilt reveal" style="--d:.3s"><span class="g-ico">${ico(s.icon)}</span><h3>Key outcomes</h3>
+      <ul class="outs">${s.outcomes.map(o=>`<li>${esc(o)}</li>`).join('')}</ul>
+      <div class="g-foot"><span><b>${s.deliverables.length}</b>deliverables</span><span><b>${s.caps.length}</b>capabilities</span><span><b>${s.cases.length}</b>case ${s.cases.length>1?'studies':'study'}</span></div></aside>
+  </div></section>
+
+  <section class="dsec sec" data-sec data-kf="body" id="included"><div class="wrap">
+    <div class="sec-head"><span class="eyebrow">What's included</span><h2 class="h2" data-split>Everything you need, from first idea to launch.</h2></div>
+    <div class="inc">
+      <ul class="delivs">${s.deliverables.map((d,i)=>`<li class="reveal" style="--d:${i*.05}s"><span>0${i+1}</span>${esc(d)}</li>`).join('')}</ul>
+      <div class="caps">${s.caps.map((c,i)=>`<article class="gcard cap tilt reveal" style="--d:${i*.08}s"><span class="n">0${i+1}</span><h3>${esc(c[0])}</h3><p>${esc(c[1])}</p></article>`).join('')}</div>
+    </div></div></section>
+
+  <section class="proc sec" data-sec data-kf="body" id="process"><div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Our process</span><h2 class="h2" data-split>A clear path in four steps.</h2></div>
+    <div class="steps" id="steps">${cat.steps.map((st,i)=>`<div class="pstep"><span class="dot"></span><div class="gcard"><span class="k">STEP 0${i+1}</span><h3>${esc(st[0])}</h3><p>${esc(st[1])}</p></div></div>`).join('')}</div>
+  </div></section>
+
+  <section class="cases sec" data-sec data-kf="cases" id="cases"><div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Case studies</span><h2 class="h2" data-split>Proof, not promises.</h2><p class="lede reveal">Recent work where ${esc(s.title.replace(/\s*\(.*\)/,''))} played a part.</p></div>
+    <div class="cgrid">${padded.map(c => caseCard(c, s)).join('')}</div>
+  </div></section>
+
+  <section class="related sec" data-sec data-kf="body"><div class="wrap">
+    <div class="sec-head" style="margin-bottom:3vh"><h2 class="h2" data-split>Explore other services</h2></div>
+    <div class="rgrid">${related.map(r=>`<a class="gcard rcard tilt reveal" href="#/services/${r.slug}"><span class="s-ico">${ico(r.icon)}</span><div><b>${esc(r.title)}</b><small>${esc(catOf(r).name)}</small></div></a>`).join('')}</div>
+  </div></section>
+
+  <section class="ctasec sec" data-sec data-kf="cta"><div class="wrap">
+    <div class="gcard ctabox tilt reveal"><span class="glowb"></span>
+      <h2 class="h2" data-split>Ready to start your ${esc(s.title.replace(/\s*\(.*\)/,''))} project?</h2>
+      <p>Book a consultation and we'll map out scope, timeline and the fastest route from idea to launch.</p>
+      <div class="cta"><a class="btn btn-primary mag" href="${CONTACT}"><span class="mag-i">Book a consultation</span></a><a class="btn btn-gold mag" href="${CONTACT}"><span class="mag-i">Start a project</span></a></div>
+    </div></div></section>`;
+  procEl = $('#steps');
+}
+
+/* ---------- case study modal ---------- */
+const modal = $('#modal'), mpanel = $('#mpanel'); let lastFocus = null;
+function openCase(key, role){
+  const p = PROJECTS[key]; lastFocus = document.activeElement;
+  mpanel.innerHTML = `<button class="mclose" aria-label="Close case study" data-close><svg viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
+  <div class="mimg"><img src="${p.img}" alt="${esc(p.name)} website"></div>
+  <div class="mbody"><span class="c-ind" style="position:static;display:inline-block">${esc(p.industry)}</span><h2 id="mTitle">${esc(p.name)}</h2>
+    <div class="mgrid"><div><h4>The brief</h4><p>${esc(p.brief)}</p><h4>What we did</h4><p>${esc(p.did)}</p>
+      <div class="cta">${p.url?`<a class="btn btn-gold btn-sm" href="${p.url}" target="_blank" rel="noopener">Visit live site ↗</a>`:''}<a class="btn btn-primary btn-sm" href="${CONTACT}">Start a similar project</a></div></div>
+      <div><h4>At a glance</h4><div class="c-metrics">${p.metrics.map(m=>`<div><b>${esc(m[0])}</b><span>${esc(m[1])}</span></div>`).join('')}</div>${role?`<h4 style="margin-top:22px">Our role</h4><p>${esc(role)}</p>`:''}</div></div></div>`;
+  modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); lenis && lenis.stop(); document.documentElement.style.overflow = 'hidden';
+  setTimeout(() => $('.mclose', mpanel).focus(), 60);
+}
+function closeCase(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); lenis && lenis.start(); document.documentElement.style.overflow = ''; lastFocus && lastFocus.focus && lastFocus.focus(); }
+modal.addEventListener('click', e => { if (e.target.closest('[data-close]')) closeCase(); });
+addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) closeCase(); });
+document.addEventListener('click', e => {
+  const cs = e.target.closest('[data-case]'); if (cs){ openCase(cs.dataset.case, cs.dataset.role); return; }
+  const sc = e.target.closest('[data-scroll]'); if (sc){ const el = document.getElementById(sc.dataset.scroll); el && goTo(docTop(el) - 40); }
+});
+
+/* ---------- 3D keyframes per section type ---------- */
+const PRESETS = st => ({
+  hero:  {x:.5,  y:.04, s:.85, rx:.15, ry:-.3, st, al:1,  bl:0},
+  grid:  {x:.55, y:0,   s:1.0, rx:.2,  ry:-.4, st:1,  al:.3, bl:1.6},
+  body:  {x:.58, y:0,   s:.9,  rx:.25, ry:-.5, st, al:.38, bl:1.4},
+  cases: {x:0,   y:0,   s:1.6, rx:.1,  ry:-.3, st:2,  al:.2, bl:2},
+  cta:   {x:0,   y:.05, s:1.0, rx:0,   ry:0,   st:4,  al:.6, bl:.6},
+});
+const STAGE_NAMES = ['Abstract Idea Mesh','Structured Code Engine','Global Network Sphere','High-Converting Scale Dashboard','Launch Orb'];
+const hudName = $('#hudName'), hudSegs = $$('.hud .segs i'); let hudIdx = -1;
+function buildK(){
+  const narrow = vw/vh < .9, stg = cur ? catOf(cur).stage : 0; const P = PRESETS(stg);
+  if (cur && cur.icon === 'ai') { P.hero.st = P.body.st = 2; }
+  K = sections.map(el => { const k = Object.assign({}, P[el.dataset.kf] || P.body); if (narrow){ k.x = 0; k.y = el.dataset.kf === 'hero' ? .5 : .1; k.al *= .6; k.s *= .9; } return k; });
+}
+const lerpKF = (a,b,t) => { const o={}; for (const k in a) o[k] = a[k] + (b[k]-a[k])*t; return o; };
+
+function measure(){
+  const nw = innerWidth, nh = innerHeight;
+  if (measuredOnce && !fine && nw === vw && Math.abs(nh - vh) < 200) vh = Math.max(vh, nh); else vh = nh;
+  vw = nw; measuredOnce = true; document.documentElement.style.setProperty('--vh', (vh/100)+'px');
+  sections = $$('.view:not([hidden]) [data-sec]'); secTop = sections.map(docTop);
+  par = $$('.view:not([hidden]) [data-p]').map(el => ({ el, s:+el.dataset.p, c: docTop(el) + el.offsetHeight/2 }));
+  if (procEl){ procTop = docTop(procEl); procH = procEl.offsetHeight; }
+  buildK(); if (renderer) resize3D();
+}
+
+/* ---------- 3D update ---------- */
+function mouseWorld(){ const v = new THREE.Vector3(mouse.x, mouse.y, .5).unproject(camera); const dir = v.sub(camera.position).normalize(); return camera.position.clone().add(dir.multiplyScalar(-camera.position.z/dir.z)); }
+function update3D(time){
+  if (!K.length) return;
+  const aspect = vw/vh, narrow = aspect < .9, W = vh*.9, p = sy + vh*.62; let c = K[0];
+  for (let i=1;i<K.length;i++) c = lerpKF(c, K[i], smooth((p - (secTop[i] - W/2))/W));
+  stageCur += (c.st - stageCur) * (reduce ? 1 : .14);
+  camera.position.z = CAMZ - 1.6*smooth(sy/(vh*.6))*(1 - smooth((sy - vh*.6)/vh));
+  camera.position.x = lerp(camera.position.x, mouse.x*.35, .05); camera.position.y = lerp(camera.position.y, mouse.y*.22, .05); camera.lookAt(0,0,0);
+  const hW = halfH*aspect, base = Math.min(1, hW/4.2) < .5 ? .5 : Math.min(1, hW/4.2); pulse *= .93;
+  obj.position.set(c.x*hW, c.y*halfH, 0); obj.scale.setScalar(c.s*base*(1 + pulse*.12));
+  obj.rotation.set(c.rx + mouse.y*-.18, c.ry + Math.sin(time*.18)*.32 + mouse.x*.4, 0);
+  U.uTime.value = time; U.uStage.value = stageCur; U.uAlpha.value = c.al;
+  const orbW = smooth((stageCur-3.2)/.8), heroW = 1 - smooth(stageCur/.85);
+  U.uMouseStr.value = lerp(.55, -.28, orbW); U.uMouse.value.copy(mouseWorld());
+  const cs = 1.15*heroW + .55*orbW; coreGroup.visible = cs > .02; coreGroup.scale.setScalar(Math.max(cs,.001)/1.15); coreMat.uniforms.uI.value = Math.max(heroW, orbW*.9);
+  coreGroup.userData.rings.forEach((r,i) => r.rotation.z += (i?-1:1)*.0035); coreGroup.userData.wire.rotation.y = time*.06; coreGroup.userData.wire.rotation.x = time*.03;
+  glow.position.set(obj.position.x, obj.position.y, -1.5); const gs = 9*c.s*base*(1 + orbW*.2); glow.scale.set(gs,gs,1); glow.material.opacity = (.22 + heroW*.35 + orbW*.3) * c.al;
+  const wpp = z => 2*Math.tan(FOV*Math.PI/360)*(camera.position.z - z)/vh; dustBg.material.uniforms.uOff.value = sy*wpp(-6)*.3; dustFg.material.uniforms.uOff.value = sy*wpp(2.5)*1.5;
+  if (Math.abs(c.bl - (update3D.lastBl||0)) > .05){ update3D.lastBl = c.bl; renderer.domElement.style.filter = c.bl > .05 ? `blur(${c.bl.toFixed(2)}px)` : 'none'; }
+  const idx = clamp(Math.round(stageCur), 0, 4); if (idx !== hudIdx){ hudIdx = idx; hudName.textContent = STAGE_NAMES[idx]; hudSegs.forEach((s,i) => s.classList.toggle('on', i<=idx)); }
+  renderer.render(scene, camera);
+}
+function updDOM(){
+  nav.classList.toggle('scrolled', sy > 24);
+  for (const q of par){ const d = q.c - (sy + vh/2); if (Math.abs(d) > vh*1.6) continue; q.el.style.transform = `translate3d(0,${(d*(q.s-1)).toFixed(1)}px,0)`; }
+  if (procEl && cur){ const prog = clamp((sy + vh*.85 - procTop)/(procH + vh*.35), 0, 1); procEl.style.setProperty('--p', prog.toFixed(3));
+    $$('.pstep', procEl).forEach((st,i) => st.classList.toggle('on', prog > (i+.35)/4)); }
+}
+
+/* ---------- interactions (delegated, so dynamic content just works) ---------- */
+addEventListener('pointermove', e => { if (!fine) return; mouse.tx = (e.clientX/vw)*2 - 1; mouse.ty = -((e.clientY/vh)*2 - 1); mouse.px = e.clientX; mouse.py = e.clientY; cursorEl.classList.add('on');
+  const c = e.target.closest && e.target.closest('.tilt'); if (c){ const r = c.getBoundingClientRect(), x = (e.clientX - r.left)/r.width, y = (e.clientY - r.top)/r.height;
+    c.style.setProperty('--mx', (x*100)+'%'); c.style.setProperty('--my', (y*100)+'%');
+    c.style.transform = `perspective(1000px)${c.classList.contains('scard')||c.classList.contains('case')?' translateY(-8px)':''} rotateX(${((.5-y)*5).toFixed(2)}deg) rotateY(${((x-.5)*7).toFixed(2)}deg)`; }
+  const m = e.target.closest && e.target.closest('.mag'); if (m && !reduce){ const r = m.getBoundingClientRect(), dx = e.clientX-(r.left+r.width/2), dy = e.clientY-(r.top+r.height/2), i = $('.mag-i', m);
+    m.style.transform = `translate(${(dx*.28).toFixed(1)}px,${(dy*.4).toFixed(1)}px)`; if (i) i.style.transform = `translate(${(dx*.12).toFixed(1)}px,${(dy*.2).toFixed(1)}px)`; }
+}, { passive:true });
+document.addEventListener('pointerout', e => { const c = e.target.closest && e.target.closest('.tilt'); if (c && !c.contains(e.relatedTarget)) c.style.transform = '';
+  const m = e.target.closest && e.target.closest('.mag'); if (m && !m.contains(e.relatedTarget)){ m.style.transform = ''; const i = $('.mag-i', m); if (i) i.style.transform = ''; } });
+addEventListener('pointerdown', () => { pulse = 1; }); addEventListener('pointerleave', () => cursorEl.classList.remove('on'));
+
+/* ---------- router: #/services  and  #/services/<slug> ---------- */
+function prep(root){
+  $$('[data-split]', root).forEach(el => { if (!el.dataset.sp){ el.dataset.sp = 1; split(el); } });
+  $$('[data-split],.reveal,.gcard', root).forEach(el => { if (!el.classList.contains('in')) io.observe(el); });
+}
+function route(first){
+  const m = location.hash.match(/^#\/services\/([\w-]+)/), s = m && SERVICES.find(x => x.slug === m[1]);
+  if (!first && !cur && s) listY = scrollY;
+  const apply = () => {
+    if (s){ cur = s; renderDetail(s); vList.hidden = true; vDetail.hidden = false; document.title = `${s.title} — iSpace Technology`; fromDetail = true; }
+    else { const back = fromDetail; cur = null; procEl = null; vDetail.hidden = true; vList.hidden = false; document.title = 'Services — iSpace Technology'; fromDetail = false; if (back) goTo(listY, true); }
+    $('#navServices').classList.add('on');
+    prep(s ? vDetail : vList); measure();
+    if (s) {
+      goTo(0, true);
+    } else {
+      const back = fromDetail;
+      const requestedFilter = pendingServiceFilter || 'all';
+      pendingServiceFilter = null;
+      setServiceFilter(requestedFilter, false);
+      if (requestedFilter !== 'all') {
+        const target = $('#services-grid');
+        if (target) setTimeout(() => goTo(Math.max(0, docTop(target) - 95)), 80);
+      } else if (back) {
+        goTo(listY, true);
+      } else if (!first && !listY) {
+        goTo(0, true);
+      }
+    }
+    setTimeout(measure, 60);
+  };
+  if (!first && document.startViewTransition && !reduce) document.startViewTransition(apply); else apply();
+}
+addEventListener('hashchange', () => route(false));
+if (!/^#\/services/.test(location.hash) && !location.hash.startsWith('#/')) history.replaceState(null, '', '#/services');
+
+/* ---------- boot ---------- */
+let gl = true;
+try { init3D(); } catch (err) { gl = false; console.warn('WebGL unavailable — showing static background.', err); $('#gl').style.display = 'none'; }
+route(true);
+let rT; addEventListener('resize', () => { clearTimeout(rT); rT = setTimeout(measure, 120); });
+addEventListener('load', measure); if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+new ResizeObserver(() => measure()).observe(document.body);
+function frame(t){
+  requestAnimationFrame(frame); const time = t/1000;
+  if (lenis) lenis.raf(t);
+  sy = (reduce || lenis) ? scrollY : sy + (scrollY - sy) * .2;
+  mouse.x += (mouse.tx - mouse.x) * .07; mouse.y += (mouse.ty - mouse.y) * .07;
+  if (!fine && !reduce){ mouse.tx = Math.sin(time*.45)*.38; mouse.ty = Math.cos(time*.33)*.22; }
+  if (fine) cursorEl.style.transform = `translate3d(${mouse.px}px,${mouse.py}px,0)`;
+  if (gl) update3D(time); updDOM();
+}
+requestAnimationFrame(frame);
+
+})();
+</script>
+</body>
+</html>

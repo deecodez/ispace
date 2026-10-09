@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>iSpace Technology — Engineering Digital Realities That Scale</title>
+<meta name="description" content="iSpace Technology Limited builds websites, custom software and e-commerce systems for ambitious brands, then grows them with measurable marketing.">
+<meta name="theme-color" content="#070D19">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+/* =========================================================
+   iSpace Technology — 3D storytelling redesign
+   Tokens → base → chrome → sections → utilities
+   ========================================================= */
+:root{
+  color-scheme: dark;
+  --n950:#070D19; --n900:#0A1128; --n800:#0E1836; --n700:#16264F;
+  --cyan:#3AD7FF; --blue:#2B7BFF; --silver:#C9D3E6; --ice:#EAF1FF; --gold:#E6B65C;
+  --muted:#8FA0C4; --line:rgba(140,190,255,.16); --glass:rgba(13,23,50,.55);
+  --f-display:'Unbounded','Arial Black',system-ui,sans-serif;
+  --f-body:'Geist','Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --f-mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --vh:1vh;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);background:var(--n950);scroll-behavior:smooth}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+.lenis.lenis-smooth iframe{pointer-events:none}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--n950);color:var(--ice);font-family:var(--f-body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul{list-style:none;margin:0;padding:0}
+h1,h2,h3,p{margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:6px}
+
+/* ---------- fixed atmosphere ---------- */
+.bg{position:fixed;inset:0;z-index:0;background:
+  radial-gradient(1200px 720px at 78% -8%,rgba(43,123,255,.20),transparent 60%),
+  radial-gradient(900px 640px at -6% 104%,rgba(58,215,255,.10),transparent 60%),
+  linear-gradient(180deg,#0A1128 0%,#070D19 70%)}
+.trails{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.trails i{position:absolute;height:1px;width:42vw;left:-50vw;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:0;rotate:-24deg;animation:trail 9s linear infinite}
+.trails i:nth-child(1){top:22%;animation-delay:0s}
+.trails i:nth-child(2){top:48%;animation-delay:3s;width:30vw;background:linear-gradient(90deg,transparent,var(--silver),transparent)}
+.trails i:nth-child(3){top:70%;animation-delay:5.5s}
+.trails i:nth-child(4){top:86%;animation-delay:1.8s;width:26vw}
+@keyframes trail{0%{transform:translateX(0);opacity:0}10%{opacity:.55}60%{opacity:.35}100%{transform:translateX(170vw);opacity:0}}
+#gl{position:fixed;left:0;top:0;width:100%;height:calc(var(--vh)*100);z-index:1;pointer-events:none;transition:filter .3s linear}
+.vignette{position:fixed;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,transparent 50%,rgba(3,6,14,.65) 100%)}
+.cursor{position:fixed;left:0;top:0;width:320px;height:320px;margin:-160px 0 0 -160px;border-radius:50%;z-index:3;pointer-events:none;background:radial-gradient(circle,rgba(58,215,255,.13),transparent 62%);mix-blend-mode:screen;opacity:0;transition:opacity .4s}
+.cursor.on{opacity:1}
+main{position:relative;z-index:4;overflow-x:clip}
+
+/* ---------- type ---------- */
+.display,.h2{font-family:var(--f-display);font-weight:500;letter-spacing:-.025em}
+.h2{font-size:clamp(1.85rem,3.5vw,3.05rem);line-height:1.14}
+.lede{font-size:clamp(1.02rem,1.25vw,1.2rem);color:#B7C4E2;max-width:56ch}
+[data-split]{display:block}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .04em .16em;margin:0 -.04em -.16em}
+.wi{display:inline-block;transform:translateY(112%);transition:transform 1s var(--ease);transition-delay:calc(var(--i)*55ms);
+  background:linear-gradient(180deg,#fff 25%,#A9B8D8 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+[data-split].in .wi{transform:none}
+html:not(.js) .wi{transform:none}
+.reveal{opacity:0;filter:blur(8px);transform:translateY(18px);transition:opacity .9s var(--ease),filter .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+.reveal.in{opacity:1;filter:none;transform:none}
+html:not(.js) .reveal{opacity:1;filter:none;transform:none}
+
+/* ---------- buttons ---------- */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.6em;padding:16px 28px;border-radius:999px;font-weight:600;font-size:.98rem;border:1px solid transparent;cursor:pointer;transition:box-shadow .3s,background .3s,color .3s,border-color .3s;will-change:transform}
+.btn-primary{background:linear-gradient(120deg,var(--cyan),var(--blue));color:#04101F;box-shadow:0 0 0 1px rgba(255,255,255,.25) inset,0 12px 40px -8px rgba(58,215,255,.55)}
+.btn-primary:hover{box-shadow:0 0 0 1px rgba(255,255,255,.4) inset,0 16px 60px -6px rgba(58,215,255,.85)}
+.btn-gold{border-color:rgba(230,182,92,.6);color:var(--gold);background:rgba(230,182,92,.06)}
+.btn-gold:hover{background:var(--gold);color:#1a1204;box-shadow:0 10px 40px -10px rgba(230,182,92,.7)}
+.btn-sm{padding:11px 20px;font-size:.88rem}
+.mag-i{display:inline-flex;align-items:center;gap:.6em;transition:transform .25s var(--ease)}
+
+/* ---------- glass + sweep border ---------- */
+@property --a{syntax:'<angle>';initial-value:0deg;inherits:false}
+.gcard{position:relative;border-radius:24px;background:linear-gradient(160deg,rgba(22,38,79,.62),rgba(10,17,40,.72));-webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);
+  border:1px solid var(--line);box-shadow:0 30px 80px -40px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.07);transform-style:preserve-3d;will-change:transform}
+.gcard::before{content:'';position:absolute;inset:-1px;border-radius:inherit;padding:1.5px;pointer-events:none;opacity:0;
+  background:conic-gradient(from var(--a),transparent 0 62%,var(--cyan) 84%,#fff 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.gcard::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(58,215,255,.13),transparent 60%)}
+.gcard.in::before{animation:sweep 1.9s var(--ease) 1 forwards}
+.gcard:hover::before,.gcard.hot::before{animation:spin 3.2s linear infinite;opacity:1}
+.gcard:hover::after{opacity:1}
+@keyframes sweep{0%{--a:0deg;opacity:1}75%{opacity:1}100%{--a:360deg;opacity:0}}
+@keyframes spin{from{--a:0deg}to{--a:360deg}}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 14px);transform:translateX(-50%);z-index:60;width:min(1120px,calc(100% - 24px));
+  display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 12px 10px 14px;border-radius:999px;
+  background:rgba(10,17,40,.5);-webkit-backdrop-filter:blur(22px) saturate(150%);backdrop-filter:blur(22px) saturate(150%);border:1px solid var(--line);
+  box-shadow:0 20px 60px -30px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.08);transition:background .3s}
+.nav.scrolled{background:rgba(7,13,25,.72)}
+.brand{display:flex;align-items:center;gap:11px}
+.brand .chip{width:38px;height:38px;border-radius:12px;background:#fff;display:grid;place-items:center;box-shadow:0 0 24px rgba(58,215,255,.3)}
+.brand .chip img{width:24px;height:auto}
+.wm{font-family:var(--f-display);font-weight:600;font-size:1.02rem;letter-spacing:.04em;line-height:1;display:flex;flex-direction:column;gap:4px}
+.wm small{font-family:var(--f-body);font-weight:400;font-size:.62rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase}
+.links{display:flex;gap:4px;align-items:center}
+.links > a,.links .nav-services > a{padding:9px 15px;border-radius:999px;font-size:.9rem;color:#B7C4E2;transition:color .2s,background .2s}
+.links > a:hover,.links .nav-services > a:hover,.links .nav-services:focus-within > a{color:#fff;background:rgba(255,255,255,.07)}
+.nav-services{position:relative;display:flex;align-items:center}
+.nav-services > a{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.nav-services > a .nav-chevron{position:relative;width:29px;height:29px;display:grid;place-items:center;flex:0 0 29px;border:1px solid rgba(58,215,255,.28);border-radius:50%;background:linear-gradient(145deg,rgba(58,215,255,.12),rgba(58,215,255,.025));color:var(--cyan);box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 0 16px rgba(58,215,255,.045);opacity:.9;transition:transform .38s var(--ease),background .25s,border-color .25s,box-shadow .25s,color .25s}
+.nav-services > a .nav-chevron svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .38s var(--ease)}
+.nav-services > a .nav-chevron::after{content:'';position:absolute;width:5px;height:5px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px rgba(58,215,255,.75);opacity:.55;transform:translate(9px,-9px);pointer-events:none}
+.nav-services:hover > a .nav-chevron,.nav-services:focus-within > a .nav-chevron{transform:translateY(1px);opacity:1;border-color:rgba(58,215,255,.62);background:rgba(58,215,255,.15);box-shadow:0 0 22px rgba(58,215,255,.14),inset 0 1px 0 rgba(255,255,255,.1)}
+.nav-services:hover > a .nav-chevron svg,.nav-services:focus-within > a .nav-chevron svg{transform:rotate(180deg)}
+.nav-services > a[aria-expanded="true"] .nav-chevron{border-color:rgba(58,215,255,.62);background:rgba(58,215,255,.15);box-shadow:0 0 22px rgba(58,215,255,.14),inset 0 1px 0 rgba(255,255,255,.1)}
+.nav-services > a[aria-expanded="true"] .nav-chevron svg{transform:rotate(180deg)}
+.nav-dropdown{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(-6px);width:235px;padding:8px;border:1px solid var(--line);border-radius:18px;background:rgba(7,13,25,.94);-webkit-backdrop-filter:blur(22px) saturate(150%);backdrop-filter:blur(22px) saturate(150%);box-shadow:0 24px 60px -24px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.07);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .22s var(--ease),transform .22s var(--ease),visibility .22s}
+.nav-dropdown::before{content:'';position:absolute;left:0;right:0;top:-10px;height:12px}
+.nav-services:hover .nav-dropdown,.nav-services:focus-within .nav-dropdown{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.nav-dropdown a{display:flex!important;align-items:center;justify-content:space-between;width:100%;padding:10px 12px!important;border-radius:11px!important;font-size:.82rem!important;color:#B7C4E2!important;white-space:nowrap}
+.nav-dropdown a::after{content:'→';color:var(--cyan);opacity:0;transform:translateX(-5px);transition:opacity .2s,transform .2s}
+.nav-dropdown a:hover,.nav-dropdown a:focus-visible{color:#fff!important;background:rgba(58,215,255,.09)!important}
+.nav-dropdown a:hover::after,.nav-dropdown a:focus-visible::after{opacity:1;transform:translateX(0)}
+.nav-dropdown a[data-service-filter="all"]{border-bottom:1px solid rgba(140,190,255,.1);margin-bottom:4px;padding-bottom:12px!important}
+
+/* ---------- mobile navigation ---------- */
+.mobile-menu-toggle{display:none;position:relative;width:46px;height:46px;flex:0 0 46px;border:1px solid rgba(140,190,255,.22);border-radius:14px;background:rgba(15,28,58,.72);color:#fff;align-items:center;justify-content:center;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .25s,border-color .25s,transform .25s,box-shadow .25s}
+.mobile-menu-toggle:hover{background:rgba(58,215,255,.1);border-color:rgba(58,215,255,.4);box-shadow:0 0 24px rgba(58,215,255,.12)}
+.mobile-menu-toggle:active{transform:scale(.94)}
+.mobile-menu-toggle .hamb{position:relative;width:21px;height:16px;display:block}
+.mobile-menu-toggle .hamb i{position:absolute;left:0;width:21px;height:2px;border-radius:2px;background:#EAF1FF;transform-origin:center;transition:transform .32s var(--ease),opacity .2s,width .25s,top .32s var(--ease)}
+.mobile-menu-toggle .hamb i:nth-child(1){top:0}.mobile-menu-toggle .hamb i:nth-child(2){top:7px;width:15px;right:0;left:auto}.mobile-menu-toggle .hamb i:nth-child(3){top:14px}
+.mobile-menu-toggle[aria-expanded="true"] .hamb i:nth-child(1){top:7px;transform:rotate(45deg)}
+.mobile-menu-toggle[aria-expanded="true"] .hamb i:nth-child(2){opacity:0;transform:scaleX(0)}
+.mobile-menu-toggle[aria-expanded="true"] .hamb i:nth-child(3){top:7px;transform:rotate(-45deg)}
+.mobile-menu{position:fixed;left:10px;right:10px;top:calc(env(safe-area-inset-top,0px) + 78px);bottom:12px;z-index:59;padding:12px;overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;touch-action:pan-y;border:1px solid rgba(140,190,255,.2);border-radius:24px;background:linear-gradient(155deg,rgba(9,19,43,.97),rgba(5,11,25,.98));-webkit-backdrop-filter:blur(28px) saturate(155%);backdrop-filter:blur(28px) saturate(155%);box-shadow:0 28px 90px -35px rgba(0,0,0,.95),0 0 0 100vmax rgba(2,7,17,.58),inset 0 1px 0 rgba(255,255,255,.08);opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-14px) scale(.975);transform-origin:top right;transition:opacity .3s var(--ease),transform .35s var(--ease),visibility .3s}
+.mobile-menu::before{content:'';position:absolute;left:12%;right:12%;top:-1px;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:.75}
+.mobile-menu.open{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0) scale(1)}
+.mobile-menu-inner{min-height:100%;display:flex;flex-direction:column;padding:8px 4px 6px}
+.mobile-menu-kicker{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);padding:8px 12px 12px;opacity:.85}
+.mobile-link,.mobile-service-toggle{position:relative;display:flex;align-items:center;justify-content:space-between;width:100%;min-height:56px;padding:14px;border:0;border-radius:15px;background:transparent;color:#DDE7FF;font:500 1rem var(--f-body);text-decoration:none;text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent;opacity:0;transform:translateY(10px);transition:background .2s,color .2s,transform .2s}
+.mobile-menu.open .mobile-link,.mobile-menu.open .mobile-service-toggle{animation:mobileNavIn .45s var(--ease) forwards;animation-delay:calc(var(--i) * .045s)}
+.mobile-link:hover,.mobile-link:focus-visible,.mobile-service-toggle:hover,.mobile-service-toggle:focus-visible{background:rgba(255,255,255,.055);color:#fff;outline:none}
+.mobile-link::after{content:'↗';font-size:.95rem;color:var(--cyan);opacity:.75;transition:transform .2s}.mobile-link:hover::after,.mobile-link:focus-visible::after{transform:translate(3px,-3px)}
+.mobile-service-label{display:flex;align-items:center;gap:11px}.mobile-service-dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px rgba(58,215,255,.8);opacity:.9}
+.mobile-service-toggle .mobile-plus{width:34px;height:34px;display:grid;place-items:center;border:1px solid rgba(58,215,255,.24);border-radius:50%;background:linear-gradient(145deg,rgba(58,215,255,.12),rgba(58,215,255,.035));color:var(--cyan);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 0 18px rgba(58,215,255,.05);transition:transform .4s var(--ease),background .25s,border-color .25s,box-shadow .25s}
+.mobile-service-toggle .mobile-plus svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .4s var(--ease)}
+.mobile-service-toggle[aria-expanded="true"]{background:rgba(58,215,255,.075);color:#fff}.mobile-service-toggle[aria-expanded="true"] .mobile-plus{background:rgba(58,215,255,.15);border-color:rgba(58,215,255,.55);box-shadow:0 0 22px rgba(58,215,255,.12)}.mobile-service-toggle[aria-expanded="true"] .mobile-plus svg{transform:rotate(180deg)}
+.mobile-service-submenu{display:grid;grid-template-rows:0fr;overflow:hidden;opacity:.5;transition:grid-template-rows .35s var(--ease),opacity .25s}.mobile-service-submenu>div{min-height:0;overflow:hidden;padding:0 8px}.mobile-service-submenu.open{grid-template-rows:1fr;opacity:1}
+.mobile-service-submenu a{display:flex;align-items:center;justify-content:space-between;padding:12px 13px;margin:2px 0;border-radius:12px;color:#9FB1D5;text-decoration:none;font-size:.86rem;transition:background .2s,color .2s,transform .2s}.mobile-service-submenu a::after{content:'→';color:var(--cyan);opacity:.6}.mobile-service-submenu a:hover,.mobile-service-submenu a:focus-visible{background:rgba(58,215,255,.08);color:#fff;outline:none;transform:translateX(3px)}
+.mobile-service-submenu a[data-service-filter="all"]{border-bottom:1px solid rgba(140,190,255,.1);border-radius:12px 12px 8px 8px;margin-bottom:5px}
+.mobile-menu-divider{height:1px;margin:8px 12px;background:linear-gradient(90deg,transparent,rgba(140,190,255,.2),transparent)}
+.mobile-menu-cta{display:flex;align-items:center;justify-content:center;min-height:52px;margin:12px 6px 4px;border:1px solid rgba(207,165,71,.65);border-radius:14px;background:linear-gradient(135deg,rgba(207,165,71,.14),rgba(207,165,71,.04));color:#E8BC5C;text-decoration:none;font-weight:600;box-shadow:inset 0 1px 0 rgba(255,255,255,.05);transition:background .25s,transform .2s,box-shadow .25s}.mobile-menu-cta:hover,.mobile-menu-cta:focus-visible{background:rgba(207,165,71,.18);box-shadow:0 0 30px rgba(207,165,71,.12);transform:translateY(-1px);outline:none}
+body.mobile-menu-open{overflow:hidden;touch-action:none}
+@keyframes mobileNavIn{to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion:reduce){.mobile-menu,.mobile-menu-toggle .hamb i,.mobile-link,.mobile-service-toggle,.mobile-service-submenu,.mobile-service-submenu a{transition:none!important;animation:none!important}}
+@media (max-width:860px){
+  .links{display:none}.wm small{display:none}
+  .nav{width:calc(100% - 18px);padding:8px 8px 8px 10px;gap:8px}
+  .brand{gap:9px;min-width:0}.brand .chip{width:38px;height:38px;flex:0 0 38px}.wm{font-size:.94rem}
+  .nav>.btn{display:none}.mobile-menu-toggle{display:flex}
+  /* FIX: removed the html,body overflow-y:auto rule here. It made body its own scroll container and broke position:sticky (pinned Services/Work sections). */
+  .mobile-menu{max-height:calc(100dvh - env(safe-area-inset-top,0px) - 90px)}
+}
+
+/* ---------- HUD ---------- */
+.hud{position:fixed;left:clamp(16px,2.4vw,36px);bottom:calc(env(safe-area-inset-bottom,0px) + 22px);z-index:40;display:flex;align-items:center;gap:14px;pointer-events:none;font-family:var(--f-mono);font-size:.72rem;color:var(--muted)}
+.hud .segs{display:flex;gap:4px}
+.hud .segs i{width:22px;height:3px;border-radius:2px;background:rgba(140,190,255,.18);transition:background .4s,box-shadow .4s}
+.hud .segs i.on{background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+.hud b{font-weight:500;color:var(--ice);letter-spacing:.02em}
+.dots{position:fixed;right:clamp(12px,2vw,28px);top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;gap:14px}
+.dots a{position:relative;width:9px;height:9px;border-radius:50%;background:rgba(140,190,255,.25);transition:background .3s,transform .3s,box-shadow .3s}
+.dots a.on{background:var(--cyan);transform:scale(1.35);box-shadow:0 0 14px var(--cyan)}
+.dots a span{position:absolute;right:20px;top:50%;transform:translateY(-50%);white-space:nowrap;font-size:.72rem;color:var(--muted);opacity:0;transition:opacity .2s;pointer-events:none}
+.dots a:hover span{opacity:1}
+@media (max-width:760px){.dots{display:none}.hud{font-size:.66rem}.hud .segs i{width:14px}}
+
+/* ---------- layout ---------- */
+.sec{position:relative}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,56px)}
+.bgword{position:absolute;pointer-events:none;font-family:var(--f-display);font-weight:600;color:transparent;-webkit-text-stroke:1px rgba(120,170,255,.11);white-space:nowrap;line-height:1;user-select:none}
+
+/* ---------- code blocks ---------- */
+.code{position:absolute;padding:14px 16px;border-radius:14px;background:rgba(10,17,40,.55);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid var(--line);font-family:var(--f-mono);font-size:.74rem;line-height:1.7;color:#8FA7D6;pointer-events:none;box-shadow:0 20px 60px -30px #000}
+.code::before{content:'';display:block;width:44px;height:6px;margin-bottom:10px;background:radial-gradient(circle,#3AD7FF 2.4px,transparent 3px) 0 0/14px 6px,transparent;opacity:.6}
+.code pre{margin:0;font:inherit;white-space:pre}
+.code .k{color:#7FB4FF}.code .f{color:var(--cyan)}.code .s{color:var(--gold)}.code .n{color:#C9A7FF}.code .c{color:#5E7099}
+@media (max-width:980px){.code{display:none}}
+
+/* =========================================================
+   1. HERO
+   ========================================================= */
+.hero{min-height:calc(var(--vh)*100);display:flex;flex-direction:column;justify-content:center;align-items:flex-start;text-align:left;padding:120px clamp(20px,6vw,96px) 90px;overflow:hidden}
+.floor{position:absolute;left:-35%;right:-35%;bottom:-8%;height:58%;transform-origin:50% 100%;transform:perspective(520px) rotateX(64deg);background-image:linear-gradient(rgba(58,215,255,.2) 1px,transparent 1px),linear-gradient(90deg,rgba(58,215,255,.2) 1px,transparent 1px);background-size:70px 70px;-webkit-mask-image:linear-gradient(to top,#000 8%,transparent 88%);mask-image:linear-gradient(to top,#000 8%,transparent 88%);pointer-events:none}
+.hero-in{position:relative;z-index:6;max-width:min(640px,50vw)}
+.hero h1{font-size:clamp(2.1rem,4.4vw,4.1rem);line-height:1.08;font-weight:500}
+.hero .lede{margin:24px 0 0}
+.cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+
+/* animated hero figure */
+.hero-fig{--fw:min(54vw,880px);position:absolute;left:71%;top:50%;width:var(--fw);margin:calc(var(--fw)*-.4) 0 0 calc(var(--fw)/-2);z-index:3;pointer-events:none;will-change:transform}
+.fig-float{position:relative;filter:drop-shadow(0 30px 70px rgba(43,123,255,.32));animation:figbob 8s ease-in-out infinite}
+@keyframes figbob{0%,100%{transform:translateY(0) rotate(-.6deg)}50%{transform:translateY(-16px) rotate(.8deg)}}
+.fig-img{display:block;width:100%;height:auto;-webkit-mask-image:linear-gradient(180deg,#000 74%,transparent 99%);mask-image:linear-gradient(180deg,#000 74%,transparent 99%);animation:figIn 1.9s var(--ease) .3s both}
+@keyframes figIn{from{opacity:0;filter:blur(22px);transform:scale(.9) translateY(40px);clip-path:inset(0 0 100% 0)}55%{filter:blur(4px)}to{opacity:1;filter:blur(0);transform:none;clip-path:inset(0 0 0 0)}}
+.fig-scan{position:absolute;inset:0;-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;
+  background:linear-gradient(180deg,transparent 0 40%,rgba(150,240,255,.95) 50%,transparent 60% 100%);background-size:100% 300%;background-position:0 100%;mix-blend-mode:screen;animation:scan 5.5s cubic-bezier(.6,0,.4,1) 2.4s infinite}
+@keyframes scan{0%{background-position:0 100%}65%,100%{background-position:0 0}}
+.fig-visor{position:absolute;left:55%;top:3%;width:30%;height:28%;border-radius:50%;background:radial-gradient(ellipse,rgba(255,176,70,.8),rgba(255,110,30,.28) 45%,transparent 70%);mix-blend-mode:screen;filter:blur(14px);animation:visor 3.2s ease-in-out infinite}
+@keyframes visor{0%,100%{opacity:.35;scale:.9}50%{opacity:1;scale:1.1}}
+.fig-rings{position:absolute;left:50%;top:50%;width:104%;translate:-50% -50%;z-index:-1;overflow:visible}
+.fig-rings circle{fill:none;stroke:rgba(58,215,255,.3);stroke-width:1;transform-origin:50% 50%}
+.fig-rings .r1{stroke-dasharray:2 12;animation:spinr 60s linear infinite}
+.fig-rings .r2{stroke:rgba(201,211,230,.2);stroke-dasharray:60 30 6 30;animation:spinr 90s linear infinite reverse}
+.fig-rings .r3{stroke:rgba(230,182,92,.28);stroke-dasharray:1 16;animation:spinr 120s linear infinite}
+@keyframes spinr{to{transform:rotate(360deg)}}
+.fig-embers{position:absolute;inset:0;overflow:visible}
+.fig-embers i{position:absolute;bottom:18%;width:var(--s);height:var(--s);border-radius:50%;background:var(--c);box-shadow:0 0 12px var(--c);opacity:0;animation:rise var(--t) linear var(--d) infinite}
+@keyframes rise{0%{transform:translate(0,0);opacity:0}15%{opacity:.95}100%{transform:translate(var(--dx),-340px);opacity:0}}
+
+.orbit{position:absolute;left:71%;top:50%;width:0;height:0;perspective:1100px;pointer-events:none;z-index:5}
+.orbit .b{position:absolute;left:0;top:0;display:flex;align-items:center;gap:9px;white-space:nowrap;padding:9px 16px 9px 12px;border-radius:999px;font-size:.84rem;font-weight:500;color:#DCE7FF;
+  background:rgba(12,22,50,.6);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid var(--line);box-shadow:0 10px 40px -14px rgba(58,215,255,.5);will-change:transform,opacity}
+.orbit .b::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan)}
+.orbit .b.g{border-color:rgba(230,182,92,.4);color:#F6DDA8}
+.orbit .b.g::before{background:var(--gold);box-shadow:0 0 12px var(--gold)}
+.hero .c2{right:7%;bottom:8%;rotate:-3deg;z-index:1}
+.scrollcue{position:absolute;right:clamp(20px,5vw,56px);bottom:34px;z-index:3;font-family:var(--f-mono);font-size:.7rem;color:var(--muted);display:flex;align-items:center;gap:10px;writing-mode:vertical-rl}
+.scrollcue::after{content:'';width:1px;height:54px;background:linear-gradient(var(--cyan),transparent);animation:cue 2.2s ease-in-out infinite}
+@keyframes cue{0%,100%{transform:scaleY(.3);transform-origin:top}50%{transform:scaleY(1)}}
+@media (max-width:900px){
+  .hero{justify-content:flex-end;align-items:center;text-align:center;padding:92px 20px 84px}
+  .hero-fig{--fw:min(94vw,540px);position:relative;left:auto;top:auto;margin:0 auto -4px;order:-1}
+  .hero-in{max-width:100%}
+  .hero h1{font-size:clamp(1.85rem,8vw,2.6rem)}
+  .hero .lede{margin-inline:auto;font-size:1rem}
+  .cta{justify-content:center;margin-top:26px}
+  .orbit{left:50%;top:calc(92px + min(94vw,540px)*.36)}
+  .scrollcue{display:none}
+  .fig-embers i{bottom:12%}
+}
+/* FIX: removed the 4-line clamp on the hero paragraph so the full text shows */
+@media (max-width:420px){.hero .btn{padding:14px 22px}.hero .lede{font-size:.97rem}}
+
+/* =========================================================
+   2. ABOUT
+   ========================================================= */
+.about{padding:20vh 0 14vh;overflow:hidden}
+.about .bgword{right:-2%;top:6%;font-size:clamp(6rem,17vw,16rem)}
+.about-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:40px;min-height:52vh;align-items:center}
+.about-copy .lede{margin-top:26px}
+.values{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.values li{padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:rgba(14,24,54,.5);font-size:.86rem;color:#C9D6F2}
+.about-bottom{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.6fr);gap:28px;margin-top:9vh;align-items:stretch}
+.team{padding:22px 22px 26px;height:100%;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px}
+.team img{width:min(230px,70%);filter:drop-shadow(0 20px 40px rgba(43,123,255,.35))}
+.team p{font-size:.95rem;color:#B7C4E2}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.stat{padding:28px 26px 26px}
+.stat .num{font-family:var(--f-display);font-weight:500;font-size:clamp(2.2rem,4vw,3.4rem);line-height:1;letter-spacing:-.03em;background:linear-gradient(180deg,#fff,#8FC8FF);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat p{margin-top:12px;color:#A9B8D8;font-size:.95rem;max-width:26ch}
+.slide-x{will-change:transform,opacity}
+@media (max-width:900px){.about{padding-bottom:6vh}.about-top{grid-template-columns:1fr;min-height:0}.about-top .about-space{height:34vh;order:-1}.about-bottom{grid-template-columns:1fr}.about{padding-top:14vh}}
+@media (max-width:520px){.stats{grid-template-columns:1fr}}
+
+/* =========================================================
+   3. SERVICES — 3D card stack
+   ========================================================= */
+.svc-wrap{height:calc(var(--vh)*430)}
+.svc-pin{position:sticky;top:0;height:calc(var(--vh)*100);display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(20px,4vw,64px);align-items:center;padding:70px clamp(20px,5vw,72px) 40px;max-width:1360px;margin:0 auto}
+.svc-copy .lede{margin-top:20px}
+.svc-index{margin-top:32px;display:flex;flex-direction:column;gap:2px}
+.svc-index button{display:flex;align-items:center;gap:14px;text-align:left;background:none;border:0;padding:11px 0;cursor:pointer;color:#6F80A8;font-size:1.02rem;font-weight:500;transition:color .3s,padding .3s}
+.svc-index button::before{content:'';width:22px;height:2px;border-radius:2px;background:rgba(140,190,255,.22);transition:width .4s var(--ease),background .3s,box-shadow .3s}
+.svc-index button.on{color:#fff;padding-left:6px}
+.svc-index button.on::before{width:44px;background:var(--cyan);box-shadow:0 0 12px var(--cyan)}
+.svc-also{margin-top:26px;font-size:.88rem;color:var(--muted)}
+.stack{position:relative;height:min(540px,68vh);perspective:1700px;transform-style:preserve-3d}
+.svc{position:absolute;left:50%;top:50%;width:min(540px,100%);height:min(470px,64vh);padding:clamp(22px,3vw,34px);display:flex;flex-direction:column;will-change:transform,opacity,filter;
+  background:linear-gradient(160deg,rgba(24,42,88,.72),rgba(9,15,36,.82))}
+.svc.active{box-shadow:0 0 0 1px rgba(58,215,255,.35),0 0 70px -10px rgba(58,215,255,.45),0 40px 90px -40px #000}
+.svc.active::before{opacity:1;animation:spin 3.6s linear infinite}
+.svc .ico{position:absolute;right:26px;top:22px;width:92px;height:auto;opacity:.95;filter:drop-shadow(0 0 12px rgba(58,215,255,.55))}
+.svc svg{stroke:var(--cyan);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.svc h3{font-family:var(--f-display);font-weight:500;font-size:clamp(1.3rem,2.1vw,1.7rem);line-height:1.2;letter-spacing:-.02em;max-width:11em;margin-top:6px}
+.svc p{margin-top:26px;color:#B7C4E2;font-size:.98rem;line-height:1.6}
+.svc ul{margin-top:18px;display:grid;gap:9px}
+.svc li{position:relative;padding-left:26px;font-size:.93rem;color:#D3DEF6}
+.svc li::before{content:'';position:absolute;left:0;top:.55em;width:14px;height:8px;border-left:2px solid var(--cyan);border-bottom:2px solid var(--cyan);rotate:-45deg;translate:0 -50%;opacity:.9}
+.svc .foot{margin-top:auto;padding-top:16px}
+.svc .foot a{color:var(--gold);font-weight:600;font-size:.94rem;display:inline-flex;gap:8px;align-items:center;border-bottom:1px solid rgba(230,182,92,.4);padding-bottom:2px}
+.svc .foot a:hover{border-color:var(--gold)}
+/* FIX: compact service cards that fit inside the pinned viewport on phones */
+@media (max-width:900px){
+  .svc-pin{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr);align-content:start;gap:10px;padding:84px 18px 22px}
+  .svc-index,.svc-also,.svc-copy .lede{display:none}
+  .svc-copy .h2{font-size:clamp(1.3rem,5.6vw,1.7rem)}
+  .stack{height:100%;min-height:0}
+  .svc{width:100%;height:min(470px,100%);padding:20px 18px;overflow:hidden}
+  .svc .ico{width:60px;right:16px;top:16px}
+  .svc h3{font-size:1.2rem;max-width:9em}
+  .svc p{margin-top:12px;font-size:.88rem;line-height:1.5}
+  .svc ul{margin-top:10px;gap:5px}
+  .svc li{font-size:.84rem;padding-left:22px}
+  .svc .foot{padding-top:10px}
+}
+@media (max-width:900px) and (max-height:700px){
+  .svc p{font-size:.82rem;line-height:1.4}
+  .svc li{font-size:.78rem}
+  .svc ul{gap:3px}
+}
+
+/* =========================================================
+   4. WORK — horizontal depth slider
+   ========================================================= */
+.work-wrap{height:calc(var(--vh)*(90*(var(--n) - 1) + 100));margin-top:12vh;position:relative;z-index:8;background:#070D19}
+.work-pin{position:sticky;top:0;height:calc(var(--vh)*100);overflow:hidden}
+.work-head{position:absolute;left:0;right:0;top:82px;z-index:6;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;padding:0 clamp(20px,6vw,96px);pointer-events:none}
+.work-head .h2{font-size:clamp(1.5rem,2.6vw,2.2rem)}
+.pips{display:flex;gap:8px;pointer-events:auto}
+.pips button{width:34px;height:5px;border-radius:3px;border:0;padding:0;background:rgba(140,190,255,.22);cursor:pointer;transition:background .3s,width .4s var(--ease),box-shadow .3s}
+.pips button.on{width:58px;background:var(--cyan);box-shadow:0 0 12px var(--cyan)}
+.track{display:flex;height:100%;will-change:transform}
+.slide{position:relative;flex:0 0 100vw;height:100%;display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);align-items:center;gap:clamp(20px,4vw,72px);padding:150px clamp(20px,6vw,96px) 70px}
+.slide .bgword{left:50%;top:52%;font-size:clamp(7rem,24vw,24rem)}
+.s-txt{position:relative;z-index:2;will-change:transform,opacity}
+.sector{display:inline-block;padding:6px 14px;border-radius:999px;border:1px solid rgba(230,182,92,.45);color:var(--gold);font-size:.8rem;font-weight:500}
+.s-txt h3{font-family:var(--f-display);font-weight:500;font-size:clamp(1.9rem,3.6vw,3.2rem);line-height:1.08;letter-spacing:-.03em;margin-top:18px;background:linear-gradient(180deg,#fff 30%,#9FB3DA);-webkit-background-clip:text;background-clip:text;color:transparent}
+.s-txt p{margin-top:18px;color:#B7C4E2;max-width:44ch;font-size:1rem}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.tags li{padding:5px 12px;border-radius:8px;background:rgba(58,215,255,.07);border:1px solid rgba(58,215,255,.18);font-size:.78rem;color:#9FDFF3}
+.s-txt .btn{margin-top:26px}
+.dev-wrap{position:relative;z-index:1;perspective:1700px;will-change:transform;display:grid;place-items:center}
+.device{position:relative;width:100%;max-width:820px;transform-style:preserve-3d;transform:rotateY(var(--ry,-10deg)) rotateX(var(--rx,3deg));transition:transform .55s var(--ease);animation:bob 7s ease-in-out infinite}
+.device.tracking{transition:transform .12s linear}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -9px}}
+.scr{position:relative;overflow:hidden;background:#050A18}
+.scr img{display:block;width:100%;height:auto;min-height:100%;object-fit:cover;object-position:50% 0;transform-origin:top center;transition:transform 5.5s cubic-bezier(.45,.05,.3,1)}
+.device:hover .scr img{transform:translateY(calc(var(--pan,0%)*-1)) scale(var(--zoom,1.05))}
+.scr::after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.1),transparent 34%);pointer-events:none}
+.live{position:absolute;left:12px;top:12px;z-index:3;display:flex;align-items:center;gap:8px;padding:5px 11px;border-radius:999px;background:rgba(7,13,25,.72);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);font-family:var(--f-mono);font-size:.68rem;color:#DCE7FF;opacity:0;transform:translateY(-6px);transition:opacity .35s,transform .35s}
+.live::before{content:'';width:7px;height:7px;border-radius:50%;background:#3DF5A6;box-shadow:0 0 10px #3DF5A6;animation:pulse 1.4s infinite}
+@keyframes pulse{50%{opacity:.35}}
+.device:hover .live{opacity:1;transform:none}
+.perf{position:absolute;right:-3%;bottom:-9%;z-index:5;display:flex;gap:1px;padding:6px;border-radius:16px;overflow:hidden;transform:translateZ(80px) translateY(14px);opacity:0;transition:opacity .4s,transform .5s var(--ease)}
+.device:hover .perf{opacity:1;transform:translateZ(80px)}
+.perf div{padding:10px 16px;min-width:96px}
+.perf b{display:block;font-family:var(--f-display);font-weight:500;font-size:1.15rem;line-height:1.1;color:#fff}
+.perf span{display:block;margin-top:4px;font-size:.7rem;color:var(--muted);line-height:1.3}
+@media (hover:none){.perf,.live{opacity:1;transform:translateZ(80px)}.live{transform:none}}
+/* laptop */
+.lap .lid{border-radius:16px 16px 6px 6px;background:#0B1226;padding:2.4% 2.4% 2.8%;border:1px solid rgba(190,210,255,.28);box-shadow:0 60px 120px -50px rgba(58,215,255,.4),inset 0 0 0 1.5px #1A2545}
+.lap .scr{aspect-ratio:16/9;border-radius:6px}
+.lap .base{height:15px;margin:0 -5%;border-radius:0 0 22px 22px/0 0 12px 12px;background:linear-gradient(#D5DDEE,#8794B2);position:relative}
+.lap .base::after{content:'';position:absolute;left:50%;top:0;width:16%;height:5px;translate:-50% 0;border-radius:0 0 8px 8px;background:#6E7B99}
+/* monitor */
+.mon .lid{border-radius:14px;background:#0B1226;padding:1.8%;border:1px solid rgba(190,210,255,.28);box-shadow:0 60px 120px -50px rgba(58,215,255,.4),inset 0 0 0 1.5px #1A2545}
+.mon .scr{aspect-ratio:2/1;border-radius:6px}
+.mon .neck{width:11%;height:44px;margin:0 auto;background:linear-gradient(90deg,#8794B2,#D5DDEE,#8794B2)}
+.mon .foot{width:26%;height:9px;margin:0 auto;border-radius:6px;background:linear-gradient(#D5DDEE,#7C89A8)}
+/* browser */
+.brw{border-radius:16px;background:#0B1226;border:1px solid rgba(190,210,255,.28);overflow:hidden;box-shadow:0 60px 120px -50px rgba(58,215,255,.4)}
+.brw .bar{display:flex;align-items:center;gap:8px;padding:11px 14px;background:#101B3B}
+.brw .bar i{width:10px;height:10px;border-radius:50%;background:#2B3A66}
+.brw .bar i:nth-child(1){background:#FF6B6B}.brw .bar i:nth-child(2){background:#FFC857}.brw .bar i:nth-child(3){background:#3DF5A6}
+.brw .bar span{margin-left:10px;flex:1;padding:4px 14px;border-radius:999px;background:#0A1128;font-family:var(--f-mono);font-size:.7rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brw .scr{aspect-ratio:2/1}
+/* FIX: heading wraps, text and tags stay visible, nothing runs off-screen */
+@media (max-width:900px){
+  .work-wrap{margin-top:8vh;height:calc(var(--vh)*(120*(var(--n) - 1) + 100))}
+  .work-head{top:78px;padding:0 24px;flex-direction:column;align-items:flex-start;gap:10px}
+  .work-head .h2{white-space:normal;font-size:1.05rem;line-height:1.25;max-width:20em}
+  .slide{grid-template-columns:1fr;grid-template-rows:auto 1fr;align-content:start;padding:172px 24px 84px;gap:14px;overflow:hidden}
+  .s-txt,.dev-wrap{min-width:0;max-width:100%}
+  .dev-wrap{padding:0 2px}
+  .s-txt h3{font-size:1.6rem;margin-top:8px}
+  .s-txt p{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-top:8px;font-size:.88rem;line-height:1.5}
+  .tags{flex-wrap:nowrap;overflow-x:auto;margin-top:10px;scrollbar-width:none}
+  .tags::-webkit-scrollbar{display:none}
+  .tags li{flex:none}
+  .s-txt .btn{margin-top:12px;padding:9px 16px}
+  .perf{position:relative;right:auto;bottom:auto;width:max-content;max-width:100%;margin:14px auto 0;transform:none!important;opacity:1!important}
+  .perf div{padding:7px 10px;min-width:0}
+  .perf b{font-size:.95rem}
+  .device{max-width:100%}
+  .hud{bottom:calc(env(safe-area-inset-bottom,0px) + 10px)}
+}
+
+/* =========================================================
+   5. PROCESS — vertical light path
+   ========================================================= */
+.process{padding:20vh 0 14vh;overflow:hidden}
+.process .bgword{left:-2%;top:4%;font-size:clamp(6rem,17vw,16rem)}
+.process-head{max-width:640px}
+.process-head .lede{margin-top:20px}
+.timeline{position:relative;margin-top:10vh;padding-left:var(--pad);--pad:clamp(56px,9vw,120px);--rail:clamp(20px,4vw,44px);max-width:calc(700px + var(--pad))}
+.rail{position:absolute;left:var(--rail);top:0;bottom:0;width:2px;background:rgba(120,160,255,.14)}
+.rail .fill{position:absolute;left:0;top:0;width:100%;height:0;background:linear-gradient(var(--blue),var(--cyan));box-shadow:0 0 18px var(--cyan)}
+.rail .head{position:absolute;left:50%;top:0;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:#fff;box-shadow:0 0 0 6px rgba(58,215,255,.22),0 0 34px 10px var(--cyan)}
+.step{position:relative;min-height:66vh;display:flex;align-items:center;perspective:1400px}
+.step .node{position:absolute;left:calc(var(--rail) - var(--pad) - 8px);top:50%;width:18px;height:18px;margin-top:-9px;border-radius:50%;background:var(--n900);border:2px solid rgba(120,160,255,.35);transition:background .4s,border-color .4s,box-shadow .4s}
+.step.lit .node{background:var(--cyan);border-color:#fff;box-shadow:0 0 0 7px rgba(58,215,255,.18),0 0 26px var(--cyan)}
+.step .gcard{width:100%;padding:clamp(24px,3.4vw,40px);transform:rotateY(-9deg) translateX(30px);opacity:.35;transition:transform .9s var(--ease),opacity .9s var(--ease)}
+.step.lit .gcard{transform:rotateY(-3deg);opacity:1}
+.step .n{font-family:var(--f-display);font-weight:600;font-size:clamp(3rem,6vw,5rem);line-height:1;color:transparent;-webkit-text-stroke:1px rgba(58,215,255,.5);float:right;margin:-6px 0 0 16px}
+.step h3{font-family:var(--f-display);font-weight:500;font-size:clamp(1.35rem,2.4vw,2rem);letter-spacing:-.025em;line-height:1.15}
+.step p{margin-top:14px;color:#B7C4E2;max-width:52ch}
+.step .tags{margin-top:20px}
+.process .code{right:2%;top:38%;rotate:3deg}
+@media (max-width:760px){
+  .timeline{--pad:46px;--rail:12px;margin-top:7vh}
+  .step{min-height:56vh}
+  .step .gcard{transform:rotateY(-6deg) translateX(10px);padding:22px 20px}
+  .step.lit .gcard{transform:none}
+  .step .n{font-size:2.4rem}
+  .step .node{left:calc(var(--rail) - var(--pad) - 8px + 0px)}
+}
+
+/* =========================================================
+   6. CONTACT
+   ========================================================= */
+.contact{padding:16vh 0 12vh}
+.contact-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,80px);align-items:start}
+.contact h2{font-size:clamp(2rem,4.2vw,3.6rem)}
+.orb-space{height:min(300px,34vh);position:relative}
+.orb-hint{position:absolute;left:0;bottom:0;font-family:var(--f-mono);font-size:.72rem;color:var(--muted)}
+.direct{display:grid;gap:14px}
+.direct a{display:flex;flex-direction:column;padding:16px 20px;border-radius:16px;border:1px solid var(--line);background:rgba(14,24,54,.45);max-width:360px;transition:border-color .3s,background .3s}
+.direct a:hover{border-color:rgba(58,215,255,.5);background:rgba(14,24,54,.7)}
+.direct small{color:var(--muted);font-size:.78rem}
+.direct span{font-weight:500;color:#fff}
+.form-card{padding:clamp(24px,3.4vw,40px)}
+.form-card h3{font-family:var(--f-display);font-weight:500;font-size:1.3rem;letter-spacing:-.02em;margin-bottom:22px}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fld{position:relative}
+.fld.full{grid-column:1/-1}
+.fld input,.fld select,.fld textarea{width:100%;display:block;background:rgba(6,11,26,.6);border:1px solid var(--line);border-radius:14px;padding:26px 16px 10px;color:#fff;outline:none;transition:border-color .25s,box-shadow .25s,background .25s;appearance:none;-webkit-appearance:none}
+.fld textarea{resize:vertical;min-height:120px}
+.fld select{cursor:pointer;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 22px) 55%,calc(100% - 16px) 55%;background-size:6px 6px;background-repeat:no-repeat}
+.fld select option{background:#0A1128;color:#fff}
+.fld label{position:absolute;left:17px;top:17px;font-size:.95rem;color:var(--muted);pointer-events:none;transition:top .22s var(--ease),font-size .22s var(--ease),color .22s}
+.fld input:focus,.fld select:focus,.fld textarea:focus{border-color:rgba(58,215,255,.7);box-shadow:0 0 0 4px rgba(58,215,255,.12),0 0 30px -6px rgba(58,215,255,.5);background:rgba(8,15,34,.85)}
+.fld input:focus+label,.fld textarea:focus+label,.fld input:not(:placeholder-shown)+label,.fld textarea:not(:placeholder-shown)+label,.fld select+label{top:8px;font-size:.7rem;color:var(--cyan)}
+.submit-row{display:flex;align-items:center;gap:18px;margin-top:20px;flex-wrap:wrap}
+.submit-row .btn{padding:18px 34px}
+.form-note{font-size:.84rem;color:var(--muted);min-height:1.3em}
+.form-note.ok{color:#7CF3C2}
+@media (max-width:900px){.contact-grid{grid-template-columns:1fr}.fgrid{grid-template-columns:1fr}}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.foot-main{position:relative;z-index:4;border-top:1px solid var(--line);background:linear-gradient(180deg,rgba(7,13,25,.4),rgba(4,8,18,.92));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);padding:56px 0 28px}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:36px}
+.foot-brand .plate{display:inline-block;background:#fff;border-radius:14px;padding:10px 16px}
+.foot-brand img{height:38px;width:auto}
+.foot-brand p{margin-top:16px;color:var(--muted);font-size:.92rem;max-width:34ch}
+.foot-main h4{margin:0 0 14px;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--silver);font-weight:500}
+.foot-main li{margin:8px 0;font-size:.93rem;color:#9FB0D3}
+.foot-main li a:hover{color:#fff}
+.foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:40px;padding-top:22px;border-top:1px solid var(--line);font-size:.82rem;color:#6F80A8}
+.foot-bottom div{display:flex;gap:20px}
+@media (max-width:860px){.foot-grid{grid-template-columns:1fr 1fr}.foot-brand{grid-column:1/-1}}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important}
+  .wi,.reveal,.gcard,.step .gcard{transition:none!important}
+  .trails{display:none}
+}
+</style>
+
+<style>
+/* Homepage copy refresh */
+.hero .lede strong{color:#fff;}
+.process .timeline{--n:5;}
+.contact .fgrid .full{grid-column:1/-1;}
+</style>
+</head>
+<body>
+
+<div class="bg" aria-hidden="true"></div>
+<div class="trails" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<canvas id="gl" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a class="brand" href="index.html" aria-label="iSpace Technology — home">
+    <span class="chip"><img src="ispace-scaled.webp" alt=""></span>
+    <span class="wm">iSPACE<small>Enlivening Innovations</small></span>
+  </a>
+  <nav class="links" aria-label="Primary">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <div class="nav-services" id="navServicesWrap">
+      <a href="services.html" id="navServices" aria-haspopup="true" aria-expanded="false">Services <span class="nav-chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 9.5 12 14.5 17 9.5"/></svg></span></a>
+      <div class="nav-dropdown" role="menu" aria-label="Services categories">
+        <a href="services.html#/services" data-service-filter="all" role="menuitem">All services</a>
+        <a href="services.html#/services?filter=creative" data-service-filter="creative" role="menuitem">Creative &amp; Design</a>
+        <a href="services.html#/services?filter=digital" data-service-filter="digital" role="menuitem">Digital &amp; Technology</a>
+        <a href="services.html#/services?filter=growth" data-service-filter="growth" role="menuitem">Marketing &amp; Growth</a>
+      </div>
+    </div>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <a class="btn btn-gold btn-sm mag" href="blog.html"><span class="mag-i">Read Blog</span></a>
+  <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-label="Open navigation menu" aria-controls="mobileMenu" aria-expanded="false">
+    <span class="hamb" aria-hidden="true"><i></i><i></i><i></i></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-kicker">Navigation</div>
+    <a class="mobile-link" style="--i:0" href="index.html" data-mobile-nav>Home</a>
+    <a class="mobile-link" style="--i:1" href="about.html" data-mobile-nav>About</a>
+    <div class="mobile-services" style="--i:2">
+      <button class="mobile-service-toggle" id="mobileServicesToggle" type="button" aria-expanded="false" aria-controls="mobileServiceSubmenu">
+        <span class="mobile-service-label"><span class="mobile-service-dot" aria-hidden="true"></span><span>Services</span></span>
+        <span class="mobile-plus" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 9.5 12 14.5 17 9.5"/></svg></span>
+      </button>
+      <div class="mobile-service-submenu" id="mobileServiceSubmenu">
+        <div>
+          <a href="services.html#/services" data-service-filter="all">All services <small>12</small></a>
+          <a href="services.html#/services?filter=creative" data-service-filter="creative">Creative &amp; Design <small>4</small></a>
+          <a href="services.html#/services?filter=digital" data-service-filter="digital">Digital &amp; Technology <small>4</small></a>
+          <a href="services.html#/services?filter=growth" data-service-filter="growth">Marketing &amp; Growth <small>4</small></a>
+        </div>
+      </div>
+    </div>
+    <a class="mobile-link" style="--i:3" href="contact.html" data-mobile-nav>Contact</a>
+    <div class="mobile-menu-divider"></div>
+    <a class="mobile-menu-cta" href="blog.html" data-mobile-nav>Read blog<span aria-hidden="true">↗</span></a>
+  </div>
+</div>
+
+<div class="hud" aria-hidden="true">
+  <div class="segs"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div><b id="hudName">Abstract Idea Mesh</b></div>
+</div>
+<nav class="dots" aria-label="Sections">
+  <a href="#hero"><span>Hero</span></a><a href="#about"><span>Who We Are</span></a><a href="#services"><span>What We Do</span></a><a href="#work"><span>Clients &amp; Impact</span></a><a href="#why"><span>Why Teams Choose Us</span></a><a href="#contact"><span>Get In Touch</span></a>
+</nav>
+
+<main>
+
+<!-- ============ 1 · HERO ============ -->
+<section class="hero sec" id="hero" data-sec>
+  <div class="floor" id="floor" aria-hidden="true"></div>
+
+  <div class="code c2" data-p="1.4" aria-hidden="true"><pre><span class="c">// launch checklist</span>
+<span class="f">deploy</span>(site, { region: <span class="s">"global"</span> });
+<span class="f">track</span>(<span class="s">"conversions"</span>);</pre></div>
+
+  <div class="hero-fig" id="fig" aria-hidden="true">
+    <svg class="fig-rings" viewBox="-100 -100 200 200"><circle class="r1" r="92"/><circle class="r2" r="74"/><circle class="r3" r="58"/></svg>
+    <div class="fig-float">
+      <img class="fig-img" id="figImg" src="tatarw.png" alt="">
+      <div class="fig-visor"></div>
+      <div class="fig-scan" id="figScan"></div>
+      <div class="fig-embers" id="embers"></div>
+    </div>
+  </div>
+
+  <div class="orbit" id="orbit" aria-hidden="true">
+    <span class="b">WordPress</span><span class="b g">Content & Social Strategy</span><span class="b">Brand Development</span><span class="b"></span>
+    <span class="b g">Growth Marketing</span><span class="b">Graphic Design</span><span class="b">Digital Marketing Campaigns</span><span class="b">UI / UX</span>
+  </div>
+
+  <div class="hero-in" id="heroIn">
+    <h1 class="display" data-split>Where ideas become impact.</h1>
+    <p class="lede reveal" style="--d:.5s">We help ambitious businesses understand what's holding them back and build what moves them forward.<br><br>Most businesses don't need another generic agency campaign. They need strategy, creative, tech, and marketing pulling in the same direction. We make sense of complex problems, build what matters, and turn ideas into movements.<br><br><strong>Welcome to iSpace!</strong></p>
+    <div class="cta reveal" style="--d:.65s">
+      <a class="btn btn-primary mag" href="#contact"><span class="mag-i">Start a Conversation</span></a>
+      <a class="btn btn-gold mag" href="#about"><span class="mag-i">Explore the village</span></a>
+    </div>
+  </div>
+  <div class="scrollcue">Scroll to go deeper</div>
+</section>
+
+<!-- ============ 2 · ABOUT ============ -->
+<section class="about sec" id="about" data-sec>
+  <div class="bgword" data-p="0.3" aria-hidden="true">Foundation</div>
+  <div class="wrap">
+    <div class="about-top">
+      <div class="about-copy">
+        <h2 class="h2" data-split>A space for people who want to build what matters.</h2>
+        <p class="lede reveal">iSpace is a modern village of strategists, creators, developers, and growth experts. We diagnose complex business challenges, design thoughtful digital experiences, and build products and campaigns that create real momentum.<br><br>We are a strategy, creative, technology and marketing company built on the belief that better things happen when good ideas have the right people around them.<br><br>Together, we help businesses solve problems, make better decisions and move forward with intention.</p>
+        <a class="btn btn-gold btn-sm mag reveal" style="--d:.2s" href="#why"><span class="mag-i">Discover how we think ↗</span></a>
+      </div>
+      <div class="about-space" aria-hidden="true"></div>
+    </div>
+
+    <div class="about-bottom">
+      <div class="slide-x" data-slide="-1">
+        <div class="gcard team tilt">
+          <img src="who we.png" alt="Illustrated portrait of the iSpace team wearing branded t-shirts" loading="lazy">
+          <p>A small, senior team across engineering, design and growth.</p>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="slide-x" data-slide="-1"><div class="gcard stat tilt"><div class="num"><span data-count="50" data-suffix="M+">0</span></div><p>audience reach across the campaigns we run</p></div></div>
+        <div class="slide-x" data-slide="1"><div class="gcard stat tilt"><div class="num"><span data-count="3.5" data-dec="1" data-suffix="x">0</span></div><p>faster delivery from approved idea to launch</p></div></div>
+        <div class="slide-x" data-slide="-1"><div class="gcard stat tilt"><div class="num"><span data-count="95" data-prefix="+" data-suffix="%">0</span></div><p>lift in brand impact on creative work</p></div></div>
+        <div class="slide-x" data-slide="1"><div class="gcard stat tilt"><div class="num"><span data-count="5" data-suffix="+">0</span></div><p>industries served: crypto, fintech, agri-tech, social &amp; beauty</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3 · SERVICES ============ -->
+<section class="svc-wrap sec" id="services" data-sec>
+  <div class="svc-pin">
+    <div class="svc-copy">
+      <h2 class="h2" data-split>Capabilities built to solve real business challenges.</h2>
+      <p class="lede reveal">Some businesses need to figure out what comes next, some need to build it, others need to get people to care, and often they need all three. iSpace brings four disciplines together so ideas can move from thinking to making to market.<br><br>We combine strategy, design, technology, and growth to build what your business actually needs.</p>
+
+      <div class="svc-index" id="svcIndex" role="tablist" aria-label="Services">
+        <button role="tab">Creative &amp; Design</button>
+        <button role="tab">Digital &amp; Technology</button>
+        <button role="tab">Marketing &amp; Growth</button>
+        <button role="tab">Consulting &amp; Strategy</button>
+      </div>
+
+      <p class="svc-also">
+        Not sure what capability you need? <a href="#contact">Let's diagnose it together.</a>
+      </p>
+    </div>
+
+    <div class="stack" id="stack">
+
+      <!-- CARD 1 -->
+      <article class="gcard svc" data-service="Creative & Design">
+        <svg class="ico" viewBox="0 0 120 90" aria-hidden="true">
+          <rect x="6" y="8" width="108" height="74" rx="8"/>
+          <path d="M6 24h108"/>
+          <circle cx="18" cy="16" r="2"/>
+          <circle cx="27" cy="16" r="2"/>
+          <path d="M20 44h36M20 54h52M20 64h28"/>
+          <rect x="78" y="36" width="28" height="30" rx="4"/>
+        </svg>
+
+        <!-- <span class="sector">+95% Impact</span> -->
+
+        <h3>Creative &amp; Design</h3>
+
+        <p>
+          From brand identity and visual systems to campaigns, storytelling, motion and experience, we turn strategic thinking into creative expression people can see, understand and remember.
+        </p>
+
+        <ul>
+          <li>Brand identity &amp; visual systems</li><li>Campaigns &amp; storytelling</li><li>Motion &amp; experience</li><li>Creative direction</li>
+        </ul>
+
+        <div class="foot">
+          <a href="services.html#/services?filter=creative" data-pick="Creative & Design">
+            Explore <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </article>
+
+
+      <!-- CARD 2 -->
+      <article class="gcard svc" data-service="Digital & Technology">
+        <svg class="ico" viewBox="0 0 120 90" aria-hidden="true">
+          <path d="M12 45l18-18M12 45l18 18"/>
+          <path d="M108 45L90 27M108 45L90 63"/>
+          <path d="M40 18h40v54H40z"/>
+        </svg>
+
+        <!-- <span class="sector">3.5x Speed</span> -->
+
+        <h3>Digital &amp; Technology</h3>
+
+        <p>
+          Websites, digital products, e-commerce platforms, applications and emerging technology solutions designed around real business needs.
+        </p>
+
+        <ul>
+          <li>Websites &amp; digital products</li><li>E-commerce platforms</li><li>Applications</li><li>Emerging technology solutions</li>
+        </ul>
+
+        <div class="foot">
+          <a href="services.html#/services?filter=digital" data-pick="Digital & Technology">
+            Explore <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </article>
+
+
+      <!-- CARD 3 -->
+      <article class="gcard svc" data-service="Marketing & Growth">
+        <svg class="ico" viewBox="0 0 120 90" aria-hidden="true">
+          <circle cx="60" cy="45" r="28"/>
+          <path d="M60 17v28h28"/>
+          <path d="M60 45L80 25"/>
+        </svg>
+
+        <!-- <span class="sector">50M+ Reach</span> -->
+
+        <h3>Marketing &amp; Growth</h3>
+
+        <p>
+          We help businesses find their audience, earn attention, build relationships and turn visibility into meaningful growth through strategy, campaigns, community, performance and communication.
+        </p>
+
+        <ul>
+          <li>Strategy &amp; campaigns</li><li>Community &amp; communication</li><li>Performance marketing</li><li>Audience growth</li>
+        </ul>
+
+        <div class="foot">
+          <a href="services.html#/services?filter=growth" data-pick="Marketing & Growth">
+            Explore <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </article>
+
+
+      <!-- CARD 4 -->
+      <article class="gcard svc" data-service="Consulting & Strategy">
+        <svg class="ico" viewBox="0 0 120 90" aria-hidden="true">
+          <rect x="18" y="12" width="84" height="66" rx="8"/>
+          <path d="M34 30h52M34 44h52M34 58h34"/>
+          <path d="M78 64l8 8 14-18"/>
+        </svg>
+
+        <!-- <span class="sector">Global Authority</span> -->
+
+        <h3>Consulting &amp; Strategy</h3>
+
+        <p>
+          When the path isn't clear, we step back, understand the business and help define the decisions, direction and systems required to move forward.
+        </p>
+
+        <ul>
+          <li>Business diagnosis</li><li>Strategic direction</li><li>Decision frameworks</li><li>Execution roadmaps</li>
+        </ul>
+
+        <div class="foot">
+          <a href="#contact" data-pick="Consulting & Strategy">
+            Explore <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4 · WORK ============ -->
+<section class="work-wrap sec" id="work" data-sec style="--n:5">
+  <div class="work-pin">
+    <div class="work-head">
+      <h2 class="h2" data-split>Ideas are only valuable when they create something.</h2>
+      <div class="pips" id="pips"></div>
+    </div>
+    <div class="track" id="track">
+
+      <article class="slide" data-kind="lap">
+        <div class="bgword" aria-hidden="true">Roqqu</div>
+        <div class="s-txt">
+          <span class="sector">Cryptocurrency</span>
+          <h3>Roqqu</h3>
+          <p>A crypto platform looking to earn credibility, grow its community and turn attention into consistent adoption.</p>
+          <ul class="tags"><li>Creative design</li><li>Campaigns</li><li>Influencer</li><li>Partnerships</li><li>Paid media</li></ul>
+          <a class="btn btn-gold btn-sm" href="https://roqqu.com/" target="_blank" rel="noopener">Visit site ↗</a>
+        </div>
+        <div class="dev-wrap"><div class="device lap">
+          <div class="lid"><div class="scr"><span class="live">Live preview</span><img src="roqqu home.jpg" alt="Roqqu homepage"></div></div><div class="base"></div>
+          <div class="perf gcard"><div><b>6</b><span>service lines</span></div><div><b>Crypto</b><span>sector</span></div><div><b>Live</b><span>ongoing partner</span></div></div>
+        </div></div>
+      </article>
+
+      <article class="slide" data-kind="mon">
+        <div class="bgword" aria-hidden="true">Raven</div>
+        <div class="s-txt">
+          <span class="sector">Fintech</span>
+          <h3>Raven</h3>
+          <p>Social and post management, brand assets, market strategy, paid ads and influencer campaigns — consistent visibility and stronger engagement.</p>
+          <ul class="tags"><li>Social media</li><li>Graphic design</li><li>Paid advertising</li><li>Influencer</li><li>Activations</li></ul>
+          <a class="btn btn-gold btn-sm" href="https://getravenbank.com/" target="_blank" rel="noopener">Visit site ↗</a>
+        </div>
+        <div class="dev-wrap"><div class="device mon">
+          <div class="lid"><div class="scr"><span class="live">Live preview</span><img src="raven.png" alt="Raven homepage"></div></div><div class="neck"></div><div class="foot"></div>
+          <div class="perf gcard"><div><b>7</b><span>service lines</span></div><div><b>Fintech</b><span>sector</span></div><div><b>Live</b><span>ongoing partner</span></div></div>
+        </div></div>
+      </article>
+
+      <article class="slide" data-kind="brw">
+        <div class="bgword" aria-hidden="true">Hearts</div>
+        <div class="s-txt">
+          <span class="sector">Social</span>
+          <h3>African Hearts Connect</h3>
+          <p>A platform connecting Africans and people of African descent. Social media, graphic design and branding — and a mobile app currently in development.</p>
+          <ul class="tags"><li>Branding</li><li>Social media</li><li>Graphic design</li><li>Mobile app</li></ul>
+        </div>
+        <div class="dev-wrap"><div class="device brw">
+          <div class="bar"><i></i><i></i><i></i><span>africanheartsconnect</span></div><div class="scr"><span class="live">Live preview</span><img src="african heart.png" alt="African Hearts Connect landing page"></div>
+          <div class="perf gcard"><div><b>4</b><span>service lines</span></div><div><b>Social</b><span>sector</span></div><div><b>In build</b><span>mobile app</span></div></div>
+        </div></div>
+      </article>
+
+      <article class="slide" data-kind="mon">
+        <div class="bgword" aria-hidden="true">Yemert</div>
+        <div class="s-txt">
+          <span class="sector">Agri Tech</span>
+          <h3>Yemert</h3>
+          <p>A clean, functional, conversion-driven corporate website built from the ground up to communicate Yemert's vision across the agricultural ecosystem.</p>
+          <ul class="tags"><li>Corporate website</li><li>UI / UX</li><li>Development</li></ul>
+          <a class="btn btn-gold btn-sm" href="https://yemert.co/" target="_blank" rel="noopener">Visit site ↗</a>
+        </div>
+        <div class="dev-wrap"><div class="device mon">
+          <div class="lid"><div class="scr"><span class="live">Live preview</span><img src="yemert.png" alt="Yemert homepage"></div></div><div class="neck"></div><div class="foot"></div>
+          <div class="perf gcard"><div><b>1</b><span>full site build</span></div><div><b>Agri-tech</b><span>sector</span></div><div><b>Web</b><span>ground-up</span></div></div>
+        </div></div>
+      </article>
+
+      <article class="slide" data-kind="lap">
+        <div class="bgword" aria-hidden="true">Onyx</div>
+        <div class="s-txt">
+          <span class="sector">Beauty &amp; Retail</span>
+          <h3>Onyx Beauty Hub</h3>
+          <p>A go-to-market strategy, website, branding support and targeted campaigns to position Onyx Hair by Nelly as a trusted name in beauty retail.</p>
+          <ul class="tags"><li>Go-to-market</li><li>Website</li><li>Branding</li><li>Campaigns</li></ul>
+          <a class="btn btn-gold btn-sm" href="https://onyxbeautyhub.com/" target="_blank" rel="noopener">Visit site ↗</a>
+        </div>
+        <div class="dev-wrap"><div class="device lap">
+          <div class="lid"><div class="scr"><span class="live">Live preview</span><img src="onyxb.png" alt="Onyx Beauty Hub homepage"></div></div><div class="base"></div>
+          <div class="perf gcard"><div><b>4</b><span>service lines</span></div><div><b>Beauty</b><span>sector</span></div><div><b>Live</b><span>online store</span></div></div>
+        </div></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5 · PROCESS ============ -->
+<section class="process sec" id="why" data-sec>
+  <div class="bgword" data-p="0.3" aria-hidden="true">Thinking</div>
+  <div class="code" data-p="1.35" aria-hidden="true"><pre><span class="c">// sprint 03</span>
+<span class="k">await</span> <span class="f">ship</span>({
+  demo: <span class="s">"friday"</span>,
+  qa: <span class="n">true</span>
+});</pre></div>
+  <div class="wrap">
+    <div class="process-head">
+      <h2 class="h2" data-split>Good work starts with good thinking.</h2>
+      <p class="lede reveal">We don't rush from problem to execution. We take the time to understand the context, challenge assumptions, bring the right people into the room and build toward something that works.</p>
+    </div>
+
+    <div class="timeline" id="timeline">
+      <div class="rail"><div class="fill" id="railFill"></div><div class="head" id="railHead"></div></div>
+
+      <div class="step"><span class="node"></span><div class="gcard tilt"><span class="n">01</span><h3>Think Deeply</h3><p>We take the time to understand the problem before deciding what to do about it.</p><ul class="tags"><li>Context</li><li>Research</li><li>Diagnosis</li></ul></div></div>
+      <div class="step"><span class="node"></span><div class="gcard tilt"><span class="n">02</span><h3>Built Together</h3><p>Great products and campaigns are built in true partnership, backed by our broader village ecosystem.</p><ul class="tags"><li>Partnership</li><li>Village</li><li>Co-creation</li></ul></div></div>
+      <div class="step"><span class="node"></span><div class="gcard tilt"><span class="n">03</span><h3>Radical Clarity</h3><p>Clear language, transparent processes, and work built around real business outcomes.</p><ul class="tags"><li>Clarity</li><li>Transparency</li><li>Outcomes</li></ul></div></div>
+      <div class="step"><span class="node"></span><div class="gcard tilt"><span class="n">04</span><h3>Stay Curious</h3><p>Markets change. People change. Businesses change. We keep questioning, learning and looking for what others might have missed.</p><ul class="tags"><li>Learning</li><li>Questions</li><li>Insight</li></ul></div></div>
+      <div class="step"><span class="node"></span><div class="gcard tilt"><span class="n">05</span><h3>Move With Purpose</h3><p>Strategy should lead somewhere. We turn thinking into clear decisions, practical action and measurable movement.</p><ul class="tags"><li>Decisions</li><li>Action</li><li>Movement</li></ul></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6 · CONTACT ============ -->
+<section class="contact sec" id="contact" data-sec>
+  <div class="wrap contact-grid">
+    <div>
+      <h2 class="h2" data-split>Have an idea? A problem? Something you're trying to figure out?</h2>
+      <div class="orb-space" aria-hidden="true"><span class="orb-hint">Start with the problem. We'll figure out where we can help.</span></div>
+      <div class="direct reveal">
+        <a href="mailto:info@ispacetech.co"><small>Email us</small><span>info@ispacetech.co</span></a>
+        <a href="https://ispacetech.co" target="_blank" rel="noopener"><small>Website</small><span>ispacetech.co</span></a>
+      </div>
+    </div>
+
+    <div class="gcard form-card tilt">
+      <h3>Start a conversation.</h3>
+      <form id="leadForm" novalidate>
+        <div class="fgrid">
+          <div class="fld"><input id="fName" name="name" placeholder=" " autocomplete="name" required><label for="fName">Your name</label></div>
+          <div class="fld"><input id="fEmail" name="email" type="email" placeholder=" " autocomplete="email" required><label for="fEmail">Work email</label></div>
+          <div class="fld"><select id="fService" name="service">
+            <option>Consulting &amp; Strategy</option><option>Creative &amp; Design</option><option>Digital &amp; Technology</option><option>Marketing &amp; Growth</option><option>Brand / Business Challenge</option><option>I'm not sure yet</option>
+          </select><label for="fService">What can we help with?</label></div>
+          <div class="fld"><input id="fCompany" name="company" type="text" placeholder=" " autocomplete="organization"><label for="fCompany">Company / Organisation</label></div>
+          <div class="fld full"><textarea id="fBrief" name="brief" rows="4" placeholder=" " required></textarea><label for="fBrief">Tell us a little about it.</label></div>
+        </div>
+        <div class="submit-row">
+          <button class="btn btn-primary mag" type="submit"><span class="mag-i">Send It Our Way →</span></button>
+          <span class="form-note" id="formNote" role="status"></span>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot-main">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="plate"><img src="ispace-scaled.webp" alt="iSpace"></span>
+        <p>It takes a village to build what matters.</p>
+      </div>
+      <div><h4>Explore</h4><ul><li><a href="about.html">About iSpace</a></li><li><a href="services.html">Our Work</a></li><li><a href="#community">Community</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h4>Community</h4><ul><li><a href="#">Town Hall</a></li><li><a href="#">Council Sessions</a></li><li><a href="#">Village Masterclasses</a></li><li><a href="#">Careers</a></li></ul></div>
+      <div><h4>Connect</h4><ul><li><a href="#">LinkedIn</a></li><li><a href="#">Instagram</a></li><li><a href="#">X</a></li></ul></div>
+    </div>
+    <div class="foot-bottom"><span>Good ideas need somewhere to go.<br>© 2026 iSpace. All rights reserved.</span><div><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div></div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js"></script>
+<script>
+(() => {
+'use strict';
+/* ---------------- helpers ---------------- */
+const $  = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
+const lerp = (a,b,t) => a + (b-a)*t;
+const smooth = t => { t = clamp(t,0,1); return t*t*(3-2*t); };
+const easeOut = t => 1 - Math.pow(1 - clamp(t,0,1), 3);
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+const docTop = el => { let y = 0; while (el) { y += el.offsetTop; el = el.offsetParent; } return y; };
+
+let vw = innerWidth, vh = innerHeight;
+let sy = scrollY, mouse = {x:0, y:0, tx:0, ty:0, px:innerWidth/2, py:innerHeight/2};
+
+/* ---------------- split text ---------------- */
+function split(el){
+  const label = el.textContent.replace(/\s+/g,' ').trim();
+  const nodes = [...el.childNodes]; el.textContent = ''; let i = 0;
+  nodes.forEach(n => {
+    if (n.nodeType === 3) {
+      n.textContent.split(/(\s+)/).forEach(tok => {
+        if (!tok) return;
+        if (/^\s+$/.test(tok)) { el.appendChild(document.createTextNode(' ')); return; }
+        const w = document.createElement('span'); w.className = 'w'; w.setAttribute('aria-hidden','true');
+        const s = document.createElement('span'); s.className = 'wi'; s.style.setProperty('--i', i++); s.textContent = tok;
+        w.appendChild(s); el.appendChild(w);
+      });
+    } else el.appendChild(n);
+  });
+  el.setAttribute('aria-label', label);
+}
+$$('[data-split]').forEach(split);
+
+/* ---------------- reveal on enter ---------------- */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+}), { threshold: .18, rootMargin: '0px 0px -6% 0px' });
+$$('[data-split],.reveal,.gcard').forEach(el => io.observe(el));
+
+/* counters */
+const cio = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return; cio.unobserve(e.target);
+  const el = e.target, to = parseFloat(el.dataset.count), dec = +(el.dataset.dec||0);
+  const pre = el.dataset.prefix||'', suf = el.dataset.suffix||''; const t0 = performance.now(), dur = reduce ? 1 : 1700;
+  (function tick(t){ const p = clamp((t-t0)/dur,0,1); el.textContent = pre + (to*easeOut(p)).toFixed(dec) + suf; if (p<1) requestAnimationFrame(tick); })(t0);
+}), { threshold: .6 });
+$$('[data-count]').forEach(el => cio.observe(el));
+
+/* ---------------- smooth scroll (Lenis) ---------------- */
+let lenis = null;
+if (window.Lenis && !reduce && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  lenis = new Lenis({ lerp: .085, smoothWheel: true, wheelMultiplier: .95, touchMultiplier: 1.2 });
+}
+function goTo(y){ lenis ? lenis.scrollTo(y, { duration: 1.5, easing: t => 1 - Math.pow(1 - t, 4) }) : scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' }); }
+
+/* ---------------- unified navigation ---------------- */
+const mainNavServices = $('#navServicesWrap');
+const mainNavServicesLink = $('#navServices');
+const mainMobileMenu = $('#mobileMenu');
+const mainMobileToggle = $('#mobileMenuToggle');
+const mainMobileServicesToggle = $('#mobileServicesToggle');
+const mainMobileServiceSubmenu = $('#mobileServiceSubmenu');
+
+function closeMainMobileMenu(){
+  if (!mainMobileMenu || !mainMobileToggle) return;
+  mainMobileMenu.classList.remove('open');
+  mainMobileMenu.setAttribute('aria-hidden','true');
+  mainMobileToggle.setAttribute('aria-expanded','false');
+  mainMobileToggle.setAttribute('aria-label','Open navigation menu');
+  document.body.classList.remove('mobile-menu-open');
+  if (mainMobileServicesToggle) mainMobileServicesToggle.setAttribute('aria-expanded','false');
+  mainMobileServiceSubmenu?.classList.remove('open');
+  if (lenis) lenis.start();
+}
+function openMainMobileMenu(){
+  if (!mainMobileMenu || !mainMobileToggle) return;
+  mainMobileMenu.classList.add('open');
+  mainMobileMenu.setAttribute('aria-hidden','false');
+  mainMobileToggle.setAttribute('aria-expanded','true');
+  mainMobileToggle.setAttribute('aria-label','Close navigation menu');
+  document.body.classList.add('mobile-menu-open');
+  if (lenis) lenis.stop();
+}
+mainMobileToggle?.addEventListener('click', () => mainMobileMenu?.classList.contains('open') ? closeMainMobileMenu() : openMainMobileMenu());
+mainMobileServicesToggle?.addEventListener('click', () => {
+  const open = mainMobileServicesToggle.getAttribute('aria-expanded') === 'true';
+  mainMobileServicesToggle.setAttribute('aria-expanded', String(!open));
+  mainMobileServiceSubmenu?.classList.toggle('open', !open);
+});
+mainMobileMenu?.addEventListener('click', e => {
+  const item = e.target.closest('[data-service-filter]');
+  if (item) { closeMainMobileMenu(); return; }
+  const link = e.target.closest('[data-mobile-nav]');
+  if (link) closeMainMobileMenu();
+});
+mainNavServices?.addEventListener('mouseenter', () => mainNavServicesLink?.setAttribute('aria-expanded','true'));
+mainNavServices?.addEventListener('mouseleave', () => mainNavServicesLink?.setAttribute('aria-expanded','false'));
+mainNavServices?.addEventListener('focusin', () => mainNavServicesLink?.setAttribute('aria-expanded','true'));
+mainNavServices?.addEventListener('focusout', e => { if (!e.currentTarget.contains(e.relatedTarget)) mainNavServicesLink?.setAttribute('aria-expanded','false'); });
+mainNavServices?.addEventListener('click', e => {
+  const link = e.target.closest('#navServices');
+  if (!link) return;
+  /* Desktop Services itself opens the full services page; the dropdown handles categories. */
+  if (e.target.closest('.nav-chevron')) e.preventDefault();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && mainMobileMenu?.classList.contains('open')) closeMainMobileMenu(); });
+addEventListener('resize', () => { if (innerWidth > 860 && mainMobileMenu?.classList.contains('open')) closeMainMobileMenu(); });
+
+
+/* ---------------- cached layout ---------------- */
+const sections = $$('[data-sec]');
+let orbBox = {top:0,h:0}, wLast = 0;
+let secTop = [], par = [], slideEls = [], svcTop=0, svcH=0, workTop=0, workH=0, tlTop=0, tlH=0, stepPos=[];
+const stack = $('#stack'), cards = $$('.svc', stack), svcBtns = $$('#svcIndex button');
+const track = $('#track'), slides = $$('.slide', track), pipsEl = $('#pips');
+const tl = $('#timeline'), steps = $$('.step', tl), railFill = $('#railFill'), railHead = $('#railHead');
+const N = slides.length, SN = cards.length;
+
+const slideRefs = slides.map(s => ({ el:s, txt:$('.s-txt',s), dev:$('.dev-wrap',s), bg:$('.bgword',s), device:$('.device',s), img:$('.scr img',s), scr:$('.scr',s) }));
+slideRefs.forEach((r,i) => {
+  const b = document.createElement('button'); b.setAttribute('aria-label','Show project '+(i+1)); b.addEventListener('click',()=>goTo(workTop + (i/(N-1))*(workH-vh)+1)); pipsEl.appendChild(b);
+});
+const pips = $$('button', pipsEl);
+svcBtns.forEach((b,i) => b.addEventListener('click', () => goTo(svcTop + (i/(SN-1))*(svcH-vh)+1)));
+
+let measuredOnce = false;
+function measure(){
+  const nw = innerWidth, nh = innerHeight;
+  // On touch devices the URL bar resizes the viewport while scrolling; keep the tallest height so pinned sections never jump.
+  if (measuredOnce && !fine && nw === vw && Math.abs(nh - vh) < 200) vh = Math.max(vh, nh); else vh = nh;
+  vw = nw; measuredOnce = true;
+  document.documentElement.style.setProperty('--vh', (vh/100)+'px');
+  secTop = sections.map(docTop);
+  par = $$('[data-p]').map(el => ({ el, s:+el.dataset.p, c: docTop(el) + el.offsetHeight/2 }));
+  slideEls = $$('[data-slide]').map(el => ({ el, dir:+el.dataset.slide, top: docTop(el) }));
+  svcTop = docTop($('#services')); svcH = $('#services').offsetHeight;
+  workTop = docTop($('#work')); workH = $('#work').offsetHeight;
+  tlTop = docTop(tl); tlH = tl.offsetHeight;
+  { const o = $('.orb-space'); orbBox = { top: docTop(o), h: o.offsetHeight }; }
+  stepPos = steps.map(s => s.offsetTop + s.offsetHeight/2);
+  // pan distances for screenshots
+  slideRefs.forEach(r => {
+    if (!r.img.naturalWidth) return;
+    const imgRatio = r.img.naturalHeight / r.img.naturalWidth, scrRatio = r.scr.clientHeight / r.scr.clientWidth;
+    r.device.style.setProperty('--pan', imgRatio > scrRatio + .02 ? ((1 - scrRatio/imgRatio)*100).toFixed(1)+'%' : '0%');
+    r.device.style.setProperty('--zoom', imgRatio > scrRatio + .02 ? 1 : 1.07);
+  });
+  if (renderer) resize3D();
+}
+
+/* ---------------- 3D scene ---------------- */
+let renderer, scene, camera, obj, pts, lineMesh, coreGroup, coreMat, glow, dustBg, dustFg, U;
+let stageCur = 0, pulse = 0, kf = null;
+const mobileGL = Math.min(innerWidth, innerHeight) < 700;
+const FOV = 45, CAMZ = 9;
+const halfH = Math.tan(FOV*Math.PI/360)*CAMZ;
+
+function mulberry(a){ return function(){ a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a>>>15, 1|a); t = t + Math.imul(t ^ t>>>7, 61|t) ^ t; return ((t ^ t>>>14) >>> 0) / 4294967296; }; }
+const R = mulberry(20260929);
+const rr = (a,b) => a + R()*(b-a);
+function unit(){ let x,y,z,l; do { x=rr(-1,1); y=rr(-1,1); z=rr(-1,1); l=x*x+y*y+z*z; } while (l>1 || l<.01); l=Math.sqrt(l); return [x/l,y/l,z/l]; }
+function fib(i,n){ const y = 1-2*(i+.5)/n, r = Math.sqrt(1-y*y), th = i*2.399963229728653; return [Math.cos(th)*r, y, Math.sin(th)*r]; }
+const noise3 = (x,y,z) => Math.sin(x*3.1+1.3)*.5 + Math.sin(y*4.7+.4)*.35 + Math.sin(z*3.9+2.0)*.3 + Math.sin((x+y+z)*6.3)*.15;
+
+const GLSL_MORPH = `
+attribute vec3 a1; attribute vec3 a2; attribute vec3 a3; attribute vec3 a4;
+uniform float uStage; uniform float uTime; uniform vec3 uMouse; uniform float uMouseStr;
+vec3 pickP(int i){ if(i<=0) return position; if(i==1) return a1; if(i==2) return a2; if(i==3) return a3; return a4; }
+vec3 morphWorld(float r, out float infl, out float tr){
+  float s = clamp(uStage, 0.0, 3.9995);
+  float fl = floor(s); int i0 = int(fl); float f = s - fl;
+  float loc = clamp(f*1.7 - r*0.7, 0.0, 1.0);
+  loc = loc*loc*(3.0-2.0*loc);
+  vec3 p = mix(pickP(i0), pickP(i0+1), loc);
+  tr = sin(loc*3.14159265);
+  p += tr*0.5*vec3(sin(uTime*1.3+r*40.0), cos(uTime*1.1+r*33.0), sin(uTime*0.9+r*27.0));
+  p += 0.025*vec3(sin(uTime*0.8+r*60.0), cos(uTime*0.7+r*50.0), sin(uTime*0.6+r*70.0));
+  vec4 wp = modelMatrix*vec4(p,1.0);
+  vec2 d = wp.xy - uMouse.xy; float dist = length(d);
+  infl = smoothstep(1.7, 0.0, dist);
+  wp.xy += normalize(d + vec2(0.0001)) * infl * uMouseStr * (0.4 + r*0.6);
+  wp.z += infl*0.35;
+  return wp.xyz;
+}`;
+const PT_VS = GLSL_MORPH + `
+attribute vec3 aColor; attribute vec2 aRS; uniform float uPx; uniform float uAlpha;
+varying vec3 vC; varying float vA;
+void main(){
+  float infl; float tr;
+  vec3 w = morphWorld(aRS.x, infl, tr);
+  vec4 mv = viewMatrix*vec4(w,1.0);
+  gl_Position = projectionMatrix*mv;
+  gl_PointSize = aRS.y*uPx*(9.0/-mv.z)*(1.0 + infl*0.7 + tr*0.3);
+  float pulse = 0.6 + 0.4*sin(uTime*1.6 + w.y*2.2 + aRS.x*6.28);
+  float gold = smoothstep(0.86,0.95,aRS.x)*smoothstep(2.4,3.0,uStage)*(1.0-smoothstep(3.4,3.9,uStage));
+  vC = mix(aColor, vec3(1.0,0.78,0.36), gold);
+  vA = (0.55+0.45*pulse)*uAlpha*(1.0+infl*0.8);
+}`;
+const PT_FS = `precision mediump float; varying vec3 vC; varying float vA;
+void main(){ vec2 c = gl_PointCoord-0.5; float d = length(c); if(d>0.5) discard; float a = pow(1.0-d*2.0,1.6); gl_FragColor = vec4(vC*(0.8+a*0.6), a*vA); }`;
+const LN_VS = GLSL_MORPH + `
+attribute float aR; attribute float aT; uniform float uAlpha; varying vec4 vCol;
+void main(){
+  float infl; float tr;
+  vec3 w = morphWorld(aR, infl, tr);
+  gl_Position = projectionMatrix*viewMatrix*vec4(w,1.0);
+  float wg = clamp(1.0-abs(uStage-1.0)*1.7,0.0,1.0);
+  float ws = clamp(1.0-abs(uStage-2.0)*1.7,0.0,1.0);
+  float wt = clamp(1.0-abs(uStage-3.0)*1.7,0.0,1.0);
+  float a = aT<0.5 ? wg : (aT<1.5 ? ws : wt);
+  vec3 c = aT<0.5 ? vec3(0.23,0.84,1.0) : (aT<1.5 ? vec3(0.62,0.76,1.0) : vec3(0.95,0.75,0.38));
+  vCol = vec4(c, a*0.3*uAlpha*(1.0+infl));
+}`;
+const LN_FS = `precision mediump float; varying vec4 vCol; void main(){ gl_FragColor = vCol; }`;
+
+function buildFormations(N, M){
+  const F = [0,1,2,3,4].map(() => new Float32Array(N*3));
+  const set = (k,i,x,y,z) => { F[k][i*3]=x; F[k][i*3+1]=y; F[k][i*3+2]=z; };
+
+  // 0 · Abstract Idea Mesh — a noisy, unresolved shell with loose fragments
+  for (let i=0;i<N;i++){
+    let v, rad, t = R();
+    if (i<M) { v = fib(i,M); rad = 1.75*(1+.16*noise3(...v)); }
+    else if (t<.55) { v = unit(); rad = 1.75*(1+.16*noise3(...v)) + rr(-.05,.05); }
+    else if (t<.85) { v = unit(); rad = rr(.3,1.6); }
+    else { v = unit(); rad = rr(2.0,3.3); }
+    set(0,i,v[0]*rad,v[1]*rad,v[2]*rad);
+  }
+  // 1 · Structured Code Engine — 7³ node lattice, edges and solid "code cubes"
+  const G=7, sp=.5, cells=[]; for (let c=0;c<16;c++) cells.push([Math.floor(R()*6),Math.floor(R()*6),Math.floor(R()*6)]);
+  const nodeAt = (x,y,z) => [(x-3)*sp,(y-3)*sp,(z-3)*sp];
+  for (let i=0;i<N;i++){
+    if (i<M){ const x=i%G, y=Math.floor(i/G)%G, z=Math.floor(i/(G*G)); set(1,i,...nodeAt(x,y,z)); continue; }
+    if (R()<.5){
+      const x=Math.floor(R()*G), y=Math.floor(R()*G), z=Math.floor(R()*G), ax=Math.floor(R()*3), a=[x,y,z];
+      const b=[x,y,z]; b[ax]=Math.min(G-1,b[ax]+1); const pa=nodeAt(...a), pb=nodeAt(...b), t=R();
+      set(1,i,lerp(pa[0],pb[0],t),lerp(pa[1],pb[1],t),lerp(pa[2],pb[2],t));
+    } else {
+      const c=cells[Math.floor(R()*cells.length)], o=nodeAt(c[0],c[1],c[2]), s=.42;
+      set(1,i,o[0]+.04+R()*s,o[1]+.04+R()*s,o[2]+.04+R()*s);
+    }
+  }
+  // 2 · Global Network Sphere — nodes, shell, orbit rings and arcs
+  const rings=[[.3,0],[1.1,.7],[-.6,-1.0]];
+  for (let i=0;i<N;i++){
+    if (i<M){ const v=fib(i,M); set(2,i,v[0]*1.9,v[1]*1.9,v[2]*1.9); continue; }
+    const t=R();
+    if (t<.45){ const v=unit(); set(2,i,v[0]*1.9,v[1]*1.9,v[2]*1.9); }
+    else if (t<.75){
+      const rg=rings[Math.floor(R()*3)], a=R()*6.2832; let x=Math.cos(a)*2.45, y=0, z=Math.sin(a)*2.45;
+      const cx=Math.cos(rg[0]), sx=Math.sin(rg[0]); let y2=y*cx - z*sx, z2=y*sx + z*cx; y=y2; z=z2;
+      const cz=Math.cos(rg[1]), sz=Math.sin(rg[1]); const x2=x*cz - y*sz; y2=x*sz + y*cz; set(2,i,x2,y2,z);
+    } else {
+      const a=fib(Math.floor(R()*M),M), b=fib(Math.floor(R()*M),M), tt=R();
+      let x=lerp(a[0],b[0],tt), y=lerp(a[1],b[1],tt), z=lerp(a[2],b[2],tt); const l=Math.hypot(x,y,z)||1, rad=1.9+.6*Math.sin(Math.PI*tt);
+      set(2,i,x/l*rad,y/l*rad,z/l*rad);
+    }
+  }
+  // 3 · High-Converting Scale Dashboard — rising bars, floor grid, trend line
+  const K=14, bw=.3, bd=.55, base=-1.5, bars=[];
+  for (let k=0;k<K;k++) bars.push({x:-2.6+k*(5.2/(K-1)), h:.35+(k/(K-1))*2.1+rr(-.12,.18)});
+  for (let i=0;i<N;i++){
+    if (i<M){ const t=i/(M-1); set(3,i,-2.8+5.6*t, base+.45+2.4*Math.pow(t,1.4)+.08*Math.sin(t*22), .5); continue; }
+    const t=R();
+    if (t<.8){
+      const b=bars[Math.floor(R()*K)], f=R(); let x,y,z;
+      if (f<.4){ x=b.x+(R()<.5?-bw/2:bw/2); y=base+R()*b.h; z=rr(-bd/2,bd/2); }
+      else if (f<.8){ x=b.x+rr(-bw/2,bw/2); y=base+R()*b.h; z=R()<.5?-bd/2:bd/2; }
+      else { x=b.x+rr(-bw/2,bw/2); y=base+b.h; z=rr(-bd/2,bd/2); }
+      set(3,i,x,y,z);
+    } else {
+      let x=rr(-3,3), z=rr(-1.6,1.6); if (R()<.5) x=Math.round(x*2)/2; else z=Math.round(z*2)/2; set(3,i,x,base,z);
+    }
+  }
+  // 4 · Launch Orb — dense, luminous ball
+  for (let i=0;i<N;i++){
+    const v = i<M ? fib(i,M) : unit(), rad = i<M ? .55 : 1.15*Math.pow(R(),.55);
+    set(4,i,v[0]*rad,v[1]*rad,v[2]*rad);
+  }
+  return F;
+}
+
+function glowTexture(){
+  const c = document.createElement('canvas'); c.width = c.height = 256; const g = c.getContext('2d');
+  const gr = g.createRadialGradient(128,128,0,128,128,128);
+  gr.addColorStop(0,'rgba(120,225,255,.85)'); gr.addColorStop(.25,'rgba(58,150,255,.35)'); gr.addColorStop(1,'rgba(10,17,40,0)');
+  g.fillStyle = gr; g.fillRect(0,0,256,256); return new THREE.CanvasTexture(c);
+}
+
+function makeDust(count, zMin, zMax, size, U2){
+  const pos = new Float32Array(count*3), seed = new Float32Array(count);
+  for (let i=0;i<count;i++){ pos[i*3]=rr(-11,11); pos[i*3+1]=rr(-8,8); pos[i*3+2]=rr(zMin,zMax); seed[i]=R(); }
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.BufferAttribute(pos,3)); g.setAttribute('aS', new THREE.BufferAttribute(seed,1));
+  const m = new THREE.ShaderMaterial({
+    uniforms: { uOff:{value:0}, uTime:U2.uTime, uPx:U2.uPx, uSize:{value:size} },
+    vertexShader: `attribute float aS; uniform float uOff,uTime,uPx,uSize; varying float vA;
+      void main(){ vec3 p=position; p.y = mod(p.y - uOff + 8.0, 16.0) - 8.0; p.x += sin(uTime*0.2 + aS*20.0)*0.15;
+        vec4 mv = modelViewMatrix*vec4(p,1.0); gl_Position = projectionMatrix*mv; gl_PointSize = (1.0+aS*1.6)*uSize*uPx*(9.0/-mv.z); vA = 0.25+0.5*aS; }`,
+    fragmentShader: `precision mediump float; varying float vA; void main(){ float d=length(gl_PointCoord-0.5); if(d>0.5) discard; float a=pow(1.0-d*2.0,2.0); gl_FragColor=vec4(0.55,0.85,1.0,a*vA); }`,
+    transparent:true, depthWrite:false, blending:THREE.AdditiveBlending });
+  const p = new THREE.Points(g,m); p.frustumCulled = false; return p;
+}
+
+function init3D(){
+  const canvas = $('#gl');
+  renderer = new THREE.WebGLRenderer({ canvas, antialias:!mobileGL, alpha:true, powerPreference:'high-performance' });
+  renderer.setClearColor(0x000000, 0);
+  scene = new THREE.Scene();
+  camera = new THREE.PerspectiveCamera(FOV, vw/vh, .1, 100); camera.position.set(0,0,CAMZ);
+  obj = new THREE.Group(); obj.rotation.order = 'YXZ'; scene.add(obj);
+
+  const N = mobileGL ? 3600 : 7200, M = 343;
+  const F = buildFormations(N, M);
+  const palette = [[.23,.84,1],[.24,.48,1],[.86,.9,.98],[.94,.75,.37]];
+  const color = new Float32Array(N*3), rs = new Float32Array(N*2), rnd = new Float32Array(N);
+  for (let i=0;i<N;i++){
+    const t = R(); let c = t<.5 ? palette[0] : t<.75 ? palette[1] : t<.92 ? palette[2] : palette[3];
+    if (i<M) c = R()<.6 ? palette[2] : palette[0];
+    color.set(c, i*3); rnd[i] = R(); rs[i*2] = rnd[i]; rs[i*2+1] = i<M ? rr(5,8) : rr(1.8,3.6);
+  }
+  U = { uStage:{value:0}, uTime:{value:0}, uMouse:{value:new THREE.Vector3(99,99,0)}, uMouseStr:{value:.55}, uPx:{value:1}, uAlpha:{value:1} };
+
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.BufferAttribute(F[0],3));
+  for (let k=1;k<5;k++) g.setAttribute('a'+k, new THREE.BufferAttribute(F[k],3));
+  g.setAttribute('aColor', new THREE.BufferAttribute(color,3)); g.setAttribute('aRS', new THREE.BufferAttribute(rs,2));
+  pts = new THREE.Points(g, new THREE.ShaderMaterial({ uniforms:U, vertexShader:PT_VS, fragmentShader:PT_FS, transparent:true, depthWrite:false, blending:THREE.AdditiveBlending }));
+  pts.frustumCulled = false; obj.add(pts);
+
+  // connection lines between the first M "node" particles
+  const pairs = [], G = 7, id = (x,y,z) => x+y*G+z*G*G;
+  for (let z=0;z<G;z++) for (let y=0;y<G;y++) for (let x=0;x<G;x++){
+    if (x<G-1) pairs.push([id(x,y,z),id(x+1,y,z),0]); if (y<G-1) pairs.push([id(x,y,z),id(x,y+1,z),0]); if (z<G-1) pairs.push([id(x,y,z),id(x,y,z+1),0]);
+  }
+  const V = []; for (let i=0;i<M;i++) V.push(fib(i,M)); const seen = new Set();
+  for (let i=0;i<M;i++){
+    const d = []; for (let j=0;j<M;j++) if (j!==i) d.push([(V[i][0]-V[j][0])**2+(V[i][1]-V[j][1])**2+(V[i][2]-V[j][2])**2, j]);
+    d.sort((a,b)=>a[0]-b[0]); for (let k=0;k<3;k++){ const j=d[k][1], key = i<j ? i+'-'+j : j+'-'+i; if (!seen.has(key)){ seen.add(key); pairs.push([i,j,1]); } }
+  }
+  for (let i=0;i<M-1;i++) pairs.push([i,i+1,2]);
+  const L = pairs.length*2, la = [0,1,2,3,4].map(() => new Float32Array(L*3)), lr = new Float32Array(L), lt = new Float32Array(L);
+  pairs.forEach((p,pi) => [p[0],p[1]].forEach((n,e) => {
+    const v = pi*2+e; for (let k=0;k<5;k++){ la[k][v*3]=F[k][n*3]; la[k][v*3+1]=F[k][n*3+1]; la[k][v*3+2]=F[k][n*3+2]; } lr[v]=rnd[n]; lt[v]=p[2];
+  }));
+  const lg = new THREE.BufferGeometry();
+  lg.setAttribute('position', new THREE.BufferAttribute(la[0],3)); for (let k=1;k<5;k++) lg.setAttribute('a'+k, new THREE.BufferAttribute(la[k],3));
+  lg.setAttribute('aR', new THREE.BufferAttribute(lr,1)); lg.setAttribute('aT', new THREE.BufferAttribute(lt,1));
+  lineMesh = new THREE.LineSegments(lg, new THREE.ShaderMaterial({ uniforms:U, vertexShader:LN_VS, fragmentShader:LN_FS, transparent:true, depthWrite:false, blending:THREE.AdditiveBlending }));
+  lineMesh.frustumCulled = false; obj.add(lineMesh);
+
+  // glass core (hero sphere / final orb heart)
+  coreGroup = new THREE.Group(); obj.add(coreGroup);
+  coreMat = new THREE.ShaderMaterial({
+    uniforms:{ uI:{value:1} }, transparent:true, depthWrite:false,
+    vertexShader:`varying vec3 vN; varying vec3 vV; void main(){ vN = normalize(normalMatrix*normal); vec4 mv = modelViewMatrix*vec4(position,1.0); vV = -mv.xyz; gl_Position = projectionMatrix*mv; }`,
+    fragmentShader:`precision mediump float; varying vec3 vN; varying vec3 vV; uniform float uI;
+      void main(){ vec3 n = normalize(vN), v = normalize(vV); float f = pow(1.0-abs(dot(n,v)), 2.6);
+        vec3 col = mix(vec3(0.02,0.06,0.16), vec3(0.23,0.84,1.0), f);
+        float spec = pow(max(dot(n, normalize(vec3(-0.5,0.7,0.6))),0.0), 22.0)*0.55;
+        col += vec3(0.8,0.88,1.0)*spec;
+        gl_FragColor = vec4(col, (0.5*(0.22+f*0.95) + spec*0.5)*uI); }` });
+  coreGroup.add(new THREE.Mesh(new THREE.SphereGeometry(1.15,64,48), coreMat));
+  const wire = new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.IcosahedronGeometry(1.2,2)), new THREE.LineBasicMaterial({ color:0x3AD7FF, transparent:true, opacity:.2, blending:THREE.AdditiveBlending, depthWrite:false }));
+  coreGroup.add(wire); coreGroup.userData.wire = wire;
+  const ringMat = new THREE.MeshBasicMaterial({ color:0x7FD8FF, transparent:true, opacity:.4, blending:THREE.AdditiveBlending, depthWrite:false });
+  const r1 = new THREE.Mesh(new THREE.TorusGeometry(2.05,.006,8,180), ringMat), r2 = new THREE.Mesh(new THREE.TorusGeometry(2.45,.005,8,200), ringMat);
+  r1.rotation.set(1.25,0,.3); r2.rotation.set(1.9,0,-.6); coreGroup.add(r1,r2); coreGroup.userData.rings = [r1,r2];
+
+  glow = new THREE.Sprite(new THREE.SpriteMaterial({ map:glowTexture(), transparent:true, blending:THREE.AdditiveBlending, depthWrite:false, opacity:.6 }));
+  glow.position.z = -1; scene.add(glow);
+
+  dustBg = makeDust(mobileGL?350:700, -8, -4, 3.2, U); dustFg = makeDust(mobileGL?60:120, 1, 4, 6.5, U);
+  scene.add(dustBg, dustFg);
+  resize3D();
+}
+
+function resize3D(){
+  const dpr = Math.min(devicePixelRatio||1, mobileGL ? 1.5 : 2);
+  renderer.setPixelRatio(dpr); renderer.setSize(vw, vh, false);
+  camera.aspect = vw/vh; camera.updateProjectionMatrix();
+  U.uPx.value = dpr * clamp(vh/900, .65, 1.35);
+}
+
+/* Per-section keyframes. x/y are fractions of the visible half-width/height. */
+const KD = [ // desktop
+  {x:.42, y:.02, s:.8,  rx:.10, ry:0,   st:0,  al:1,   bl:0},   // hero   — idea mesh, behind the figure
+  {x:.5,  y:.0,  s:.95, rx:.25, ry:-.5, st:.9, al:1,   bl:0},   // about  — unfolding into a node grid
+  {x:.05, y:0,   s:1.35,rx:.30, ry:.5,  st:1,  al:.6,  bl:2.2}, // services — code engine, softly blurred
+  {x:0,   y:0,   s:1.7, rx:.10, ry:-.3, st:2,  al:.42, bl:1},   // work   — network sphere as backdrop
+  {x:.52, y:-.05,s:.78,  rx:.25, ry:-.5, st:3,  al:.9,  bl:0},   // process — scale dashboard
+  {x:-.5, y:.12, s:.85, rx:0,   ry:0,   st:4,  al:1,   bl:0},   // contact — orb
+];
+const KM = [ // narrow screens: everything centred and quieter behind text
+  {x:0,y:.42,s:.82,rx:.1, ry:0,  st:0,  al:.9, bl:0},
+  {x:0,y:.55,s:.9, rx:.25,ry:-.4,st:.9, al:.55,bl:0},
+  {x:0,y:.55,s:1.0,rx:.3, ry:.4, st:1,  al:.4, bl:1.5},
+  {x:0,y:0,  s:1.5,rx:.1, ry:-.3,st:2,  al:.3, bl:1},
+  {x:0,y:.6, s:.9, rx:.25,ry:-.5,st:3,  al:.45,bl:0},
+  {x:0,y:.32,s:1.0,rx:0,  ry:0,  st:4,  al:1,  bl:0},
+];
+const lerpKF = (a,b,t) => { const o={}; for (const k in a) o[k] = a[k] + (b[k]-a[k])*t; return o; };
+
+const STAGE_NAMES = ['Hero','Who We Are','What We Do','Clients & Impact','Why Teams Choose Us','Get In Touch'];
+const hudName = $('#hudName'), hudSegs = $$('.hud .segs i'); let hudIdx = -1;
+
+function mouseWorld(){
+  const v = new THREE.Vector3((mouse.x), (mouse.y), .5).unproject(camera);
+  const dir = v.sub(camera.position).normalize(); const t = -camera.position.z/dir.z;
+  return camera.position.clone().add(dir.multiplyScalar(t));
+}
+
+function update3D(time){
+  const aspect = vw/vh, narrow = aspect < .9, K = narrow ? KM : KD;
+  const W = vh*.9, p = sy + vh*.62; let cur = K[0];
+  let wl = 0; for (let i=1;i<K.length;i++){ wl = smooth((p - (secTop[i] - W/2))/W); cur = lerpKF(cur, K[i], wl); }
+  wLast = wl; kf = cur;
+  stageCur += (cur.st - stageCur) * (reduce ? 1 : .14);
+
+  const zoom = 1.8*smooth(sy/(vh*.6))*(1 - smooth((sy - vh*.6)/vh));
+  camera.position.z = CAMZ - zoom;
+  camera.position.x = lerp(camera.position.x, mouse.x*.35, .05); camera.position.y = lerp(camera.position.y, mouse.y*.22, .05);
+  camera.lookAt(0,0,0);
+
+  const hW = halfH*aspect, base = Math.min(1, hW/4.2) < .5 ? .5 : Math.min(1, hW/4.2);
+  pulse *= .93;
+  let px = cur.x*hW, py = cur.y*halfH;
+  if (wLast > 0){ const cy = orbBox.top + orbBox.h/2 - sy, cx = (narrow ? vw/2 : Math.max(vw*.5 - 620, 0) + 20 + 150);
+    const tx = ((cx/vw)*2 - 1)*hW, ty = -((cy/vh)*2 - 1)*halfH; px = lerp(px, tx, wLast); py = lerp(py, ty, wLast); }
+  obj.position.set(px, py, 0);
+  obj.scale.setScalar(cur.s*base*(1 + pulse*.12));
+  obj.rotation.set(cur.rx + mouse.y*-.18, cur.ry + Math.sin(time*.18)*.32 + mouse.x*.4, 0);
+
+  U.uTime.value = time; U.uStage.value = stageCur; U.uAlpha.value = cur.al;
+  const inOrb = smooth((stageCur-3.2)/.8);
+  U.uMouseStr.value = lerp(.55, -.28, inOrb);
+  const mwp = mouseWorld(); U.uMouse.value.copy(mwp);
+
+  // core visibility: strong in hero, gone through the middle, small heart of the orb at the end
+  const heroW = 1 - smooth(stageCur/.85), orbW = smooth((stageCur-3.2)/.8);
+  const cs = 1.15*heroW + .55*orbW; coreGroup.visible = cs > .02;
+  coreGroup.scale.setScalar(Math.max(cs,.001)/1.15); coreMat.uniforms.uI.value = Math.max(heroW, orbW*.9);
+  coreGroup.userData.rings.forEach((r,i) => r.rotation.z += (i?-1:1)*.0035);
+  coreGroup.userData.wire.rotation.y = time*.06; coreGroup.userData.wire.rotation.x = time*.03;
+
+  glow.position.set(obj.position.x, obj.position.y, -1.5);
+  const gs = 9*cur.s*base*(1 + orbW*.2); glow.scale.set(gs,gs,1);
+  glow.material.opacity = (.22 + heroW*.35 + orbW*.3) * cur.al;
+
+  const wpp = z => 2*Math.tan(FOV*Math.PI/360)*(camera.position.z - z)/vh;
+  dustBg.material.uniforms.uOff.value = sy*wpp(-6)*.3; dustFg.material.uniforms.uOff.value = sy*wpp(2.5)*1.5;
+
+  if (Math.abs(cur.bl - (update3D.lastBl||0)) > .05){ update3D.lastBl = cur.bl; renderer.domElement.style.filter = cur.bl > .05 ? `blur(${cur.bl.toFixed(2)}px)` : 'none'; }
+
+  const idx = clamp(Math.round(stageCur), 0, STAGE_NAMES.length - 1);
+  if (idx !== hudIdx){ hudIdx = idx; hudName.textContent = STAGE_NAMES[idx]; hudSegs.forEach((s,i) => s.classList.toggle('on', i<=idx)); }
+  renderer.render(scene, camera);
+}
+
+/* ---------------- DOM scroll choreography ---------------- */
+const nav = $('#nav'), floor = $('#floor'), heroIn = $('#heroIn'), orbitEl = $('#orbit'), badges = $$('.b', orbitEl);
+const dotEls = $$('.dots a');
+const figEl = $('#fig'), figImg = $('#figImg'), figScan = $('#figScan');
+{ const u = () => { const m = `url("${figImg.src}")`; figScan.style.webkitMaskImage = m; figScan.style.maskImage = m; }; u();
+  const em = $('#embers'), cols = ['#3AD7FF','#3AD7FF','#C9D3E6','#FF9F43','#E6B65C'];
+  for (let i=0;i<(vw<700?10:18);i++){ const e = document.createElement('i'); e.style.cssText = `left:${(12+Math.random()*76).toFixed(1)}%;--s:${(2+Math.random()*3.5).toFixed(1)}px;--c:${cols[i%cols.length]};--t:${(5+Math.random()*5).toFixed(1)}s;--d:-${(Math.random()*9).toFixed(1)}s;--dx:${(Math.random()*90-45).toFixed(0)}px`; em.appendChild(e); } }
+const cursorEl = $('#cursor');
+
+function updDOM(time){
+  nav.classList.toggle('scrolled', sy > 24);
+
+  // multi-plane parallax: bg 0.3×, text 1×, foreground 1.4×
+  for (const q of par){
+    const d = q.c - (sy + vh/2); if (Math.abs(d) > vh*1.6) continue;
+    q.el.style.transform = `translate3d(0,${(d*(q.s-1)).toFixed(1)}px,0)`;
+  }
+  // slide-in stat cards
+  for (const q of slideEls){
+    const e = easeOut((vh*.98 - (q.top - sy)) / (vh*.55));
+    q.el.style.transform = `translate3d(${(q.dir*(1-e)*Math.min(200, vw*.16)).toFixed(1)}px,${((1-e)*30).toFixed(1)}px,0) scale(${(.94+.06*e).toFixed(3)})`;
+    q.el.style.opacity = e.toFixed(3);
+  }
+
+  // hero: zoom into the grid
+  // FIX: progress uses the hero's real height (it is taller than the screen on phones)
+  const hp = clamp(sy/Math.max(vh, secTop[1]||vh), 0, 1);
+  if (hp < 1.02){
+    heroIn.style.transform = `translate3d(0,${(-hp*60).toFixed(1)}px,0) scale(${(1+hp*.14).toFixed(3)})`;
+    // FIX: on phones, delay the fade so the text stays readable while you scroll through it
+    heroIn.style.opacity = clamp(1 - (hp - (vw<900 ? .55 : 0))*(vw<900 ? 2.4 : 1.5), 0, 1).toFixed(3);
+    floor.style.backgroundPosition = `0 ${(sy*.9).toFixed(0)}px`;
+    floor.style.opacity = clamp(1 - hp*1.2, 0, 1).toFixed(3);
+    figEl.style.transform = `perspective(1300px) translate3d(${(mouse.x*26).toFixed(1)}px,${(mouse.y*-16 - hp*150).toFixed(1)}px,0) rotateY(${(mouse.x*8).toFixed(2)}deg) rotateX(${(mouse.y*4).toFixed(2)}deg) scale(${(1+hp*.1).toFixed(3)})`;
+    figEl.style.opacity = clamp(1 - hp*1.35, 0, 1).toFixed(3);
+    // badges orbit in 3D, steered by the cursor
+    const nv = vw < 900, rx = nv ? vw*.31 : Math.min(vw*.2, 300), ry = nv ? 40 : Math.min(vh*.14, 130), rz = nv ? 130 : 240;
+    const small = vw < 700;
+    badges.forEach((b,i) => {
+      if (small && i >= 4){ b.style.display = 'none'; return; }
+      const a = i/badges.length*Math.PI*2 + (reduce?0:time*.16) + mouse.x*.9;
+      const x = Math.cos(a)*rx, z = Math.sin(a)*rz, y = Math.sin(a*1.3 + i)*ry*.55 + mouse.y*-46*(z/rz) + (z/rz)*ry*.9;
+      const depth = (z/rz + 1)/2;
+      b.style.transform = `translate3d(${x.toFixed(1)}px,${y.toFixed(1)}px,${z.toFixed(1)}px) translate(-50%,-50%) scale(${((small?.85:1)+hp*.5).toFixed(3)})`;
+      b.style.opacity = ((.28 + .72*depth) * clamp(1-hp*1.6,0,1)).toFixed(3);
+      b.style.filter = depth < .4 ? `blur(${((.4-depth)*3).toFixed(1)}px)` : 'none';
+    });
+  }
+
+  // services: 3D card stack
+  {
+    const p = clamp((sy - svcTop)/(svcH - vh), 0, 1), a = p*(SN-1), b = Math.min(SN-1, Math.floor(a)), fr = a - b;
+    const snapA = vw<900 ? .46 : .3, snapW = vw<900 ? .1 : .4;
+    const act = b + (b >= SN-1 ? 0 : smooth((fr-snapA)/snapW)), tilt = mouse.x*4;
+    if (sy > svcTop - vh && sy < svcTop + svcH + vh){
+      cards.forEach((c,i) => {
+        const d = i - act; let y, z, s, o, bl, rx = 0;
+        if (d < 0){ const t = clamp(-d,0,1); y = -t*150; z = t*280; s = 1 + t*.12; o = clamp(1 - t*1.35,0,1); bl = t*6; rx = -t*14; }
+        else { y = d*40; z = -d*175; s = 1 - d*.055; o = clamp(1 - d*.24,0,1); bl = d*2.4; }
+        const pop = Math.max(0, 1 - Math.abs(d)*1.6); z += pop*70;
+        c.style.transform = `translate(-50%,-50%) translate3d(0,${y.toFixed(1)}px,${z.toFixed(1)}px) rotateX(${rx.toFixed(2)}deg) rotateY(${tilt.toFixed(2)}deg) scale(${s.toFixed(3)})`;
+        c.style.opacity = o.toFixed(3); c.style.filter = bl > .05 ? `blur(${bl.toFixed(2)}px)` : 'none';
+        c.style.zIndex = 20 - i; c.style.pointerEvents = Math.abs(d) < .5 ? 'auto' : 'none';
+        c.classList.toggle('active', Math.round(act) === i);
+      });
+      svcBtns.forEach((bn,i) => { const on = Math.round(act) === i; bn.classList.toggle('on', on); bn.setAttribute('aria-selected', on); });
+    }
+  }
+
+  // work: horizontal depth slider
+  {
+    const p = clamp((sy - workTop)/(workH - vh), 0, 1), a = p*(N-1), b = Math.min(N-1, Math.floor(a)), fr = a - b;
+    const act = b + (b >= N-1 ? 0 : smooth((fr-(vw<900 ? .46 : .3))/(vw<900 ? .1 : .4)));
+    if (sy > workTop - vh && sy < workTop + workH + vh){
+      track.style.transform = `translate3d(${(-act*vw).toFixed(1)}px,0,0)`;
+      slideRefs.forEach((r,i) => {
+        const o = i - act, ao = Math.abs(o);
+        r.bg.style.transform = `translate3d(calc(-50% + ${(o*vw*.7).toFixed(1)}px),-50%,0)`;   // background plane: 30% speed
+        r.txt.style.transform = `translate3d(${(o*vw*.1).toFixed(1)}px,0,0)`; r.txt.style.opacity = clamp(1 - ao*1.15,0,1).toFixed(3);
+        r.dev.style.transform = `translate3d(${(-o*vw*.2).toFixed(1)}px,0,${(-ao*160).toFixed(0)}px) rotateY(${(-o*24).toFixed(2)}deg) scale(${(1-ao*.1).toFixed(3)})`; // foreground plane drifts faster
+        r.dev.style.opacity = clamp(1 - ao*.9,0,1).toFixed(3);
+      });
+      pips.forEach((pp,i) => pp.classList.toggle('on', Math.round(act) === i));
+    }
+  }
+
+  // process: light path
+  {
+    const prog = clamp((sy + vh*.58 - tlTop)/tlH, 0, 1), y = prog*tlH;
+    railFill.style.height = y.toFixed(1)+'px'; railHead.style.top = y.toFixed(1)+'px';
+    steps.forEach((s,i) => s.classList.toggle('lit', y >= stepPos[i] - 30));
+  }
+
+  // nav dots
+  let cur = 0; secTop.forEach((t,i) => { if (t <= sy + vh*.5) cur = i; }); dotEls.forEach((d,i) => d.classList.toggle('on', i === cur));
+}
+
+/* ---------------- interactions ---------------- */
+addEventListener('pointermove', e => {
+  if (!fine) return;
+  mouse.tx = (e.clientX/vw)*2 - 1; mouse.ty = -((e.clientY/vh)*2 - 1); mouse.px = e.clientX; mouse.py = e.clientY;
+  if (fine) cursorEl.classList.add('on');
+}, { passive:true });
+addEventListener('pointerdown', () => { pulse = 1; });
+addEventListener('pointerleave', () => cursorEl.classList.remove('on'));
+
+// glass-card spotlight + tilt
+$$('.tilt').forEach(c => {
+  if (!fine) return;
+  c.addEventListener('pointermove', e => {
+    const r = c.getBoundingClientRect(), x = (e.clientX - r.left)/r.width, y = (e.clientY - r.top)/r.height;
+    c.style.setProperty('--mx', (x*100)+'%'); c.style.setProperty('--my', (y*100)+'%');
+    c.style.transform = `perspective(1000px) rotateX(${((.5-y)*6).toFixed(2)}deg) rotateY(${((x-.5)*8).toFixed(2)}deg)`;
+  });
+  c.addEventListener('pointerleave', () => { c.style.transform = ''; });
+});
+// service cards: spotlight
+cards.forEach(c => c.addEventListener('pointermove', e => { const r = c.getBoundingClientRect(); c.style.setProperty('--mx', ((e.clientX-r.left)/r.width*100)+'%'); c.style.setProperty('--my', ((e.clientY-r.top)/r.height*100)+'%'); }));
+
+// device tilt on hover
+slideRefs.forEach(r => {
+  const d = r.device; if (!fine) return;
+  d.addEventListener('pointermove', e => {
+    const b = d.getBoundingClientRect(), x = (e.clientX-b.left)/b.width - .5, y = (e.clientY-b.top)/b.height - .5;
+    d.classList.add('tracking'); d.style.setProperty('--ry', (x*16).toFixed(2)+'deg'); d.style.setProperty('--rx', (-y*12).toFixed(2)+'deg');
+  });
+  d.addEventListener('pointerleave', () => { d.classList.remove('tracking'); d.style.removeProperty('--ry'); d.style.removeProperty('--rx'); });
+});
+
+// magnetic buttons
+if (fine && !reduce) $$('.mag').forEach(m => {
+  const inner = $('.mag-i', m);
+  m.addEventListener('pointermove', e => {
+    const r = m.getBoundingClientRect(), dx = e.clientX - (r.left + r.width/2), dy = e.clientY - (r.top + r.height/2);
+    m.style.transform = `translate(${(dx*.28).toFixed(1)}px,${(dy*.4).toFixed(1)}px)`; if (inner) inner.style.transform = `translate(${(dx*.12).toFixed(1)}px,${(dy*.2).toFixed(1)}px)`;
+  });
+  m.addEventListener('pointerleave', () => { m.style.transform = ''; if (inner) inner.style.transform = ''; });
+});
+
+// "discuss this service" preselects the form
+$$('[data-pick]').forEach(a => a.addEventListener('click', () => { $('#fService').value = a.dataset.pick; }));
+
+// lead form → real handoff (endpoint if configured, otherwise pre-filled email)
+const FORM_ENDPOINT = ''; // e.g. a Formspree / Make / Zapier URL. Leave empty to use the mailto fallback.
+const form = $('#leadForm'), note = $('#formNote');
+form.addEventListener('focusin', () => { pulse = .8; });
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  const f = Object.fromEntries(new FormData(form));
+  if (!f.name || !/^\S+@\S+\.\S+$/.test(f.email||'') || !f.brief){ note.className = 'form-note'; note.textContent = 'Please add your name, a valid email and a short brief.'; return; }
+  pulse = 1.4; note.className = 'form-note';
+  if (FORM_ENDPOINT){
+    try { note.textContent = 'Sending…'; const r = await fetch(FORM_ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(f) });
+      if (!r.ok) throw 0; form.reset(); note.className = 'form-note ok'; note.textContent = 'Received — we\u2019ll be in touch shortly.'; return; } catch(_){ note.textContent = 'Couldn\u2019t send — opening your email app instead.'; }
+  }
+  const body = `Name: ${f.name}\nEmail: ${f.email}\nCompany: ${f.company||'-'}\nService: ${f.service}\n\n${f.brief}`;
+  location.href = `mailto:hello@ispacetech.co?subject=${encodeURIComponent('Project enquiry — '+f.name)}&body=${encodeURIComponent(body)}`;
+  note.className = 'form-note ok'; note.textContent = 'Opening your email app with everything pre-filled.';
+});
+
+/* ---------------- main loop ---------------- */
+let gl = true;
+try { init3D(); } catch (err) { gl = false; console.warn('WebGL unavailable — showing static background.', err); $('#gl').style.display = 'none'; }
+measure();
+let rT; addEventListener('resize', () => { clearTimeout(rT); rT = setTimeout(measure, 120); });
+$$('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+  const h = a.getAttribute('href'); if (h === '#'){ e.preventDefault(); goTo(0); return; }
+  const el = document.querySelector(h); if (!el) return; e.preventDefault(); goTo(docTop(el));
+}));
+addEventListener('load', measure);
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+slideRefs.forEach(r => { if (!r.img.complete) r.img.addEventListener('load', measure); });
+new ResizeObserver(() => measure()).observe(document.body);
+
+function frame(t){
+  requestAnimationFrame(frame);
+  const time = t/1000;
+  if (lenis) lenis.raf(t);
+  // FIX: on touch devices use the real scroll position so it stays in sync with native position:sticky
+  sy = (reduce || lenis || !fine) ? scrollY : sy + (scrollY - sy) * .2;
+  if (!fine && !reduce){ mouse.tx = Math.sin(time*.45)*.38; mouse.ty = Math.cos(time*.33)*.22; }
+  mouse.x += (mouse.tx - mouse.x) * .07; mouse.y += (mouse.ty - mouse.y) * .07;
+  if (fine){ cursorEl.style.transform = `translate3d(${mouse.px}px,${mouse.py}px,0)`; }
+  if (gl) update3D(time);
+  updDOM(time);
+}
+requestAnimationFrame(frame);
+setTimeout(() => $$('#hero [data-split],#hero .reveal,#hero .gcard').forEach(el => el.classList.add('in')), 150);
+})();
+</script>
+</body>
+</html>
