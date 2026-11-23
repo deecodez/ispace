@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <script>document.documentElement.classList.add('js');</script>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{color-scheme:light;--bg:#fff;--tint:#F5F5FC;--tint2:#E9E9F7;--ink:#0A1128;--ink2:#3B4A6B;--mut:#6B7A99;--blue:#0C0C8F;--purple:#7A1470;--red:#E31E26;--line:rgba(10,17,40,.1);
 --grad:linear-gradient(120deg,#0C0C8F,#7A1470 55%,#E31E26);--fd:'Unbounded','Arial Black',system-ui,sans-serif;--fb:'Geist','Inter',system-ui,-apple-system,'Segoe UI',sans-serif;--ease:cubic-bezier(.2,.7,.2,1);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -357,6 +358,18 @@ button,input,select,textarea{font-family:var(--f-body)}
 @media (max-width:640px){.vslot.sym{width:84px}.vslot.sym em{display:none}.vslot.sym b{font-size:.62rem}.vslot.sym .vs-t{font-size:.5rem}
   .vslot.pat{height:48px}.vslot.pat em{display:none}.vstrip{gap:8px}.vstrip .vslot{min-height:96px}}
 </style>
+<style id="ispace-unbounded-footer">
+/* ===== [CHANGE] Headings use Unbounded ===== */
+h1,h2,h3,h4,h5,h6,.display,.h1,.h2,.h3{font-family:'Unbounded','Arial Black',system-ui,sans-serif!important;font-weight:600!important;letter-spacing:-.015em;overflow-wrap:break-word}
+
+/* ===== [CHANGE] Footer contact block (address + phones) ===== */
+.foot-contact{margin-top:18px;display:grid;gap:10px;font-size:.92rem;font-style:normal;line-height:1.5}
+.foot-contact .fc{display:flex;align-items:flex-start;gap:10px;color:var(--silver,#3B4A6B)}
+.foot-contact svg{flex:none;width:18px;height:18px;margin-top:3px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;opacity:.85}
+.foot-contact a{color:inherit}
+.foot-contact a:hover{text-decoration:underline}
+.foot-contact .nums{display:flex;flex-direction:column;gap:2px}
+</style>
 </head>
 <body>
 <div class="field" aria-hidden="true"><i class="orb o1"></i><i class="orb o2"></i><i class="orb o3"></i></div>
@@ -472,6 +485,10 @@ button,input,select,textarea{font-family:var(--f-body)}
       <div class="foot-brand">
         <span class="plate"><img src="ispace-scaled.webp" alt="iSpace"></span>
         <p>It takes a village to build what matters.</p>
+        <address class="foot-contact">
+          <div class="fc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.500C19 14.800 12 21 12 21z"/><circle cx="12" cy="9.500" r="2.500"/></svg><span>Lagos, Nigeria</span></div>
+          <div class="fc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.500 1.500a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><span class="nums"><a href="tel:+2347036273180">0703 627 3180</a><a href="tel:+2347066475083">0706 647 5083</a></span></div>
+        </address>
       </div>
       <div><h4>Explore</h4><ul><li><a href="about.html">About iSpace</a></li><li><a href="services.html">Our Work</a></li><li><a href="village.html">Community</a></li><li><a href="contact.html">Contact</a></li></ul></div>
       <div><h4>Community</h4><ul><li><a href="village.html">Town Hall</a></li><li><a href="village.html">Council Sessions</a></li><li><a href="village.html">Village Masterclasses</a></li><li><a href="#">Careers</a></li></ul></div>

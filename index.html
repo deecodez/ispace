@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <script>document.documentElement.classList.add('js');</script>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 /* =========================================================
    iSpace Technology — 3D storytelling redesign
@@ -813,6 +814,41 @@ button,input,select,textarea{font-family:var(--f-body)}
 @media (max-width:640px){.vslot.sym{width:84px}.vslot.sym em{display:none}.vslot.sym b{font-size:.62rem}.vslot.sym .vs-t{font-size:.5rem}
   .vslot.pat{height:48px}.vslot.pat em{display:none}.vstrip{gap:8px}.vstrip .vslot{min-height:96px}}
 </style>
+<style id="ispace-unbounded-footer">
+/* ===== [CHANGE] Headings use Unbounded ===== */
+h1,h2,h3,h4,h5,h6,.display,.h1,.h2,.h3{font-family:'Unbounded','Arial Black',system-ui,sans-serif!important;font-weight:600!important;letter-spacing:-.015em;overflow-wrap:break-word}
+
+/* ===== [CHANGE] Footer contact block (address + phones) ===== */
+.foot-contact{margin-top:18px;display:grid;gap:10px;font-size:.92rem;font-style:normal;line-height:1.5}
+.foot-contact .fc{display:flex;align-items:flex-start;gap:10px;color:var(--silver,#3B4A6B)}
+.foot-contact svg{flex:none;width:18px;height:18px;margin-top:3px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;opacity:.85}
+.foot-contact a{color:inherit}
+.foot-contact a:hover{text-decoration:underline}
+.foot-contact .nums{display:flex;flex-direction:column;gap:2px}
+</style>
+<style id="ispace-home-fixes">
+/* ===== [CHANGE] About: picture space on the right ===== */
+.about-pic{position:relative;margin:0;width:100%;height:clamp(300px,40vw,500px);border-radius:28px;overflow:hidden;background:#F5F5FC;border:1px solid rgba(10,17,40,.1);box-shadow:0 30px 80px -40px rgba(12,12,143,.35)}
+.about-pic img{display:block;width:100%;height:100%;object-fit:cover}
+.about-pic .ph-note{display:none}
+.about-pic.empty{border:2px dashed rgba(12,12,143,.35);background:repeating-linear-gradient(135deg,rgba(12,12,143,.05) 0 12px,rgba(250,209,161,.28) 12px 24px);display:grid;place-items:center}
+.about-pic.empty .ph-note{display:block;font:700 .8rem/1.2 'Mulish',system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#0C0C8F;text-align:center;padding:12px}
+@media (min-width:901px){.about-pic{margin-top:clamp(60px,7vw,100px)}}
+@media (max-width:900px){.about-pic{height:clamp(220px,52vw,340px)}}
+
+/* ===== [CHANGE] About: even spacing heading > text > button ===== */
+.about-copy{display:flex;flex-direction:column;align-items:flex-start}
+.about-copy .h2{margin:0}
+.about-copy .lede{margin:clamp(20px,2.2vw,28px) 0 0}
+.about-copy .btn{margin-top:clamp(28px,3vw,40px)}
+
+/* ===== [CHANGE] Services card: Explore sits right under the content ===== */
+.svc{height:auto!important;min-height:0}
+.svc .foot{margin-top:clamp(18px,2vw,26px);padding-top:0}
+.svc ul{margin-bottom:0}
+.stack{height:min(560px,72vh)}
+@media (max-width:900px){.svc{overflow:visible}}
+</style>
 </head>
 <body>
 
@@ -888,7 +924,7 @@ button,input,select,textarea{font-family:var(--f-body)}
 
   <div class="hero-fig" id="fig" aria-hidden="true">
     <i class="hf-dots d1"></i><i class="hf-dots d2"></i><i class="hf-dot x1"></i><i class="hf-dot x2"></i><i class="hf-dot x3"></i>
-    <div class="hf a"><span class="bd"></span><div class="ph"><img src="team3.jpg" alt="" width="900" height="1200" decoding="async" fetchpriority="high"></div></div>
+    <div class="hf a"><span class="bd"></span><div class="ph"><img src="ZINO.jpg" alt="" width="900" height="1200" decoding="async" fetchpriority="high"></div></div>
     <div class="hf b"><span class="bd"></span><div class="ph"><img src="team1.jpg" alt="" width="900" height="1200" decoding="async"></div></div>
     <div class="hf c"><span class="bd"></span><div class="ph"><img src="team2.jpg" alt="" width="900" height="1200" decoding="async"></div></div>
     <div class="hf d"><div class="ph"><img src="who_we.png" alt="" width="600" height="600" decoding="async"></div></div>
@@ -919,7 +955,12 @@ button,input,select,textarea{font-family:var(--f-body)}
         <p class="lede reveal">iSpace is a modern village of strategists, creators, developers, and growth experts. We diagnose complex business challenges, design thoughtful digital experiences, and build products and campaigns that create real momentum.<br><br>We are a strategy, creative, technology and marketing company built on the belief that better things happen when good ideas have the right people around them.<br><br>Together, we help businesses solve problems, make better decisions and move forward with intention.</p>
         <a class="btn btn-gold btn-sm mag reveal" style="--d:.2s" href="#why"><span class="mag-i">Discover how we think ↗</span></a>
       </div>
-      <div class="about-space" aria-hidden="true"></div>
+      <div class="about-space">
+        <figure class="about-pic">
+          <img src="ISP.png" alt="iSpace team at work" loading="lazy" onerror="this.parentNode.classList.add('empty');this.remove()">
+          <figcaption class="ph-note">Picture goes here</figcaption>
+        </figure>
+      </div>
     </div>
 
     <div class="about-bottom">
@@ -1249,6 +1290,10 @@ button,input,select,textarea{font-family:var(--f-body)}
       <div class="foot-brand">
         <span class="plate"><img src="ispace-scaled.webp" alt="iSpace"></span>
         <p>It takes a village to build what matters.</p>
+        <address class="foot-contact">
+          <div class="fc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.500C19 14.800 12 21 12 21z"/><circle cx="12" cy="9.500" r="2.500"/></svg><span>Lagos, Nigeria</span></div>
+          <div class="fc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.500 1.500a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><span class="nums"><a href="tel:+2347036273180">0703 627 3180</a><a href="tel:+2347066475083">0706 647 5083</a></span></div>
+        </address>
       </div>
       <div><h4>Explore</h4><ul><li><a href="about.html">About iSpace</a></li><li><a href="services.html">Our Work</a></li><li><a href="village.html">Community</a></li><li><a href="contact.html">Contact</a></li></ul></div>
       <div><h4>Community</h4><ul><li><a href="village.html">Town Hall</a></li><li><a href="village.html">Council Sessions</a></li><li><a href="village.html">Village Masterclasses</a></li><li><a href="#">Careers</a></li></ul></div>
