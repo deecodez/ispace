@@ -849,6 +849,10 @@ h1,h2,h3,h4,h5,h6,.display,.h1,.h2,.h3{font-family:'Unbounded','Arial Black',sys
 .stack{height:min(560px,72vh)}
 @media (max-width:900px){.svc{overflow:visible}}
 </style>
+<style id="ispace-home-h2">
+/* [CHANGE] Home "Capabilities" heading: smaller, about 3 lines */
+@media(min-width:901px){.svc-copy .h2{font-size:clamp(1.3rem,1.75vw,1.9rem);line-height:1.2;max-width:none}}
+</style>
 </head>
 <body>
 
@@ -924,7 +928,7 @@ h1,h2,h3,h4,h5,h6,.display,.h1,.h2,.h3{font-family:'Unbounded','Arial Black',sys
 
   <div class="hero-fig" id="fig" aria-hidden="true">
     <i class="hf-dots d1"></i><i class="hf-dots d2"></i><i class="hf-dot x1"></i><i class="hf-dot x2"></i><i class="hf-dot x3"></i>
-    <div class="hf a"><span class="bd"></span><div class="ph"><img src="ZINO.jpg" alt="" width="900" height="1200" decoding="async" fetchpriority="high"></div></div>
+    <div class="hf a"><span class="bd"></span><div class="ph"><img src="team3.jpg" alt="" width="900" height="1200" decoding="async" fetchpriority="high"></div></div>
     <div class="hf b"><span class="bd"></span><div class="ph"><img src="team1.jpg" alt="" width="900" height="1200" decoding="async"></div></div>
     <div class="hf c"><span class="bd"></span><div class="ph"><img src="team2.jpg" alt="" width="900" height="1200" decoding="async"></div></div>
     <div class="hf d"><div class="ph"><img src="who_we.png" alt="" width="600" height="600" decoding="async"></div></div>
@@ -957,7 +961,8 @@ h1,h2,h3,h4,h5,h6,.display,.h1,.h2,.h3{font-family:'Unbounded','Arial Black',sys
       </div>
       <div class="about-space">
         <figure class="about-pic">
-          <img src="ISP.png" alt="iSpace team at work" loading="lazy" onerror="this.parentNode.classList.add('empty');this.remove()">
+          <!-- [CHANGE] Drop your picture here: put the file next to index.html and set the src -->
+          <img src="about-picture.jpg" alt="iSpace team at work" loading="lazy" onerror="this.parentNode.classList.add('empty');this.remove()">
           <figcaption class="ph-note">Picture goes here</figcaption>
         </figure>
       </div>
@@ -1292,7 +1297,7 @@ h1,h2,h3,h4,h5,h6,.display,.h1,.h2,.h3{font-family:'Unbounded','Arial Black',sys
         <p>It takes a village to build what matters.</p>
         <address class="foot-contact">
           <div class="fc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.500C19 14.800 12 21 12 21z"/><circle cx="12" cy="9.500" r="2.500"/></svg><span>Lagos, Nigeria</span></div>
-          <div class="fc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.500 1.500a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><span class="nums"><a href="tel:+2347036273180">0703 627 3180</a><a href="tel:+2347066475083">0706 647 5083</a></span></div>
+          <div class="fc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.500 1.500a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><span class="nums"><a href="tel:+2347036273180">+234 703 627 3180</a><a href="tel:+2347066475083">+234 706 647 5083</a><a href="tel:+18253658328">+1 825 365 8328</a></span></div>
         </address>
       </div>
       <div><h4>Explore</h4><ul><li><a href="about.html">About iSpace</a></li><li><a href="services.html">Our Work</a></li><li><a href="village.html">Community</a></li><li><a href="contact.html">Contact</a></li></ul></div>
